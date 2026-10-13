@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, ArrowUpRight, Zap, Users, Sparkles, Quote } from 'lucide-react';
+import { CheckCircle2, ArrowUpRight, Zap, Users, Quote } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { CompanyLogo } from '../components/CompanyLogos';
 import { ScrollReveal, staggerContainer, staggerChild } from '../components/ScrollReveal';
@@ -118,18 +118,6 @@ export default function Impact() {
         <FloatingOrb className="bottom-0 left-0" size={320} colorClass="bg-brand-light/5" blurClass="blur-3xl" delay={2} />
 
         <div className="container mx-auto px-4 md:px-8 max-w-4xl text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 mb-6 border border-white/15 backdrop-blur-sm"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-brand-light" />
-            <span className="text-brand-light font-bold text-xs uppercase tracking-wider">
-              Customer Success & Real Impact
-            </span>
-          </motion.div>
-
           <h1 className="text-3xl sm:text-6xl md:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight">
             {[
               <span key="l1" className="block">We are proud to have worked with India’s</span>,
@@ -180,6 +168,8 @@ export default function Impact() {
                 <img
                   src="/images/ev_charging_hub.jpg"
                   alt="EV Infrastructure Execution"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-black/30" />
@@ -207,6 +197,8 @@ export default function Impact() {
                 <img
                   src="/images/corporate_staffing_team.jpg"
                   alt="Workforce Deployment Execution"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-black/30" />
@@ -240,7 +232,7 @@ export default function Impact() {
                 key={f.id}
                 onClick={() => setFilter(f.id as any)}
                 className={cn(
-                  'px-6 py-3 rounded-full font-bold text-xs sm:text-sm transition-all border shadow-sm',
+                  'px-6 py-3 min-h-11 rounded-full font-bold text-xs sm:text-sm transition-all border shadow-sm',
                   filter === f.id
                     ? 'bg-brand-dark text-brand-light border-brand-dark'
                     : 'bg-brand-card text-brand-ink border-brand-edge hover:border-brand-dark hover:bg-brand-bg'
@@ -297,7 +289,7 @@ export default function Impact() {
                       <div className="text-base font-bold text-brand-ink">{client.solution}</div>
                     </div>
 
-                    <p className="text-brand-muted font-medium text-sm leading-relaxed mb-6 bg-brand-bg p-4 rounded-2xl border border-brand-edge">
+                    <p className="text-brand-muted font-medium text-[15px] sm:text-sm leading-relaxed mb-6 bg-brand-bg p-4 rounded-2xl border border-brand-edge">
                       {client.scope}
                     </p>
 
@@ -318,7 +310,7 @@ export default function Impact() {
                     <span className="text-xs font-bold text-slate-400">Verified Client Partner</span>
                     <Link
                       to="/contact"
-                      className="text-xs font-bold text-brand-ink group-hover:text-emerald-700 inline-flex items-center gap-1 group-hover:translate-x-1 transition-all"
+                      className="text-xs font-bold text-brand-ink group-hover:text-emerald-700 inline-flex items-center gap-1 py-2 -my-2 group-hover:translate-x-1 transition-all"
                     >
                       <span>Request Similar Mandate</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />

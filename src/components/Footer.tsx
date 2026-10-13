@@ -282,7 +282,7 @@ export default function Footer() {
           <p className="text-center md:text-left">
             © {currentYear} Pinnacle Consultant. All rights reserved.
           </p>
-          <div className="flex items-center gap-5 order-last md:order-none">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 order-last md:order-none">
             <span>Founded Jan 2025</span>
             <span className="w-1 h-1 rounded-full bg-brand-light/60" />
             <span>100% Statutory Compliance</span>
@@ -290,7 +290,7 @@ export default function Footer() {
           <button
             onClick={scrollToTop}
             aria-label="Back to top"
-            className="group inline-flex items-center gap-2.5 text-slate-400 hover:text-brand-light transition-colors"
+            className="group inline-flex items-center gap-2.5 min-h-11 text-slate-400 hover:text-brand-light transition-colors"
           >
             <span className="text-xs uppercase tracking-widest font-bold">Back to top</span>
             <span className="w-9 h-9 rounded-full border border-white/15 bg-white/5 flex items-center justify-center group-hover:bg-brand-light group-hover:border-brand-light group-hover:text-brand-onaccent group-hover:-translate-y-0.5 transition-all">

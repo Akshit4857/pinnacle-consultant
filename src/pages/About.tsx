@@ -84,7 +84,7 @@ export default function About() {
   return (
     <div className="w-full">
       {/* 1. Hero Section (Editorial Advisory & Purpose - 100% Viewport Height) */}
-      <section className="bg-brand-dark text-white overflow-hidden min-h-screen lg:h-[100dvh] flex flex-col justify-center pt-28 pb-10 md:pt-36 md:pb-12 lg:pt-32 lg:pb-10 relative">
+      <section className="bg-brand-dark text-white overflow-hidden min-h-svh lg:h-[100dvh] flex flex-col justify-center pt-28 pb-10 md:pt-36 md:pb-12 lg:pt-32 lg:pb-10 relative">
         {/* Editorial Executive Advisory Photo Backdrop */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img
@@ -247,6 +247,8 @@ export default function About() {
                 <img
                   src="/images/gurugram_corporate_hq.jpg"
                   alt="Gurugram Corporate Headquarters"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-4">
@@ -266,14 +268,14 @@ export default function About() {
                 text="Redefining the consulting experience to make it faster, deeper, and more honest."
                 className="text-3xl md:text-4xl font-semibold text-brand-ink tracking-tight mb-6"
               />
-              <div className="space-y-4 text-brand-muted font-medium text-sm sm:text-base leading-relaxed">
+              <div className="space-y-4 text-brand-muted font-medium text-[15px] sm:text-base leading-relaxed">
                 <p>
                   Pinnacle was born out of the belief that businesses today need partners who bring real industry experience, not just promises. Each founder comes from a background in Electric Mobility, Manufacturing, and Strategic Consulting — we’ve worked on the ground, solved real problems, and now we’re bringing those learnings to you.
                 </p>
                 <p>
                   We didn’t just open a company. We set out to fix what felt broken: consulting that was slow, misaligned, or disconnected from ground operational reality.
                 </p>
-                <p className="bg-brand-bg p-5 rounded-2xl border-l-4 border-brand-dark text-brand-ink font-semibold text-sm">
+                  <p className="bg-brand-bg p-5 rounded-2xl border-l-4 border-brand-dark text-brand-ink font-semibold text-[15px]">
                   In just a short span since January 2025, we’ve earned the trust of India’s evolving industrial leaders — Exponent Energy, Revfin, Gentari, Sun Mobility, and GoMechanic. We see this as a responsibility to deliver even more value.
                 </p>
               </div>
@@ -320,6 +322,8 @@ export default function About() {
                     <img
                       src="/images/shikha_gupta.jpg"
                       alt="Shikha Gupta - Founder & Workforce Strategist"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover object-top"
                     />
                     <div className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-brand-dark text-brand-light flex items-center justify-center shadow-md">
@@ -337,7 +341,7 @@ export default function About() {
                   </div>
                 </div>
 
-                <p className="text-brand-muted font-medium text-xs sm:text-sm leading-relaxed mb-6">
+                <p className="text-brand-muted font-medium text-[15px] sm:text-sm leading-relaxed mb-6">
                   A workforce strategist with a decade of experience across HR consulting, talent acquisition, SAP HCM implementation, and marketplace-driven hiring ecosystems. Having recruited 500+ professionals and led large-scale talent delivery mandates, she combines operational rigour with a deep understanding of how mobility and service networks truly function.
                 </p>
 
@@ -385,6 +389,8 @@ export default function About() {
                     <img
                       src="/images/ashu_gupta.jpg"
                       alt="Ashu Gupta - Co-Founder & EV Infrastructure Leader"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover object-top"
                     />
                     <div className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-brand-dark text-brand-light flex items-center justify-center shadow-md">
@@ -402,7 +408,7 @@ export default function About() {
                   </div>
                 </div>
 
-                <p className="text-brand-muted font-medium text-xs sm:text-sm leading-relaxed mb-6">
+                <p className="text-brand-muted font-medium text-[15px] sm:text-sm leading-relaxed mb-6">
                   An automotive and EV infrastructure leader with 14+ years of hands-on experience in building and scaling charging networks across India. He has led site acquisition, installation, and infrastructure expansion for major EV players, driving footprint growth across 200+ locations and managing 50MW+ charging infrastructure projects.
                 </p>
 
@@ -479,7 +485,7 @@ export default function About() {
                   aria-selected={activeVisionTab === tab}
                   aria-controls="vision-panel"
                   onClick={() => setActiveVisionTab(tab)}
-                  className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 ${
+                  className={`px-4 sm:px-5 py-2.5 min-h-11 sm:min-h-auto rounded-full text-xs font-bold transition-all flex items-center gap-2 ${
                     activeVisionTab === tab
                       ? 'bg-brand-light text-brand-onaccent shadow-md'
                       : 'text-white hover:bg-white/15'
@@ -519,7 +525,7 @@ export default function About() {
               <h3 className="text-2xl font-semibold text-white mb-3">
                 {visionScenarios[activeVisionTab].title}
               </h3>
-              <p className="text-slate-200 text-sm md:text-base leading-relaxed font-medium">
+              <p className="text-slate-200 text-[15px] md:text-base leading-relaxed font-medium">
                 {visionScenarios[activeVisionTab].text}
               </p>
             </div>
@@ -603,7 +609,7 @@ export default function About() {
                   <div className="text-xs font-bold text-emerald-800 mb-3 leading-snug">
                     {v.tagline}
                   </div>
-                  <p className="text-brand-muted font-medium text-xs leading-relaxed">
+                  <p className="text-brand-muted font-medium text-[15px] md:text-xs leading-relaxed">
                     {v.desc}
                   </p>
                 </div>

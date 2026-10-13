@@ -392,6 +392,12 @@ html {
   -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
 /* ==============================
    BUTTON VARIANTS — shared kit
    ============================== */

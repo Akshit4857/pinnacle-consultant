@@ -20,7 +20,6 @@ import {
   Building2,
   Users,
   Award,
-  Sparkles,
   ChevronRight,
   Download,
   Check,
@@ -122,18 +121,6 @@ export default function Home() {
 
         <div className="container mx-auto px-4 md:px-8 relative z-10 max-w-7xl">
           <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 bg-black/30 rounded-full px-4 py-1.5 mb-6 border border-white/20 backdrop-blur-md"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-brand-light" />
-              <span className="text-brand-light font-bold text-xs uppercase tracking-wider">
-                Industrial & Clean Mobility Consulting • Gurugram HQ
-              </span>
-            </motion.div>
-
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.08] tracking-tight mb-6 drop-shadow-md">
               {[
                 <span key="l1" className="block">Powering Industries</span>,
@@ -254,7 +241,7 @@ export default function Home() {
             </div>
             <Link
               to="/impact"
-              className="text-xs font-bold text-brand-ink hover:text-emerald-700 flex items-center gap-1.5 transition-colors group"
+              className="text-xs font-bold text-brand-ink hover:text-emerald-700 flex items-center gap-1.5 transition-colors group py-2"
             >
               <span>Explore Verified Client Case Studies</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -279,7 +266,7 @@ export default function Home() {
               text="Our 4 Strategic Practices"
               className="text-3xl sm:text-4xl md:text-5xl font-semibold text-brand-ink tracking-tight leading-tight mb-4"
             />
-            <p className="text-brand-muted font-medium text-sm sm:text-base leading-relaxed">
+            <p className="text-brand-muted font-medium text-[15px] sm:text-base leading-relaxed">
               Every practice is led by verified domain operators with ground execution responsibility. No siloed theory — only measurable turnaround.
             </p>
           </ScrollReveal>
@@ -310,7 +297,7 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <p className="text-brand-muted font-medium text-sm leading-relaxed mb-6">
+                  <p className="text-brand-muted font-medium text-[15px] leading-relaxed mb-6">
                     Strategic CXO & specialized technical placements alongside contractual blue & white-collar workforce deployments. 100% statutory labor, PF, ESIC, and payroll compliance guaranteed.
                   </p>
 
@@ -351,7 +338,7 @@ export default function Home() {
                   <span className="text-xs text-brand-muted">Led by Shikha Gupta (MBA HR, 10+ Yrs)</span>
                   <Link
                     to="/staffing"
-                    className="inline-flex items-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent px-6 py-3 rounded-full font-bold text-xs transition-colors shadow-sm"
+                    className="inline-flex items-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent px-6 py-3 min-h-11 rounded-full font-bold text-xs transition-colors shadow-sm"
                   >
                     <span>Explore Staffing Solutions</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -385,7 +372,7 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <p className="text-brand-muted font-medium text-sm leading-relaxed mb-6">
+                  <p className="text-brand-muted font-medium text-[15px] leading-relaxed mb-6">
                     Turnkey site feasibility, DISCOM load approvals, DC fast charger commissioning, battery swapping station attendants, and 24/7 preventive maintenance.
                   </p>
 
@@ -394,6 +381,8 @@ export default function Home() {
                     <img
                       src="/images/ev_charging_hub.jpg"
                       alt="EV Fast Charging Setup"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-4">
@@ -420,7 +409,7 @@ export default function Home() {
                   <span className="text-xs text-brand-muted">Hero • Sun Mobility • Gentari</span>
                   <Link
                     to="/tech-ev"
-                    className="inline-flex items-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent px-6 py-3 rounded-full font-bold text-xs transition-colors shadow-sm"
+                    className="inline-flex items-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent px-6 py-3 min-h-11 rounded-full font-bold text-xs transition-colors shadow-sm"
                   >
                     <span>Commission EV Hubs</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -454,7 +443,7 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <p className="text-brand-muted font-medium text-sm leading-relaxed mb-6">
+                  <p className="text-brand-muted font-medium text-[15px] leading-relaxed mb-6">
                     Transforming manufacturing floors into agile, connected operations using non-invasive IoT sensors, SCADA dashboards, and predictive maintenance ML.
                   </p>
 
@@ -463,6 +452,8 @@ export default function Home() {
                     <img
                       src="/images/smart_factory_iot.jpg"
                       alt="Smart Factory Automation"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-4">
@@ -489,7 +480,7 @@ export default function Home() {
                   <span className="text-xs text-brand-muted">Brownfield & Greenfield Retrofit</span>
                   <Link
                     to="/industry-4-0"
-                    className="inline-flex items-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent px-6 py-3 rounded-full font-bold text-xs transition-colors shadow-sm"
+                    className="inline-flex items-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent px-6 py-3 min-h-11 rounded-full font-bold text-xs transition-colors shadow-sm"
                   >
                     <span>Factory Digital Audit</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -523,7 +514,7 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <p className="text-brand-muted font-medium text-sm leading-relaxed mb-6">
+                  <p className="text-brand-muted font-medium text-[15px] leading-relaxed mb-6">
                     Proprietary sectoral forecasts, OEM component benchmarking, battery chemistry comparative models, and Voice of Customer (VoC) studies to de-risk high-stakes capital decisions.
                   </p>
 
@@ -565,7 +556,7 @@ export default function Home() {
                   <span className="text-xs text-brand-muted">Commission Proprietary Study</span>
                   <Link
                     to="/market-research"
-                    className="inline-flex items-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent px-6 py-3 rounded-full font-bold text-xs transition-colors shadow-sm"
+                    className="inline-flex items-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent px-6 py-3 min-h-11 rounded-full font-bold text-xs transition-colors shadow-sm"
                   >
                     <span>Explore Research Scopes</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -593,7 +584,7 @@ export default function Home() {
             </div>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 text-xs font-bold text-brand-ink hover:text-brand-light-2 transition-colors group mb-1"
+              className="inline-flex items-center gap-2 text-xs font-bold text-brand-ink hover:text-brand-light-2 transition-colors group mb-1 py-2"
             >
               <span>Read More</span>
               <div className="w-8 h-8 rounded-full border border-brand-edge flex items-center justify-center group-hover:border-brand-light-2 group-hover:bg-brand-light-2 group-hover:text-white transition-all">
@@ -651,7 +642,7 @@ export default function Home() {
                                   {s.title}
                                 </h3>
 
-                                <p className="text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed max-w-sm line-clamp-3 mb-3.5">
+                                <p className="text-[13px] text-slate-500 font-normal leading-relaxed max-w-sm line-clamp-3 mb-3.5">
                                   {s.desc}
                                 </p>
 
@@ -664,7 +655,7 @@ export default function Home() {
                               <div className="pt-2 flex items-center">
                                 <Link
                                   to="/contact"
-                                  className="inline-flex items-center gap-2 text-xs font-bold text-brand-ink hover:text-brand-light-2 transition-colors group/btn"
+                                  className="inline-flex items-center gap-2 text-xs font-bold text-brand-ink hover:text-brand-light-2 transition-colors group/btn py-2"
                                 >
                                   <span>Read More</span>
                                   <div className="w-8 h-8 rounded-full bg-brand-dark text-white flex items-center justify-center font-bold shadow-sm group-hover/btn:bg-brand-light-2 group-hover/btn:text-white transition-all">
@@ -684,6 +675,8 @@ export default function Home() {
                               <img
                                 src={s.image}
                                 alt={s.title}
+                                loading="lazy"
+                                decoding="async"
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-3.5">
@@ -751,7 +744,7 @@ export default function Home() {
                 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white tracking-tight leading-tight mb-6"
                 stagger={0.04}
               />
-              <p className="text-slate-300 font-medium text-sm sm:text-base leading-relaxed mb-6">
+              <p className="text-slate-300 font-medium text-[15px] sm:text-base leading-relaxed mb-6">
                 Pinnacle Consultant was founded in January 2025 in Gurugram, India. We bring together a rare convergence of deep workforce strategy and heavy automotive/clean mobility infrastructure authority.
               </p>
 
@@ -791,6 +784,8 @@ export default function Home() {
                       <img
                         src="/images/shikha_gupta.jpg"
                         alt="Shikha Gupta - Founder & Workforce Strategist"
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover object-top"
                       />
                       <div className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-brand-light text-brand-onaccent flex items-center justify-center shadow-md">
@@ -808,7 +803,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <p className="text-slate-300 font-medium text-xs sm:text-sm leading-relaxed mb-6">
+                  <p className="text-slate-300 font-medium text-[15px] sm:text-sm leading-relaxed mb-6">
                     A workforce strategist with a decade of expertise across HR consulting, talent acquisition, SAP HCM implementation, and marketplace-driven hiring ecosystems. Having recruited 500+ professionals, she blends operational rigour with an innate understanding of how mobility and service networks operate.
                   </p>
 
@@ -842,6 +837,8 @@ export default function Home() {
                       <img
                         src="/images/ashu_gupta.jpg"
                         alt="Ashu Gupta - Co-Founder & EV Infrastructure Leader"
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover object-top"
                       />
                       <div className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-brand-light text-brand-onaccent flex items-center justify-center shadow-md">
@@ -859,7 +856,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <p className="text-slate-300 font-medium text-xs sm:text-sm leading-relaxed mb-6">
+                  <p className="text-slate-300 font-medium text-[15px] sm:text-sm leading-relaxed mb-6">
                     An automotive and EV infrastructure authority with 14+ years of hands-on experience in building and scaling charging networks across India. He has led site acquisition, installation, and infrastructure expansion across 200+ locations, managing 50MW+ charging projects.
                   </p>
 

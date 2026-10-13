@@ -76,18 +76,6 @@ export default function Contact() {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Column: Heading, Direct Contact Cards & Trust Badges */}
             <div className="lg:col-span-5 flex flex-col justify-start">
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 mb-5 border border-white/15 backdrop-blur-sm self-start"
-              >
-                <span className="w-2 h-2 rounded-full bg-brand-light animate-pulse" />
-                <span className="text-brand-light font-bold text-xs uppercase tracking-wider">
-                  Direct Coordination Desk • Gurugram HQ
-                </span>
-              </motion.div>
-
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 leading-[1.15] tracking-tight">
                 {[
                   <span key="l1" className="block">
@@ -147,13 +135,13 @@ export default function Contact() {
                   href="https://wa.me/917879716775"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 bg-brand-light text-brand-onaccent py-3 px-4 rounded-xl font-bold text-xs hover:bg-white transition-colors shadow-md"
+                  className="flex-1 min-w-[140px] min-h-11 inline-flex items-center justify-center gap-2 bg-brand-light text-brand-onaccent py-3 px-4 rounded-xl font-bold text-xs hover:bg-white transition-colors shadow-md"
                 >
                   <MessageSquare className="w-4 h-4" /> WhatsApp Chat
                 </a>
                 <a
                   href="tel:+917879716775"
-                  className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white py-3 px-4 rounded-xl font-bold text-xs hover:bg-white/20 transition-colors"
+                  className="flex-1 min-w-[140px] min-h-11 inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white py-3 px-4 rounded-xl font-bold text-xs hover:bg-white/20 transition-colors"
                 >
                   <Phone className="w-4 h-4 text-brand-light" /> Call Us Direct
                 </a>
@@ -291,7 +279,7 @@ export default function Contact() {
                           <input
                             type="text"
                             required
-                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-medium text-brand-ink"
+                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-medium text-brand-ink"
                             placeholder="e.g. Rahul Sharma"
                           />
                         </div>
@@ -306,7 +294,7 @@ export default function Contact() {
                           <input
                             type="text"
                             required
-                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-medium text-brand-ink"
+                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-medium text-brand-ink"
                             placeholder="e.g. Exponent Energy"
                           />
                         </div>
@@ -323,7 +311,7 @@ export default function Contact() {
                           <input
                             type="email"
                             required
-                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-medium text-brand-ink"
+                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-medium text-brand-ink"
                             placeholder="rahul@company.com"
                           />
                         </div>
@@ -338,7 +326,7 @@ export default function Contact() {
                           <input
                             type="tel"
                             required
-                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-medium text-brand-ink"
+                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-medium text-brand-ink"
                             placeholder="+91 XXXXX XXXXX"
                           />
                         </div>
@@ -349,7 +337,7 @@ export default function Contact() {
                       <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                         Practice Area / Solution Required *
                       </label>
-                      <select className="w-full bg-brand-bg border border-brand-edge rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-semibold text-brand-ink">
+                      <select className="w-full bg-brand-bg border border-brand-edge rounded-xl px-4 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-semibold text-brand-ink">
                         <option>Manpower Staffing (Corporate & Contractual)</option>
                         <option>EV Infrastructure Setup & Maintenance (AMC)</option>
                         <option>Industry 4.0 & Smart Factory Automation</option>
@@ -365,7 +353,7 @@ export default function Contact() {
                       <textarea
                         rows={4}
                         required
-                        className="w-full bg-brand-bg border border-brand-edge rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all resize-none font-medium text-brand-ink"
+                        className="w-full bg-brand-bg border border-brand-edge rounded-xl px-4 py-3 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all resize-none font-medium text-brand-ink"
                         placeholder="Detail your estimated staffing count, target locations, EV charger specifications, or project launch timeline..."
                       ></textarea>
                     </div>
@@ -392,12 +380,12 @@ export default function Contact() {
                       <CheckCircle className="w-9 h-9 text-emerald-700" />
                     </div>
                     <h3 className="text-2xl font-bold text-brand-ink mb-2">Mandate Received!</h3>
-                    <p className="text-brand-muted font-medium mb-6 max-w-md text-sm leading-relaxed">
+                    <p className="text-brand-muted font-medium mb-6 max-w-md text-[15px] sm:text-sm leading-relaxed">
                       Thank you. Your requirements have been routed directly to our coordination leads. We will review the parameters and connect back with a scoped plan within 24 hours.
                     </p>
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="inline-flex items-center gap-2 bg-brand-dark text-white text-xs font-bold px-5 py-2.5 rounded-xl hover:bg-brand-light hover:text-brand-onaccent transition-colors"
+                      className="inline-flex items-center gap-2 bg-brand-dark text-white text-xs font-bold px-5 py-2.5 min-h-11 rounded-xl hover:bg-brand-light hover:text-brand-onaccent transition-colors"
                     >
                       Submit Another Mandate
                     </button>
@@ -504,7 +492,7 @@ export default function Contact() {
                 01
               </div>
               <h3 className="text-lg font-bold text-brand-ink mb-2">Requirement Discovery</h3>
-              <p className="text-sm text-brand-muted leading-relaxed font-medium mb-4">
+              <p className="text-[15px] sm:text-sm text-brand-muted leading-relaxed font-medium mb-4">
                 Within 24 hours of form submission, our practice lead connects to clarify role parameters, headcount volume, compliance mandates, or EV technical blueprints.
               </p>
               <div className="text-xs font-semibold text-emerald-800 flex items-center gap-1.5">
@@ -524,7 +512,7 @@ export default function Contact() {
                 02
               </div>
               <h3 className="text-lg font-bold text-brand-ink mb-2">Scoped Proposal & SLA</h3>
-              <p className="text-sm text-brand-muted leading-relaxed font-medium mb-4">
+              <p className="text-[15px] sm:text-sm text-brand-muted leading-relaxed font-medium mb-4">
                 We deliver a detailed commercial proposal with transparent rate cards, statutory breakdowns (PF, ESIC, CLRA), deployment timelines, and legal draft agreements.
               </p>
               <div className="text-xs font-semibold text-emerald-800 flex items-center gap-1.5">
@@ -544,7 +532,7 @@ export default function Contact() {
                 03
               </div>
               <h3 className="text-lg font-bold text-brand-ink mb-2">Rapid Deployment</h3>
-              <p className="text-sm text-brand-muted leading-relaxed font-medium mb-4">
+              <p className="text-[15px] sm:text-sm text-brand-muted leading-relaxed font-medium mb-4">
                 Contract signing and seamless rollout. We assign a dedicated Key Account Manager (KAM) to oversee on-ground execution, daily attendance, and uptime SLAs.
               </p>
               <div className="text-xs font-semibold text-emerald-800 flex items-center gap-1.5">
@@ -607,7 +595,7 @@ export default function Contact() {
                       transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-sm text-brand-muted font-medium leading-relaxed border-t border-brand-edge pt-3">
+                      <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-[15px] sm:text-sm text-brand-muted font-medium leading-relaxed border-t border-brand-edge pt-3">
                         {faq.a}
                       </div>
                     </motion.div>
@@ -632,14 +620,14 @@ export default function Contact() {
                     href="https://wa.me/917879716775"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent font-bold text-xs sm:text-sm px-5 py-3 rounded-xl hover:bg-white transition-colors"
+                    className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent font-bold text-xs sm:text-sm px-5 py-3 min-h-11 rounded-xl hover:bg-white transition-colors"
                   >
                     <MessageSquare className="w-4 h-4" /> Message on WhatsApp
                   </a>
                 </Magnetic>
                 <a
                   href="tel:+917879716775"
-                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl transition-colors border border-white/20"
+                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm px-5 py-3 min-h-11 rounded-xl transition-colors border border-white/20"
                 >
                   <Phone className="w-4 h-4 text-brand-light" /> +91-7879716775
                 </a>

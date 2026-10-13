@@ -123,8 +123,9 @@ export function CompanyLogo({
           src={sources[imgSrcIndex]}
           alt={`${name} Official Logo`}
           onError={handleImgError}
-          className="w-full h-full object-contain filter group-hover:scale-105 transition-transform"
+          className="w-full h-full max-w-full object-contain filter group-hover:scale-105 transition-transform"
           loading="lazy"
+          decoding="async"
         />
       ) : (
         <div className="w-full h-full rounded-lg bg-brand-dark text-brand-light font-bold text-xs flex items-center justify-center">
@@ -153,6 +154,7 @@ export default function CompanyLogos({
           {[...VERIFIED_COMPANIES, ...VERIFIED_COMPANIES].map((company, idx) => (
             <div
               key={`${company.id}-${idx}`}
+              aria-hidden={idx >= VERIFIED_COMPANIES.length || undefined}
               className="inline-flex items-center gap-3 bg-brand-card border border-brand-edge hover:border-brand-dark/40 px-4 py-2.5 rounded-2xl shadow-xs transition-all shrink-0 group hover:shadow-md"
             >
               <CompanyLogo domain={company.domain} name={company.name} size={36} />
@@ -176,42 +178,45 @@ export default function CompanyLogos({
 
   if (variant === 'grid') {
     return (
-      <div className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-4 ${className}`}>
-        {VERIFIED_COMPANIES.map((company) => (
-          <div
-            key={company.id}
-            className="bg-brand-bg border border-brand-edge hover:border-brand-dark p-5 rounded-2xl transition-all hover:shadow-md flex flex-col justify-between group"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <CompanyLogo
-                  domain={company.domain}
-                  name={company.name}
-                  size={46}
-                  className="bg-brand-card p-2"
-                />
-                <div>
-                  <h3 className="font-bold text-brand-ink text-base group-hover:text-emerald-800 transition-colors">
-                    {company.name}
-                  </h3>
-                  <div className="text-[11px] text-slate-500 font-medium">{company.tag}</div>
+      <div className={`w-full overflow-hidden marquee-mask ${className}`}>
+        <div className="flex items-stretch gap-4 animate-marquee">
+          {[...VERIFIED_COMPANIES, ...VERIFIED_COMPANIES].map((company, idx) => (
+            <div
+              key={`${company.id}-${idx}`}
+              aria-hidden={idx >= VERIFIED_COMPANIES.length || undefined}
+              className="w-[300px] sm:w-[360px] lg:w-[400px] shrink-0 bg-brand-bg border border-brand-edge hover:border-brand-dark p-5 rounded-2xl transition-all hover:shadow-md flex flex-col justify-between group"
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <CompanyLogo
+                    domain={company.domain}
+                    name={company.name}
+                    size={46}
+                    className="bg-brand-card p-2"
+                  />
+                  <div>
+                    <h3 className="font-bold text-brand-ink text-base group-hover:text-emerald-800 transition-colors">
+                      {company.name}
+                    </h3>
+                    <div className="text-[11px] text-slate-500 font-medium">{company.tag}</div>
+                  </div>
                 </div>
+                {company.badge && (
+                  <span className="text-[10px] font-bold bg-brand-light/40 text-brand-ink px-2.5 py-1 rounded-full uppercase tracking-wider shrink-0">
+                    {company.badge}
+                  </span>
+                )}
               </div>
-              {company.badge && (
-                <span className="text-[10px] font-bold bg-brand-light/40 text-brand-ink px-2.5 py-1 rounded-full uppercase tracking-wider shrink-0">
-                  {company.badge}
-                </span>
+
+              {company.scope && (
+                <div className="pt-3 border-t border-brand-edge text-xs font-medium text-brand-muted flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>{company.scope}</span>
+                </div>
               )}
             </div>
-
-            {company.scope && (
-              <div className="pt-3 border-t border-brand-edge text-xs font-medium text-brand-muted flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span>{company.scope}</span>
-              </div>
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     );
   }

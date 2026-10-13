@@ -137,6 +137,8 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
                   onMouseLeave={() => setServicesDropdown(false)}
                 >
                   <button
+                    onClick={() => setServicesDropdown((o) => !o)}
+                    aria-expanded={servicesDropdown}
                     className={cn(
                       'text-sm font-semibold transition-colors flex items-center gap-1.5 py-2',
                       ['/staffing', '/tech-ev', '/industry-4-0', '/market-research'].includes(
@@ -227,7 +229,7 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
                 <VerticalSwitcher />
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-5 py-2.5 rounded-full font-bold text-xs hover:bg-white transition-all shadow-md"
+                  className="inline-flex min-h-11 items-center gap-2 bg-brand-light text-brand-onaccent px-5 py-2.5 rounded-full font-bold text-xs hover:bg-white transition-all shadow-md"
                 >
                   <span>Request Mandate</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
@@ -236,7 +238,7 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
 
               {/* Mobile Toggle */}
               <button
-                className="xl:hidden text-white p-2"
+                className="xl:hidden text-white p-3 -m-1"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle navigation menu"
               >
@@ -256,7 +258,7 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
               >
                 <div className="px-5 py-6 flex flex-col gap-3">
                   <VerticalSwitcher className="self-start mb-1" />
-                  <Link to="/" className="text-sm font-semibold text-white py-1">
+                  <Link to="/" className="flex min-h-11 items-center text-sm font-semibold text-white py-1">
                     Home
                   </Link>
                   <div className="text-xs uppercase text-brand-light font-bold tracking-wider pt-2">
@@ -266,19 +268,19 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
                     <Link
                       key={s.path}
                       to={s.path}
-                      className="text-sm font-medium text-slate-300 pl-3 py-1 hover:text-white"
+                      className="flex min-h-11 items-center text-sm font-medium text-slate-300 pl-3 py-1 hover:text-white"
                     >
                       • {s.name}
                     </Link>
                   ))}
                   <div className="border-t border-white/10 pt-2 mt-2 flex flex-col gap-2">
-                    <Link to="/impact" className="text-sm font-semibold text-white py-1">
+                    <Link to="/impact" className="flex min-h-11 items-center text-sm font-semibold text-white py-1">
                       Clients & Impact
                     </Link>
-                    <Link to="/about" className="text-sm font-semibold text-white py-1">
+                    <Link to="/about" className="flex min-h-11 items-center text-sm font-semibold text-white py-1">
                       About Us (Vision & Values)
                     </Link>
-                    <Link to="/faq" className="text-sm font-semibold text-white py-1">
+                    <Link to="/faq" className="flex min-h-11 items-center text-sm font-semibold text-white py-1">
                       FAQ
                     </Link>
                     <Link

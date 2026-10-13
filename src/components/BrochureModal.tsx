@@ -35,16 +35,17 @@ export default function BrochureModal({ onClose }: Props) {
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        className="relative w-full max-w-md bg-brand-card rounded-[2rem] shadow-2xl overflow-hidden"
+        className="relative w-full max-w-md max-h-[85dvh] overflow-y-auto bg-brand-card rounded-[2rem] shadow-2xl"
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-brand-ink transition-colors rounded-full hover:bg-slate-100"
+          aria-label="Close"
+          className="absolute top-3 right-3 z-10 min-h-11 min-w-11 flex items-center justify-center p-2 text-slate-400 hover:text-brand-ink transition-colors rounded-full hover:bg-slate-100"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="p-8">
+        <div className="p-6 sm:p-8">
           {!submitted ? (
             <>
               <h3 className="text-2xl font-medium text-brand-ink mb-2">Get Corporate Profile</h3>
@@ -105,7 +106,7 @@ export default function BrochureModal({ onClose }: Props) {
               </p>
               <button
                 onClick={onClose}
-                className="font-medium text-brand-ink hover:text-brand-light transition-colors underline underline-offset-4"
+                className="inline-flex items-center justify-center min-h-11 font-medium text-brand-ink hover:text-brand-light transition-colors underline underline-offset-4"
               >
                 Close Window
               </button>

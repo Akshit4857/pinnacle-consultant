@@ -19,7 +19,6 @@ import {
   ChevronRight,
   ChevronDown,
   X,
-  Sparkles,
   Download,
   Activity,
   Gauge,
@@ -291,7 +290,7 @@ export default function TechEv() {
   return (
     <div className="w-full">
       {/* 1. Hero Section (Editorial Clean Mobility Hub - 100% Viewport Height) */}
-      <section className="bg-brand-dark text-white overflow-hidden min-h-screen lg:h-[100dvh] flex flex-col justify-center pt-28 pb-10 md:pt-36 md:pb-12 lg:pt-32 lg:pb-10 relative">
+      <section className="bg-brand-dark text-white overflow-hidden min-h-svh lg:h-[100dvh] flex flex-col justify-center pt-28 pb-10 md:pt-36 md:pb-12 lg:pt-32 lg:pb-10 relative">
         {/* Background Editorial Photo with Multi-Stop Gradient Feathering */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img
@@ -305,18 +304,6 @@ export default function TechEv() {
 
         <div className="container mx-auto px-4 md:px-8 relative z-10 max-w-7xl my-auto">
           <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 bg-black/30 rounded-full px-4 py-1.5 mb-4 sm:mb-5 border border-white/20 backdrop-blur-md"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-brand-light" />
-              <span className="text-brand-light font-bold text-xs uppercase tracking-wider">
-                Clean Mobility Division • Turnkey EV Infrastructure & AMC
-              </span>
-            </motion.div>
-
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight mb-4 sm:mb-5 drop-shadow-md">
               {[
                 <span key="l1" className="block">Powering India's EV</span>,
@@ -342,7 +329,7 @@ export default function TechEv() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-slate-100 text-sm sm:text-base lg:text-lg font-medium leading-relaxed mb-6 max-w-2xl drop-shadow-sm"
+              className="text-slate-100 text-[15px] sm:text-base lg:text-lg font-medium leading-relaxed mb-6 max-w-2xl drop-shadow-sm"
             >
               From site feasibility and DISCOM high-tension grid sanctions to 240kW DC fast charger deployment, station management, and certified diagnostic mechanics — we build and power India’s clean mobility backbone.
             </motion.p>
@@ -463,7 +450,7 @@ export default function TechEv() {
               text="Comprehensive EV Lifecycle Services"
               className="text-3xl sm:text-4xl md:text-5xl font-semibold text-brand-ink tracking-tight mb-4"
             />
-            <p className="text-brand-muted font-medium text-sm">
+            <p className="text-brand-muted font-medium text-[15px] sm:text-sm">
               Planning, deploying, and maintaining high-performance EV charging networks with verified 99.4% uptime.
             </p>
           </ScrollReveal>
@@ -498,13 +485,13 @@ export default function TechEv() {
                     <p className="text-xs font-bold text-emerald-800 uppercase tracking-wider mb-3">
                       {c.headline}
                     </p>
-                    <p className="text-brand-muted font-medium text-sm leading-relaxed mb-6">
+                    <p className="text-brand-muted font-medium text-[15px] sm:text-sm leading-relaxed mb-6">
                       {c.desc}
                     </p>
 
                     <ul className="space-y-3 mb-8 pt-4 border-t border-brand-edge">
                       {c.deliverables.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5 text-xs text-brand-muted">
+                        <li key={idx} className="flex items-start gap-2.5 text-[15px] sm:text-xs text-brand-muted">
                           <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                           <span>{item}</span>
                         </li>
@@ -521,7 +508,7 @@ export default function TechEv() {
                     </div>
                     <button
                       onClick={() => setActiveTech(c.id)}
-                      className="w-full flex items-center justify-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent py-3 rounded-xl font-medium text-xs transition-colors"
+                      className="w-full flex items-center justify-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent py-3.5 rounded-xl font-medium text-xs transition-colors"
                     >
                       View Operational Scope <ChevronRight className="w-4 h-4" />
                     </button>
@@ -546,7 +533,7 @@ export default function TechEv() {
               text="Simulate Your EV Infrastructure Hub"
               className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight mb-4"
             />
-            <p className="text-slate-300 text-sm sm:text-base font-medium">
+            <p className="text-slate-300 text-[15px] sm:text-base font-medium">
               Calculate electrical load requirements, daily vehicle turnaround, and deployment timelines tailored to your site archetype.
             </p>
           </ScrollReveal>
@@ -671,7 +658,7 @@ export default function TechEv() {
 
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-6 py-3 rounded-full font-bold text-xs hover:bg-white transition-colors shrink-0 shadow-lg"
+                className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-6 py-3.5 rounded-full font-bold text-xs hover:bg-white transition-colors shrink-0 shadow-lg"
               >
                 <span>Request Custom Site Feasibility Plan</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -692,6 +679,8 @@ export default function TechEv() {
                   <img
                     src="/images/ashu_gupta.jpg"
                     alt="Ashu Gupta - Co-Founder & EV Infrastructure Leader"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-64 sm:h-80 object-cover object-top"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent" />
@@ -714,7 +703,7 @@ export default function TechEv() {
                   "In the EV business, downtime isn't just lost revenue — it breaks customer trust. We build infrastructure to run at 99.4% uptime."
                 </h3>
 
-                <p className="text-brand-muted text-sm leading-relaxed mb-6 font-medium">
+                <p className="text-brand-muted text-[15px] sm:text-sm leading-relaxed mb-6 font-medium">
                   With 14+ years of hands-on automotive and infrastructure leadership across India, Ashu Gupta has spearheaded site acquisition, turnkey electrical installations, and high-voltage grid liaison for 200+ EV charging and swapping locations, managing over 50MW+ in power infrastructure.
                 </p>
 
@@ -748,7 +737,7 @@ export default function TechEv() {
             <h2 className="text-3xl sm:text-4xl font-semibold text-brand-ink tracking-tight mb-4">
               Hardware-Agnostic & Grid-Compliant
             </h2>
-            <p className="text-brand-muted font-medium text-sm">
+            <p className="text-brand-muted font-medium text-[15px] sm:text-sm">
               We deploy and support every major industrial standard, connector protocol, and grid compliance requirement in the Indian clean mobility landscape.
             </p>
           </ScrollReveal>
@@ -771,7 +760,7 @@ export default function TechEv() {
                     <spec.icon className="w-6 h-6" />
                   </div>
                   <h4 className="text-base font-bold text-brand-ink mb-2">{spec.category}</h4>
-                  <p className="text-xs text-brand-muted font-medium leading-relaxed">{spec.detail}</p>
+                  <p className="text-[15px] sm:text-xs text-brand-muted font-medium leading-relaxed">{spec.detail}</p>
                 </TiltCard>
               </motion.div>
             ))}
@@ -791,7 +780,7 @@ export default function TechEv() {
               text="Proven 4-Step Network Rollout"
               className="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4"
             />
-            <p className="text-slate-300 text-sm font-medium">
+            <p className="text-slate-300 text-[15px] sm:text-sm font-medium">
               Refined across 200+ site setups to eliminate bureaucratic approval lag and deliver immediate operational uptime.
             </p>
           </ScrollReveal>
@@ -818,7 +807,7 @@ export default function TechEv() {
                       </span>
                     </div>
                     <h3 className="text-lg font-semibold text-white mb-2">{step.title}</h3>
-                    <p className="text-slate-300 text-xs leading-relaxed font-normal mb-6">{step.desc}</p>
+                    <p className="text-slate-300 text-[15px] sm:text-xs leading-relaxed font-normal mb-6">{step.desc}</p>
                   </div>
                   <div className="pt-4 border-t border-white/10">
                     <span className="text-[11px] text-brand-light font-semibold flex items-center gap-1.5">
@@ -843,7 +832,7 @@ export default function TechEv() {
             <h2 className="text-3xl sm:text-4xl font-semibold text-brand-ink tracking-tight mb-4">
               Why CPOs & OEMs Choose Pinnacle
             </h2>
-            <p className="text-brand-muted font-medium text-sm">
+            <p className="text-brand-muted font-medium text-[15px] sm:text-sm">
               See the operational contrast between unorganized EPC subcontractors and Pinnacle’s integrated turnkey delivery.
             </p>
           </ScrollReveal>
@@ -901,7 +890,7 @@ export default function TechEv() {
               text="Frequently Asked Questions"
               className="text-3xl sm:text-4xl font-semibold text-brand-ink tracking-tight mb-3"
             />
-            <p className="text-brand-muted font-medium text-sm">
+            <p className="text-brand-muted font-medium text-[15px] sm:text-sm">
               Key operational and technical clarity regarding turnkey charging rollouts, grid sanctions, and SLAs.
             </p>
           </ScrollReveal>
@@ -936,7 +925,7 @@ export default function TechEv() {
                         transition={{ duration: 0.2 }}
                         className="overflow-hidden"
                       >
-                        <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm text-brand-muted font-medium leading-relaxed border-t border-brand-edge pt-3">
+                        <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-[15px] sm:text-sm text-brand-muted font-medium leading-relaxed border-t border-brand-edge pt-3">
                           {faq.a}
                         </div>
                       </motion.div>
@@ -950,7 +939,7 @@ export default function TechEv() {
           <div className="mt-8 text-center">
             <Link
               to="/faq"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-ink hover:text-emerald-700 transition-colors underline underline-offset-4"
+              className="inline-flex items-center min-h-11 gap-1.5 text-xs font-bold text-brand-ink hover:text-emerald-700 transition-colors underline underline-offset-4"
             >
               <span>View all enterprise compliance & staffing FAQs in Knowledge Base</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -986,14 +975,14 @@ export default function TechEv() {
                 </div>
                 <button
                   onClick={() => setActiveTech(null)}
-                  className="p-2 bg-brand-card rounded-full text-brand-ink hover:bg-brand-light shadow-sm transition-colors border border-brand-edge"
+                  className="p-3 bg-brand-card rounded-full text-brand-ink hover:bg-brand-light shadow-sm transition-colors border border-brand-edge"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
               <div className="p-6 md:p-8 overflow-y-auto flex-1">
-                <p className="text-brand-muted font-medium leading-relaxed mb-8 text-sm">
+                <p className="text-brand-muted font-medium leading-relaxed mb-8 text-[15px] sm:text-sm">
                   {activeTechData.desc}
                 </p>
 
@@ -1007,7 +996,7 @@ export default function TechEv() {
                         <div className="w-5 h-5 rounded-full bg-brand-dark text-brand-light flex items-center justify-center shrink-0 mt-0.5">
                           <CheckCircle2 className="w-3.5 h-3.5" />
                         </div>
-                        <span className="font-medium text-brand-ink text-xs">{item}</span>
+                        <span className="font-medium text-brand-ink text-[15px] sm:text-xs">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -1049,7 +1038,7 @@ export default function TechEv() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 tracking-tight">
               Planning to Expand Your EV Charging Footprint?
             </h2>
-            <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-8 font-medium">
+            <p className="text-slate-300 text-[15px] sm:text-base max-w-2xl mx-auto mb-8 font-medium">
               Tap into 14+ years of automotive and power infrastructure leadership to accelerate grid approvals, civil commissioning, and guaranteed 99.4% ground maintenance across India.
             </p>
             <div className="flex flex-wrap justify-center gap-4">

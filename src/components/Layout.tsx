@@ -43,7 +43,7 @@ export default function Layout() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col font-sans selection:bg-brand-light text-brand-onaccent">
+      <div className="min-h-svh flex flex-col font-sans selection:bg-brand-light text-brand-onaccent">
         <ScrollToTop />
         <Header onOpenBrochure={() => setIsModalOpen(true)} />
         <main className="flex-grow">

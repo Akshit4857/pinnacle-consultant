@@ -110,18 +110,11 @@ export default function Faq() {
   const activeCatData = categories.find(c => c.id === activeCategory);
 
   return (
-    <div className="w-full bg-brand-bg min-h-screen">
+    <div className="w-full bg-brand-bg min-h-svh">
       {/* Hero Header - Compact & Integrated */}
       <section className="pt-28 md:pt-36 pb-8 md:pb-10 bg-brand-dark text-white relative overflow-hidden">
         <FloatingOrb className="top-0 right-0" size={384} blurClass="blur-3xl" delay={0} />
         <div className="container mx-auto px-4 md:px-8 max-w-4xl text-center relative z-10">
-          <div className="inline-flex items-center gap-2 bg-black/30 rounded-full px-4 py-1.5 mb-4 border border-white/20 backdrop-blur-md">
-            <HelpCircle className="w-3.5 h-3.5 text-brand-light" />
-            <span className="text-brand-light font-bold text-xs uppercase tracking-wider">
-              Help Center • Instant Answers
-            </span>
-          </div>
-
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-semibold mb-3 leading-[1.1] tracking-tight">
             {[
               <span key="l1" className="block">
@@ -154,7 +147,7 @@ export default function Faq() {
                   setOpenIndex(0); // reset open panel on switch
                 }}
                 className={cn(
-                  'flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all border shadow-xs',
+                  'flex items-center gap-2 px-5 py-2.5 min-h-11 rounded-full font-semibold text-xs sm:text-sm transition-all border shadow-xs',
                   activeCategory === c.id
                     ? 'bg-brand-light text-brand-onaccent border-brand-light shadow-md font-bold scale-[1.02]'
                     : 'bg-white/10 text-white border-white/15 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm'
