@@ -1,0 +1,313 @@
+import { Link } from 'react-router-dom';
+import { ArrowUpRight, Mail, Phone, MapPin, Linkedin, ArrowUp } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
+import { getLenis } from '../lib/lenis';
+
+const practices = [
+  { to: '/staffing', label: 'Manpower Staffing', sub: 'Corporate & Contractual' },
+  { to: '/tech-ev', label: 'EV Infrastructure', sub: 'Charging, AMC & Maintenance' },
+  { to: '/industry-4-0', label: 'Industry 4.0', sub: 'Smart Factory Automation' },
+  { to: '/market-research', label: 'Market Research', sub: 'Strategic Intelligence' },
+];
+
+const company = [
+  { to: '/about', label: 'About Us', sub: 'Vision & Values' },
+  { to: '/impact', label: 'Clients & Impact', sub: 'Case Studies' },
+  { to: '/faq', label: 'Compliance FAQ', sub: 'Hiring & Labor Queries' },
+  { to: '/contact', label: 'Contact', sub: 'Submit Workforce Mandate' },
+];
+
+function scrollToTop() {
+  const lenis = getLenis();
+  if (lenis) lenis.scrollTo(0, { duration: 1.2 });
+  else window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-brand-dark bg-grid-dark text-slate-300 pt-24 pb-8 border-t border-brand-light/20 relative overflow-hidden">
+      {/* Ambient glow orbs */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-40 -left-32 w-[34rem] h-[34rem] rounded-full blur-3xl opacity-40"
+        style={{
+          background:
+            'radial-gradient(circle, color-mix(in srgb, var(--color-brand-light) 35%, transparent) 0%, transparent 70%)',
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-1/3 -right-40 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-25"
+        style={{
+          background:
+            'radial-gradient(circle, color-mix(in srgb, var(--color-brand-light-2) 45%, transparent) 0%, transparent 70%)',
+        }}
+      />
+
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
+        {/* Section 1: Outro CTA */}
+        <ScrollReveal direction="up" className="mb-20">
+          <div className="relative rounded-[2.5rem] border border-white/10 bg-white/[0.04] backdrop-blur-sm px-6 py-12 sm:px-10 sm:py-14 md:px-14 md:py-16 overflow-hidden">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 opacity-[0.35]"
+              style={{
+                background:
+                  'radial-gradient(ellipse 60% 100% at 100% 0%, color-mix(in srgb, var(--color-brand-light) 28%, transparent), transparent 65%)',
+              }}
+            />
+            <div className="relative flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
+              <div className="max-w-2xl">
+                <span className="inline-flex items-center gap-2.5 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm">
+                  <span className="w-2 h-2 rounded-full bg-brand-light animate-pulse" />
+                  <span className="text-brand-light font-bold text-[11px] tracking-widest uppercase">
+                    Strategic Partnership
+                  </span>
+                </span>
+                <h2 className="text-3xl md:text-5xl lg:text-[3.4rem] font-semibold text-white mb-5 leading-[1.08] tracking-tight">
+                  Ready to scale your{' '}
+                  <span
+                    className="bg-clip-text text-transparent"
+                    style={{
+                      backgroundImage:
+                        'linear-gradient(100deg, #fff 10%, var(--color-brand-light) 55%, var(--color-brand-light-4) 95%)',
+                    }}
+                  >
+                    workforce & operations?
+                  </span>
+                </h2>
+                <p className="text-slate-300 text-base md:text-lg font-medium leading-relaxed">
+                  Partner with Pinnacle to deploy elite talent, roll out EV charging hubs,
+                  automate factories, and commission proprietary market research.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-4 shrink-0">
+                <Link
+                  to="/contact"
+                  className="group inline-flex items-center gap-3 bg-brand-light text-brand-onaccent px-7 py-4 rounded-full font-bold text-sm hover:bg-white transition-all shrink-0 shadow-[0_0_35px_-8px_var(--color-brand-light)]"
+                >
+                  <span>Request Mandate</span>
+                  <span className="w-8 h-8 bg-brand-onaccent/10 rounded-full flex items-center justify-center group-hover:bg-brand-onaccent group-hover:text-brand-light transition-all">
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-0.5 transition-transform" />
+                  </span>
+                </Link>
+                <a
+                  href="tel:+917879716775"
+                  className="inline-flex items-center gap-2.5 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-full font-semibold text-sm hover:bg-white/20 transition-colors backdrop-blur-sm shrink-0"
+                >
+                  <Phone className="w-4 h-4 text-brand-light" /> Talk to us
+                </a>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* Section 2: Trust strip */}
+        <ScrollReveal direction="up" delay={0.05} className="mb-16 pb-12 border-b border-white/10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
+            {[
+              { k: 'Jan 2025', v: 'Founded by operators' },
+              { k: '4 Practices', v: 'Staffing · EV · Ind 4.0 · Intel' },
+              { k: '100%', v: 'Statutory compliance' },
+              { k: 'Enterprise', v: 'Hero · Exponent · Sun Mobility · Gentari' },
+            ].map((item) => (
+              <div key={item.k} className="border-l-2 border-brand-light/50 pl-4">
+                <div className="text-white font-bold text-lg md:text-xl tracking-tight">{item.k}</div>
+                <div className="text-[11px] uppercase tracking-widest text-slate-400 font-semibold mt-1.5 leading-relaxed">
+                  {item.v}
+                </div>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+
+        {/* Section 3: Directory Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
+          {/* Brand Info */}
+          <ScrollReveal direction="up" delay={0.05} className="lg:pr-6">
+            <Link to="/" className="flex items-center gap-3 mb-5 group">
+              <img
+                src="/images/pinnacle-icon-transparent.png"
+                alt="Pinnacle Consultant"
+                className="w-9 h-9 object-contain rounded-lg group-hover:scale-105 transition-transform"
+              />
+              <span className="text-2xl font-bold text-white tracking-tight">
+                Pinnacle<span className="text-brand-light">.</span>
+              </span>
+            </Link>
+            <p className="text-xs text-slate-400 leading-relaxed font-medium mb-6">
+              New-age consulting firm founded in 2025 by industry practitioners. Powering Indian
+              enterprises across Manpower Staffing, EV Infrastructure, Industry 4.0, and Market
+              Intelligence.
+            </p>
+
+            <div className="flex items-center gap-2.5">
+              <a
+                href="https://www.linkedin.com/company/pinnacleconsultant-india/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn Company Page"
+                className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 hover:bg-brand-light hover:border-brand-light text-white hover:text-brand-onaccent flex items-center justify-center transition-all hover:-translate-y-0.5"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a
+                href="mailto:shikha@pinnacleconsultant.co.in"
+                aria-label="Email us"
+                className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 hover:bg-brand-light hover:border-brand-light text-white hover:text-brand-onaccent flex items-center justify-center transition-all hover:-translate-y-0.5"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+              <a
+                href="tel:+917879716775"
+                aria-label="Call us"
+                className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 hover:bg-brand-light hover:border-brand-light text-white hover:text-brand-onaccent flex items-center justify-center transition-all hover:-translate-y-0.5"
+              >
+                <Phone className="w-4 h-4" />
+              </a>
+            </div>
+          </ScrollReveal>
+
+          {/* Practice Areas */}
+          <ScrollReveal direction="up" delay={0.1}>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="text-brand-light font-bold text-[11px] tracking-widest">01</span>
+              <span className="h-px flex-1 bg-white/10" />
+              <h3 className="text-white font-bold text-xs uppercase tracking-widest">
+                Practice Areas
+              </h3>
+            </div>
+            <ul className="space-y-1">
+              {practices.map((item) => (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
+                    className="group flex items-start justify-between gap-3 py-2.5 rounded-lg -mx-2 px-2 hover:bg-white/5 transition-colors"
+                  >
+                    <span>
+                      <span className="block text-xs font-semibold text-slate-200 group-hover:text-brand-light transition-colors">
+                        {item.label}
+                      </span>
+                      <span className="block text-[11px] text-slate-500 font-medium mt-0.5">
+                        {item.sub}
+                      </span>
+                    </span>
+                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all mt-0.5" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </ScrollReveal>
+
+          {/* Company */}
+          <ScrollReveal direction="up" delay={0.15}>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="text-brand-light font-bold text-[11px] tracking-widest">02</span>
+              <span className="h-px flex-1 bg-white/10" />
+              <h3 className="text-white font-bold text-xs uppercase tracking-widest">Company</h3>
+            </div>
+            <ul className="space-y-1">
+              {company.map((item) => (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
+                    className="group flex items-start justify-between gap-3 py-2.5 rounded-lg -mx-2 px-2 hover:bg-white/5 transition-colors"
+                  >
+                    <span>
+                      <span className="block text-xs font-semibold text-slate-200 group-hover:text-brand-light transition-colors">
+                        {item.label}
+                      </span>
+                      <span className="block text-[11px] text-slate-500 font-medium mt-0.5">
+                        {item.sub}
+                      </span>
+                    </span>
+                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all mt-0.5" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </ScrollReveal>
+
+          {/* Contact Info */}
+          <ScrollReveal direction="up" delay={0.2}>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="text-brand-light font-bold text-[11px] tracking-widest">03</span>
+              <span className="h-px flex-1 bg-white/10" />
+              <h3 className="text-white font-bold text-xs uppercase tracking-widest">
+                Direct Contact
+              </h3>
+            </div>
+            <ul className="space-y-3 text-xs font-medium">
+              <li>
+                <a
+                  href="mailto:shikha@pinnacleconsultant.co.in"
+                  className="group flex items-start gap-3 p-2.5 -mx-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-brand-light/40 hover:bg-white/[0.08] transition-all"
+                >
+                  <Mail className="w-4 h-4 shrink-0 text-brand-light mt-px" />
+                  <span className="break-all text-slate-200 group-hover:text-white transition-colors">
+                    shikha@pinnacleconsultant.co.in
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+917879716775"
+                  className="group flex items-start gap-3 p-2.5 -mx-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-brand-light/40 hover:bg-white/[0.08] transition-all"
+                >
+                  <Phone className="w-4 h-4 shrink-0 text-brand-light mt-px" />
+                  <span className="text-slate-200 group-hover:text-white transition-colors">
+                    +91-7879716775
+                  </span>
+                </a>
+              </li>
+              <li>
+                <div className="flex items-start gap-3 p-2.5 -mx-2.5 rounded-xl bg-white/5 border border-white/10">
+                  <MapPin className="w-4 h-4 shrink-0 text-brand-light mt-px" />
+                  <span className="leading-relaxed text-slate-200">
+                    Pinnacle Consultants, <br />
+                    Gurugram, Haryana, India
+                  </span>
+                </div>
+              </li>
+              <li className="pt-1">
+                <a
+                  href="https://www.linkedin.com/company/pinnacleconsultant-india/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-white transition-colors shadow-[0_0_25px_-10px_var(--color-brand-light)]"
+                >
+                  <Linkedin className="w-3.5 h-3.5" /> LinkedIn Company Page
+                </a>
+              </li>
+            </ul>
+          </ScrollReveal>
+        </div>
+
+        {/* Section 4: Copyright Bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-5 pt-8 border-t border-white/10 text-xs text-slate-400 font-medium">
+          <p className="text-center md:text-left">
+            © {currentYear} Pinnacle Consultant. All rights reserved.
+          </p>
+          <div className="flex items-center gap-5 order-last md:order-none">
+            <span>Founded Jan 2025</span>
+            <span className="w-1 h-1 rounded-full bg-brand-light/60" />
+            <span>100% Statutory Compliance</span>
+          </div>
+          <button
+            onClick={scrollToTop}
+            aria-label="Back to top"
+            className="group inline-flex items-center gap-2.5 text-slate-400 hover:text-brand-light transition-colors"
+          >
+            <span className="text-[11px] uppercase tracking-widest font-bold">Back to top</span>
+            <span className="w-9 h-9 rounded-full border border-white/15 bg-white/5 flex items-center justify-center group-hover:bg-brand-light group-hover:border-brand-light group-hover:text-brand-onaccent group-hover:-translate-y-0.5 transition-all">
+              <ArrowUp className="w-4 h-4" />
+            </span>
+          </button>
+        </div>
+      </div>
+    </footer>
+  );
+}
