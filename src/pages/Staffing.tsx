@@ -189,7 +189,7 @@ export default function Staffing() {
               className="inline-flex items-center gap-2 bg-black/30 rounded-full px-4 py-1.5 mb-6 border border-white/20 backdrop-blur-md"
             >
               <Sparkles className="w-3.5 h-3.5 text-brand-light" />
-              <span className="text-brand-light font-bold text-xs uppercase tracking-wider">
+              <span className="text-brand-light font-bold text-xs tracking-wider">
                 Manpower Division • Contractual & Executive Deployments
               </span>
             </motion.div>
@@ -369,11 +369,18 @@ export default function Staffing() {
                     min="10"
                     max="500"
                     step="5"
+                    list="staffing-tickmarks"
                     value={hiresCount}
                     onChange={(e) => setHiresCount(Number(e.target.value))}
+                    aria-label="Target deployment cohort size"
                     className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-dark"
                   />
-                  <div className="flex justify-between gap-1 text-[10px] sm:text-xs text-slate-500 font-bold mt-3 px-1 uppercase tracking-wider">
+                  <datalist id="staffing-tickmarks">
+                    <option value="10" label="10"></option>
+                    <option value="150" label="150"></option>
+                    <option value="500" label="500"></option>
+                  </datalist>
+                  <div className="flex justify-between gap-1 text-xs text-slate-500 font-bold mt-3 px-1 uppercase tracking-wider">
                     <span>10 Staff (Pilot)</span>
                     <span>150 Staff (Plant Scale)</span>
                     <span>500+ Staff (Enterprise)</span>
@@ -383,16 +390,16 @@ export default function Staffing() {
                 <div className="flex flex-col sm:flex-row items-center gap-4">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center justify-center gap-2 bg-brand-dark text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-brand-light hover:text-brand-onaccent transition-colors shadow-lg w-full sm:w-auto"
+                    className="inline-flex items-center justify-center gap-2 bg-brand-dark text-white px-7 py-3.5 rounded-full font-bold text-sm hover:bg-brand-light hover:text-brand-onaccent transition-colors shadow-lg w-full sm:w-auto"
                   >
                     <span>Claim Your Workforce Proposal</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </Link>
                   <button
                     onClick={() => setIsBrochureOpen(true)}
-                    className="inline-flex items-center justify-center gap-2 text-xs font-bold text-brand-ink underline underline-offset-4 hover:text-emerald-800"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-brand-edge bg-brand-bg hover:bg-white text-brand-ink text-sm font-semibold transition-colors w-full sm:w-auto"
                   >
-                    <Download className="w-4 h-4" />
+                    <Download className="w-4 h-4 text-emerald-700 shrink-0" />
                     <span>Download SLA & Pricing Benchmark</span>
                   </button>
                 </div>
@@ -421,7 +428,7 @@ export default function Staffing() {
                     ₹{costSavingsThousands.toLocaleString('en-IN')},000
                     <span className="text-xs text-slate-300 font-normal"> / mo</span>
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-1">
+                  <p className="text-xs text-slate-300 mt-1">
                     Saved on agency markups, job portals, and internal HR screening cycles.
                   </p>
                 </div>
@@ -438,7 +445,7 @@ export default function Staffing() {
                     {timeSavedHours} <span className="text-base font-semibold text-slate-300">Hours</span>
                     <span className="text-xs text-slate-300 font-normal"> / mo</span>
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-1">
+                  <p className="text-xs text-slate-300 mt-1">
                     Equivalent to ~{Math.max(1, Math.round(timeSavedHours / 160))} full-time in-house recruiters freed up.
                   </p>
                 </div>
@@ -504,7 +511,7 @@ export default function Staffing() {
                     <div className="w-14 h-14 bg-brand-dark text-brand-light rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
                       <Icon className="w-7 h-7" strokeWidth={1.75} />
                     </div>
-                    <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full mb-3 inline-block uppercase tracking-wider">
+                    <span className="text-xs font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full mb-3 inline-block uppercase tracking-wider">
                       {v.badge}
                     </span>
                     <h3 className="text-xl font-bold text-brand-ink mb-1">{v.title}</h3>
@@ -694,10 +701,10 @@ export default function Staffing() {
                   <thead>
                     <tr className="bg-brand-dark text-white">
                       <th className="py-5 px-6 font-bold text-xs uppercase tracking-wider w-1/3">Key Operational Parameter</th>
-                      <th className="py-5 px-6 font-bold text-xs uppercase tracking-wider w-1/3 text-slate-300">
+                      <th className="py-5 px-6 font-bold text-xs uppercase tracking-wider w-1/3 text-white">
                         Traditional Staffing Agencies
                       </th>
-                      <th className="py-5 px-6 font-bold text-xs uppercase tracking-wider w-1/3 text-brand-light">
+                      <th className="py-5 px-6 font-bold text-xs uppercase tracking-wider w-1/3 text-brand-light bg-white/5 border-b-2 border-brand-light">
                         Pinnacle Managed Workforce
                       </th>
                     </tr>
@@ -706,15 +713,15 @@ export default function Staffing() {
                     {comparisonRows.map((row, idx) => (
                       <tr key={idx} className="hover:bg-slate-50/70 transition-colors">
                         <td className="py-4.5 px-6 font-bold text-brand-ink">{row.feature}</td>
-                        <td className="py-4.5 px-6 text-slate-500 font-medium bg-red-50/30">
-                          <div className="flex items-start gap-2">
-                            <X className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                        <td className="py-4.5 px-6 text-brand-muted font-medium">
+                          <div className="flex items-start gap-2.5">
+                            <X className="w-5 h-5 text-red-500 shrink-0 mt-0.5 stroke-[2.5]" />
                             <span>{row.traditional}</span>
                           </div>
                         </td>
-                        <td className="py-4.5 px-6 font-semibold text-brand-ink bg-emerald-50/40">
-                          <div className="flex items-start gap-2">
-                            <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <td className="py-4.5 px-6 font-semibold text-brand-ink bg-emerald-50/50 border-l border-r border-emerald-100/80">
+                          <div className="flex items-start gap-2.5">
+                            <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 stroke-[2.5]" />
                             <span>{row.pinnacle}</span>
                           </div>
                         </td>
@@ -761,7 +768,7 @@ export default function Staffing() {
                 <div className="w-12 h-12 rounded-2xl bg-brand-light text-brand-onaccent flex items-center justify-center mx-auto">
                   <Users className="w-6 h-6" />
                 </div>
-                <h4 className="text-lg font-bold text-white">Ready to Deploy Your Next Cohort?</h4>
+                <h3 className="text-lg font-bold text-white">Ready to Deploy Your Next Cohort?</h3>
                 <p className="text-xs text-slate-300 font-medium">
                   Receive pre-screened candidate dossiers within 5 business days.
                 </p>

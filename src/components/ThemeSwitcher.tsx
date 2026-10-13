@@ -5,7 +5,11 @@ import { useTheme } from '../context/ThemeContext';
 import { THEMES } from '../lib/themes';
 import { cn } from '../lib/utils';
 
-export default function ThemeSwitcher() {
+interface ThemeSwitcherProps {
+  inline?: boolean;
+}
+
+export default function ThemeSwitcher({ inline = false }: ThemeSwitcherProps) {
   const { theme, mode, setTheme, setMode } = useTheme();
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,15 +35,23 @@ export default function ThemeSwitcher() {
   }, [open]);
 
   return (
-    <div ref={containerRef} className="fixed bottom-6 left-6 md:bottom-8 md:left-8 z-40">
+    <div
+      ref={containerRef}
+      className={cn(
+        inline ? 'relative inline-block' : 'fixed bottom-6 left-6 md:bottom-8 md:left-8 z-40'
+      )}
+    >
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: 12, scale: 0.95 }}
+            initial={{ opacity: 0, y: inline ? -10 : 12, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 12, scale: 0.95 }}
+            exit={{ opacity: 0, y: inline ? -10 : 12, scale: 0.95 }}
             transition={{ duration: 0.18, ease: 'easeOut' }}
-            className="absolute bottom-full left-0 mb-3 w-64 rounded-2xl border border-brand-edge bg-brand-card/95 p-2 shadow-2xl backdrop-blur-lg"
+            className={cn(
+              'w-64 rounded-2xl border border-brand-edge bg-brand-card/95 p-2 shadow-2xl backdrop-blur-lg z-50',
+              inline ? 'absolute top-full right-0 mt-2' : 'absolute bottom-full left-0 mb-3'
+            )}
             role="menu"
             aria-label="Choose color theme"
           >
@@ -123,17 +135,23 @@ export default function ThemeSwitcher() {
 
       <button
         onClick={() => setOpen((o) => !o)}
-        className="group flex h-12 w-12 items-center justify-center rounded-full border border-brand-edge bg-brand-light text-brand-onaccent shadow-2xl transition-all duration-300 hover:scale-110 hover:bg-brand-card hover:shadow-[0_0_32px_var(--color-brand-light)]"
+        className={cn(
+          inline
+            ? 'flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/20 hover:bg-white/30 text-brand-onaccent text-xs font-bold transition-all'
+            : 'group flex h-12 w-12 items-center justify-center rounded-full border border-brand-edge bg-brand-light text-brand-onaccent shadow-2xl transition-all duration-300 hover:scale-110 hover:bg-brand-card hover:shadow-[0_0_32px_var(--color-brand-light)]'
+        )}
         aria-label="Change color theme"
         aria-haspopup="menu"
         aria-expanded={open}
       >
         <Palette
           className={cn(
-            'h-5 w-5 transition-transform duration-300',
+            inline ? 'h-3.5 w-3.5' : 'h-5 w-5',
+            'transition-transform duration-300',
             open ? 'rotate-90 scale-110' : 'group-hover:rotate-12'
           )}
         />
+        {inline && <span>Theme</span>}
       </button>
     </div>
   );

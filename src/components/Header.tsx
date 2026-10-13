@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, CheckCircle2, Mail, Phone, ChevronDown, Linkedin, Users, Zap, Cpu, BarChart3, ArrowUpRight } from 'lucide-react';
+import { Menu, X, CheckCircle2, Mail, Phone, ChevronDown, Linkedin, Users, Zap, Cpu, BarChart3, ArrowUpRight, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
+import ThemeSwitcher from './ThemeSwitcher';
 
-export default function Header() {
+interface HeaderProps {
+  onOpenBrochure?: () => void;
+}
+
+export default function Header({ onOpenBrochure }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdown, setServicesDropdown] = useState(false);
@@ -55,13 +60,22 @@ export default function Header() {
                 <Phone className="w-3.5 h-3.5" /> +91-7879716775
               </a>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              {onOpenBrochure && (
+                <button
+                  onClick={onOpenBrochure}
+                  className="hover:opacity-85 flex items-center gap-1.5 text-xs font-bold transition-opacity bg-black/10 px-2.5 py-1 rounded-full text-brand-onaccent"
+                >
+                  <FileText className="w-3.5 h-3.5" /> Company Profile
+                </button>
+              )}
+              <ThemeSwitcher inline />
               <span className="uppercase tracking-widest text-[10px] font-bold">Connect —</span>
               <a
                 href="https://www.linkedin.com/company/pinnacleconsultant-india/"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:opacity-75 flex items-center gap-1 text-[11px] font-bold transition-opacity"
+                className="hover:opacity-75 flex items-center gap-1 text-xs font-bold transition-opacity"
               >
                 <Linkedin className="w-3.5 h-3.5" /> LinkedIn
               </a>
@@ -165,30 +179,6 @@ export default function Header() {
                 </div>
 
                 <Link
-                  to="/staffing"
-                  className={cn(
-                    'text-[13px] font-semibold transition-colors',
-                    location.pathname === '/staffing'
-                      ? 'text-brand-light'
-                      : 'text-white hover:text-brand-light'
-                  )}
-                >
-                  Staffing
-                </Link>
-
-                <Link
-                  to="/tech-ev"
-                  className={cn(
-                    'text-[13px] font-semibold transition-colors',
-                    location.pathname === '/tech-ev'
-                      ? 'text-brand-light'
-                      : 'text-white hover:text-brand-light'
-                  )}
-                >
-                  EV Solutions
-                </Link>
-
-                <Link
                   to="/impact"
                   className={cn(
                     'text-[13px] font-semibold transition-colors',
@@ -229,12 +219,10 @@ export default function Header() {
               <div className="hidden lg:flex items-center gap-4">
                 <Link
                   to="/contact"
-                  className="group inline-flex items-center bg-brand-dark border border-brand-light rounded-full hover:bg-brand-light transition-all duration-300 text-white hover:text-brand-ink p-1 pl-5 shadow-sm"
+                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-5 py-2.5 rounded-full font-bold text-xs hover:bg-white transition-all shadow-md"
                 >
-                  <span className="font-semibold text-xs mr-3 tracking-wide">Request Mandate</span>
-                  <span className="w-8 h-8 bg-brand-light rounded-full flex items-center justify-center text-brand-ink transition-colors">
-                    <ArrowUpRight className="w-4 h-4" />
-                  </span>
+                  <span>Request Mandate</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
 

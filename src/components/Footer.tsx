@@ -27,7 +27,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-brand-dark bg-grid-dark text-slate-300 pt-24 pb-8 border-t border-brand-light/20 relative overflow-hidden">
+    <footer className="bg-brand-dark bg-grid-dark-subtle text-slate-300 pt-24 pb-8 border-t border-brand-light/40 relative overflow-hidden">
       {/* Ambient glow orbs */}
       <div
         aria-hidden
@@ -62,7 +62,7 @@ export default function Footer() {
               <div className="max-w-2xl">
                 <span className="inline-flex items-center gap-2.5 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm">
                   <span className="w-2 h-2 rounded-full bg-brand-light animate-pulse" />
-                  <span className="text-brand-light font-bold text-[11px] tracking-widest uppercase">
+                  <span className="text-brand-light font-bold text-xs tracking-widest uppercase">
                     Strategic Partnership
                   </span>
                 </span>
@@ -87,16 +87,14 @@ export default function Footer() {
               <div className="flex flex-wrap items-center gap-4 shrink-0">
                 <Link
                   to="/contact"
-                  className="group inline-flex items-center gap-3 bg-brand-light text-brand-onaccent px-7 py-4 rounded-full font-bold text-sm hover:bg-white transition-all shrink-0 shadow-[0_0_35px_-8px_var(--color-brand-light)]"
+                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-7 py-3.5 rounded-full font-bold text-sm hover:bg-white transition-all shrink-0 shadow-md"
                 >
                   <span>Request Mandate</span>
-                  <span className="w-8 h-8 bg-brand-onaccent/10 rounded-full flex items-center justify-center group-hover:bg-brand-onaccent group-hover:text-brand-light transition-all">
-                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-0.5 transition-transform" />
-                  </span>
+                  <ArrowUpRight className="w-4 h-4" />
                 </Link>
                 <a
                   href="tel:+917879716775"
-                  className="inline-flex items-center gap-2.5 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-full font-semibold text-sm hover:bg-white/20 transition-colors backdrop-blur-sm shrink-0"
+                  className="inline-flex items-center gap-2.5 bg-white/10 text-white border border-white/20 px-6 py-3.5 rounded-full font-semibold text-sm hover:bg-white/20 transition-colors backdrop-blur-sm shrink-0"
                 >
                   <Phone className="w-4 h-4 text-brand-light" /> Talk to us
                 </a>
@@ -106,7 +104,7 @@ export default function Footer() {
         </ScrollReveal>
 
         {/* Section 2: Trust strip */}
-        <ScrollReveal direction="up" delay={0.05} className="mb-16 pb-12 border-b border-white/10">
+        <ScrollReveal direction="up" delay={0.05} className="mb-16 pb-12 border-b border-white/25">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
             {[
               { k: 'Jan 2025', v: 'Founded by operators' },
@@ -143,39 +141,13 @@ export default function Footer() {
               enterprises across Manpower Staffing, EV Infrastructure, Industry 4.0, and Market
               Intelligence.
             </p>
-
-            <div className="flex items-center gap-2.5">
-              <a
-                href="https://www.linkedin.com/company/pinnacleconsultant-india/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn Company Page"
-                className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 hover:bg-brand-light hover:border-brand-light text-white hover:text-brand-onaccent flex items-center justify-center transition-all hover:-translate-y-0.5"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a
-                href="mailto:shikha@pinnacleconsultant.co.in"
-                aria-label="Email us"
-                className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 hover:bg-brand-light hover:border-brand-light text-white hover:text-brand-onaccent flex items-center justify-center transition-all hover:-translate-y-0.5"
-              >
-                <Mail className="w-4 h-4" />
-              </a>
-              <a
-                href="tel:+917879716775"
-                aria-label="Call us"
-                className="w-10 h-10 rounded-xl bg-white/10 border border-white/10 hover:bg-brand-light hover:border-brand-light text-white hover:text-brand-onaccent flex items-center justify-center transition-all hover:-translate-y-0.5"
-              >
-                <Phone className="w-4 h-4" />
-              </a>
-            </div>
           </ScrollReveal>
 
           {/* Practice Areas */}
           <ScrollReveal direction="up" delay={0.1}>
             <div className="flex items-center gap-3 mb-5">
               <span className="text-brand-light font-bold text-[11px] tracking-widest">01</span>
-              <span className="h-px flex-1 bg-white/10" />
+              <span className="h-px flex-1 bg-white/25" />
               <h3 className="text-white font-bold text-xs uppercase tracking-widest">
                 Practice Areas
               </h3>
@@ -206,7 +178,7 @@ export default function Footer() {
           <ScrollReveal direction="up" delay={0.15}>
             <div className="flex items-center gap-3 mb-5">
               <span className="text-brand-light font-bold text-[11px] tracking-widest">02</span>
-              <span className="h-px flex-1 bg-white/10" />
+              <span className="h-px flex-1 bg-white/25" />
               <h3 className="text-white font-bold text-xs uppercase tracking-widest">Company</h3>
             </div>
             <ul className="space-y-1">
@@ -235,7 +207,7 @@ export default function Footer() {
           <ScrollReveal direction="up" delay={0.2}>
             <div className="flex items-center gap-3 mb-5">
               <span className="text-brand-light font-bold text-[11px] tracking-widest">03</span>
-              <span className="h-px flex-1 bg-white/10" />
+              <span className="h-px flex-1 bg-white/25" />
               <h3 className="text-white font-bold text-xs uppercase tracking-widest">
                 Direct Contact
               </h3>
@@ -272,14 +244,17 @@ export default function Footer() {
                   </span>
                 </div>
               </li>
-              <li className="pt-1">
+              <li>
                 <a
                   href="https://www.linkedin.com/company/pinnacleconsultant-india/"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-white transition-colors shadow-[0_0_25px_-10px_var(--color-brand-light)]"
+                  className="group flex items-center gap-3 p-2.5 -mx-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-brand-light/40 hover:bg-white/[0.08] transition-all"
                 >
-                  <Linkedin className="w-3.5 h-3.5" /> LinkedIn Company Page
+                  <Linkedin className="w-4 h-4 shrink-0 text-brand-light" />
+                  <span className="text-slate-200 group-hover:text-white transition-colors">
+                    LinkedIn Company Page
+                  </span>
                 </a>
               </li>
             </ul>
@@ -287,7 +262,7 @@ export default function Footer() {
         </div>
 
         {/* Section 4: Copyright Bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-5 pt-8 border-t border-white/10 text-xs text-slate-400 font-medium">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-5 pt-8 border-t border-white/25 text-xs text-slate-400 font-medium">
           <p className="text-center md:text-left">
             © {currentYear} Pinnacle Consultant. All rights reserved.
           </p>

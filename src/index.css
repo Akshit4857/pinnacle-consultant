@@ -308,6 +308,12 @@ html {
   background-size: 36px 36px;
 }
 
+.bg-grid-dark-subtle {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
 .bg-grid-light {
   background-image: linear-gradient(to right, color-mix(in srgb, var(--color-brand-dark) 4%, transparent) 1px, transparent 1px),
     linear-gradient(to bottom, color-mix(in srgb, var(--color-brand-dark) 4%, transparent) 1px, transparent 1px);
