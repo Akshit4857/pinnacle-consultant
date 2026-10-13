@@ -24,6 +24,9 @@
   --color-brand-muted: #4A5F59;
   --color-brand-edge: #DCEDE5;
   --color-brand-onaccent: #02272E;
+  /* Radius scale */
+  --radius-card: 2rem;
+  --radius-panel: 2.5rem;
 }
 
 /* ==============================
@@ -387,4 +390,69 @@ html {
 .marquee-mask {
   mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+/* ==============================
+   BUTTON VARIANTS — shared kit
+   ============================== */
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1;
+    padding: 1rem 1.75rem;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--color-brand-light);
+    color: var(--color-brand-onaccent);
+  }
+  .btn-primary:hover {
+    background: #fff;
+  }
+
+  .btn-secondary {
+    background: var(--color-brand-dark);
+    color: #fff;
+  }
+  .btn-secondary:hover {
+    background: var(--color-brand-dark-2);
+    color: var(--color-brand-light);
+  }
+
+  .btn-ghost {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    font-weight: 700;
+  }
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.28);
+    border-color: #fff;
+  }
+
+  .btn-outline {
+    background: var(--color-brand-bg);
+    color: var(--color-brand-ink);
+    border: 1px solid var(--color-brand-edge);
+  }
+  .btn-outline:hover {
+    border-color: var(--color-brand-dark);
+  }
+
+  .btn-sm {
+    padding: 0.625rem 1.1rem;
+    font-size: 0.75rem;
+  }
+
+  .btn-icon {
+    padding: 0.625rem;
+  }
 }

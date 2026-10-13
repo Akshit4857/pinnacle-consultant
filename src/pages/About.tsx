@@ -103,7 +103,7 @@ export default function About() {
         <div className="container mx-auto px-4 md:px-8 relative z-10 max-w-7xl my-auto">
           <div className="max-w-3xl">
 
-            <h1 className="text-3xl sm:text-6xl lg:text-7xl font-semibold mb-5 leading-[1.08] tracking-tight drop-shadow-md">
+            <h1 className="text-3xl sm:text-6xl font-semibold mb-5 leading-[1.08] tracking-tight drop-shadow-md">
               {[
                 <span key="l1" className="block">Driven by Purpose.</span>,
                 <span key="l2" className="block">Built on Passion.</span>,
@@ -140,7 +140,7 @@ export default function About() {
               <Magnetic>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-8 py-4 rounded-full font-bold text-sm hover:bg-white transition-colors shadow-lg"
+                  className="btn btn-primary shadow-lg"
                 >
                   <span>Partner With Us</span>
                   <ArrowUpRight className="w-4 h-4" />
@@ -149,7 +149,7 @@ export default function About() {
               <Magnetic strength={0.2}>
                 <a
                   href="#story"
-                  className="inline-flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-full font-semibold text-sm hover:bg-white/20 transition-colors backdrop-blur-sm"
+                  className="btn btn-ghost backdrop-blur-sm shadow-sm"
                 >
                   <span>Read Our Story</span>
                   <ChevronRight className="w-4 h-4 text-brand-light" />
@@ -168,7 +168,7 @@ export default function About() {
                 <div className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                   Jan 2025
                 </div>
-                <div className="text-[11px] text-slate-300 uppercase tracking-wider font-medium mt-1">
+                <div className="text-xs text-slate-300 uppercase tracking-wider font-medium mt-1">
                   Founded in Gurugram
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default function About() {
                   <CountUp to={24} duration={2} digitEffect="slide" />
                   <span>+ Yrs</span>
                 </div>
-                <div className="text-[11px] text-slate-300 uppercase tracking-wider font-medium mt-1">
+                <div className="text-xs text-slate-300 uppercase tracking-wider font-medium mt-1">
                   Combined Experience
                 </div>
               </div>
@@ -188,7 +188,7 @@ export default function About() {
                   <CountUp to={50} duration={2} digitEffect="slide" />
                   <span>MW+</span>
                 </div>
-                <div className="text-[11px] text-slate-300 uppercase tracking-wider font-medium mt-1">
+                <div className="text-xs text-slate-300 uppercase tracking-wider font-medium mt-1">
                   EV Infra Capacity
                 </div>
               </div>
@@ -198,7 +198,7 @@ export default function About() {
                   <CountUp to={100} duration={2} digitEffect="slide" />
                   <span>%</span>
                 </div>
-                <div className="text-[11px] text-slate-300 uppercase tracking-wider font-medium mt-1">
+                <div className="text-xs text-slate-300 uppercase tracking-wider font-medium mt-1">
                   Statutory Compliance
                 </div>
               </div>
@@ -215,7 +215,7 @@ export default function About() {
               <TiltCard
                 maxTilt={4}
                 lift={5}
-                className="bg-brand-bg rounded-[2.5rem] p-6 sm:p-8 md:p-10 border border-brand-edge text-center shadow-sm relative overflow-hidden group"
+                className="bg-brand-bg rounded-panel p-6 sm:p-8 md:p-10 border border-brand-edge text-center shadow-sm relative overflow-hidden group"
               >
                 <FloatingOrb className="top-0 right-0" size={128} colorClass="bg-brand-light/20" blurClass="blur-2xl" delay={1} />
                 <span className="text-brand-ink text-xs font-bold uppercase tracking-widest block mb-2">
@@ -243,7 +243,7 @@ export default function About() {
               </TiltCard>
 
               {/* Creative Photo Inset */}
-              <div className="rounded-3xl overflow-hidden border border-brand-edge shadow-sm relative group">
+              <div className="rounded-card overflow-hidden border border-brand-edge shadow-sm relative group">
                 <img
                   src="/images/gurugram_corporate_hq.jpg"
                   alt="Gurugram Corporate Headquarters"
@@ -312,7 +312,7 @@ export default function About() {
               <TiltCard
                 maxTilt={4}
                 lift={6}
-                className="bg-brand-card rounded-[2.5rem] p-6 sm:p-8 md:p-12 border border-brand-edge shadow-sm flex flex-col justify-between hover:shadow-xl transition-shadow group h-full"
+                className="bg-brand-card rounded-panel p-6 sm:p-8 md:p-12 border border-brand-edge shadow-sm flex flex-col justify-between hover:shadow-xl transition-shadow group h-full"
               >
               <div>
                 <div className="flex items-center gap-4 sm:gap-5 mb-6">
@@ -328,10 +328,10 @@ export default function About() {
                   </div>
                   <div>
                     <h3 className="text-2xl sm:text-3xl font-semibold text-brand-ink mb-1">Shikha Gupta</h3>
-                    <span className="text-emerald-800 text-xs font-bold uppercase tracking-wider block">
+                    <span className="text-brand-light-3 text-xs font-bold tracking-wide block">
                       Founder & Workforce Strategist
                     </span>
-                    <span className="text-[11px] text-slate-500 font-medium">
+                    <span className="text-xs text-slate-500 font-medium">
                       MBA (HR) • 10+ Yrs HR Consulting
                     </span>
                   </div>
@@ -341,8 +341,9 @@ export default function About() {
                   A workforce strategist with a decade of experience across HR consulting, talent acquisition, SAP HCM implementation, and marketplace-driven hiring ecosystems. Having recruited 500+ professionals and led large-scale talent delivery mandates, she combines operational rigour with a deep understanding of how mobility and service networks truly function.
                 </p>
 
-                <h4 className="text-xs font-bold text-brand-ink uppercase tracking-wider mb-3">
-                  Core Track Record:
+                <h4 className="text-sm font-bold text-brand-ink tracking-wide mb-3 flex items-center gap-2">
+                  <span aria-hidden="true" className="w-5 h-0.5 rounded-full bg-brand-light-3" />
+                  Core Track Record
                 </h4>
                 <ul className="space-y-2.5 mb-8">
                   <li className="flex items-start gap-2.5 text-xs text-brand-muted font-medium">
@@ -376,7 +377,7 @@ export default function About() {
               <TiltCard
                 maxTilt={4}
                 lift={6}
-                className="bg-brand-card rounded-[2.5rem] p-6 sm:p-8 md:p-12 border border-brand-edge shadow-sm flex flex-col justify-between hover:shadow-xl transition-shadow group h-full"
+                className="bg-brand-card rounded-panel p-6 sm:p-8 md:p-12 border border-brand-edge shadow-sm flex flex-col justify-between hover:shadow-xl transition-shadow group h-full"
               >
               <div>
                 <div className="flex items-center gap-4 sm:gap-5 mb-6">
@@ -392,10 +393,10 @@ export default function About() {
                   </div>
                   <div>
                     <h3 className="text-2xl sm:text-3xl font-semibold text-brand-ink mb-1">Ashu Gupta</h3>
-                    <span className="text-emerald-800 text-xs font-bold uppercase tracking-wider block">
+                    <span className="text-brand-light-3 text-xs font-bold tracking-wide block">
                       Co-Founder & EV Infrastructure Leader
                     </span>
-                    <span className="text-[11px] text-slate-500 font-medium">
+                    <span className="text-xs text-slate-500 font-medium">
                       14+ Yrs Auto & Clean Mobility • 50MW+ Deployed
                     </span>
                   </div>
@@ -405,8 +406,9 @@ export default function About() {
                   An automotive and EV infrastructure leader with 14+ years of hands-on experience in building and scaling charging networks across India. He has led site acquisition, installation, and infrastructure expansion for major EV players, driving footprint growth across 200+ locations and managing 50MW+ charging infrastructure projects.
                 </p>
 
-                <h4 className="text-xs font-bold text-brand-ink uppercase tracking-wider mb-3">
-                  Core Track Record:
+                <h4 className="text-sm font-bold text-brand-ink tracking-wide mb-3 flex items-center gap-2">
+                  <span aria-hidden="true" className="w-5 h-0.5 rounded-full bg-brand-light-3" />
+                  Core Track Record
                 </h4>
                 <ul className="space-y-2.5 mb-8">
                   <li className="flex items-start gap-2.5 text-xs text-brand-muted font-medium">
@@ -458,20 +460,29 @@ export default function About() {
           </ScrollReveal>
 
           {/* Interactive Scenario Switcher */}
-          <ScrollReveal direction="up" distance={25} className="bg-white/5 border border-white/10 rounded-[2.5rem] p-6 sm:p-8 md:p-12 mb-16 backdrop-blur-sm">
+          <ScrollReveal direction="up" distance={25} className="bg-white/5 border border-white/10 rounded-panel p-6 sm:p-8 md:p-12 mb-16 backdrop-blur-sm">
             <div className="text-xs font-bold text-brand-light uppercase tracking-wider mb-6">
               What does this vision mean in action?
             </div>
 
-            <div className="flex flex-wrap gap-3 mb-8">
+            <div
+              role="tablist"
+              aria-label="Strategic vision scenarios"
+              className="inline-flex flex-wrap gap-1 p-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-sm mb-8"
+            >
               {(['ev', 'manufacturing', 'it'] as const).map((tab) => (
                 <button
                   key={tab}
+                  type="button"
+                  role="tab"
+                  id={`vision-tab-${tab}`}
+                  aria-selected={activeVisionTab === tab}
+                  aria-controls="vision-panel"
                   onClick={() => setActiveVisionTab(tab)}
-                  className={`px-6 py-3 rounded-full text-xs font-bold transition-all flex items-center gap-2 ${
+                  className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 ${
                     activeVisionTab === tab
                       ? 'bg-brand-light text-brand-onaccent shadow-md'
-                      : 'bg-white/10 text-white hover:bg-white/20'
+                      : 'text-white hover:bg-white/15'
                   }`}
                 >
                   {tab === 'ev' && (
@@ -496,8 +507,13 @@ export default function About() {
               ))}
             </div>
 
-            <div className="bg-brand-dark-2/80 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/15">
-              <span className="text-[10px] font-bold bg-brand-light text-brand-onaccent px-3 py-1 rounded-md uppercase tracking-wider inline-block mb-3">
+            <div
+              role="tabpanel"
+              id="vision-panel"
+              aria-labelledby={`vision-tab-${activeVisionTab}`}
+              className="bg-brand-dark-2/80 backdrop-blur-md rounded-card p-6 md:p-8 border border-white/15"
+            >
+              <span className="text-xs font-bold bg-brand-light text-brand-onaccent px-3 py-1 rounded-lg uppercase tracking-wider inline-block mb-3">
                 {visionScenarios[activeVisionTab].badge}
               </span>
               <h3 className="text-2xl font-semibold text-white mb-3">
@@ -567,14 +583,14 @@ export default function About() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
-            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 items-stretch auto-rows-fr"
           >
             {values.map((v) => (
               <motion.div key={v.num} variants={staggerChild}>
                 <TiltCard
                   maxTilt={5}
                   lift={6}
-                  className="bg-brand-bg rounded-[2rem] p-6 border border-brand-edge hover:shadow-lg hover:border-brand-dark transition-colors flex flex-col justify-between group h-full"
+                  className="bg-brand-bg rounded-card p-6 border border-brand-edge hover:shadow-lg hover:border-brand-dark transition-colors flex flex-col justify-between group h-full"
                 >
                 <div>
                   <div className="flex items-center justify-between mb-6">
@@ -584,7 +600,7 @@ export default function About() {
                     </div>
                   </div>
                   <h3 className="text-lg font-bold text-brand-ink mb-2">{v.title}</h3>
-                  <div className="text-[11px] font-bold text-emerald-800 mb-3 leading-snug">
+                  <div className="text-xs font-bold text-emerald-800 mb-3 leading-snug">
                     {v.tagline}
                   </div>
                   <p className="text-brand-muted font-medium text-xs leading-relaxed">
@@ -601,7 +617,7 @@ export default function About() {
       {/* 6. Call to Action */}
       <section className="py-14 md:py-20 container mx-auto px-4 md:px-8 max-w-5xl">
         <ScrollReveal direction="up" distance={30}>
-          <div className="bg-brand-dark text-white rounded-[2.5rem] p-6 sm:p-8 md:p-14 text-center relative overflow-hidden shadow-2xl">
+          <div className="bg-brand-dark text-white rounded-panel p-6 sm:p-8 md:p-14 text-center relative overflow-hidden shadow-2xl">
             <FloatingOrb className="top-0 right-0" size={320} blurClass="blur-3xl" delay={0} />
             <h2 className="text-3xl md:text-4xl font-semibold mb-4 tracking-tight">
               Build your future with a partner who delivers.
@@ -613,7 +629,7 @@ export default function About() {
               <Magnetic>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-8 py-4 rounded-full font-bold text-sm hover:bg-white transition-colors shadow-lg"
+                  className="btn btn-primary shadow-lg"
                 >
                   <span>Connect with Founders</span>
                   <ArrowUpRight className="w-4 h-4" />

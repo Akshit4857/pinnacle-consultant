@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Mail, Phone, MapPin, Linkedin, ArrowUp } from 'lucide-react';
+import { ArrowUpRight, ArrowUp, Phone } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import { getLenis } from '../lib/lenis';
 
@@ -49,7 +49,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         {/* Section 1: Outro CTA */}
         <ScrollReveal direction="up" className="mb-20">
-          <div className="relative rounded-[2.5rem] border border-white/10 bg-white/[0.04] backdrop-blur-sm px-6 py-12 sm:px-10 sm:py-14 md:px-14 md:py-16 overflow-hidden">
+          <div className="relative rounded-panel border border-white/10 bg-white/[0.04] backdrop-blur-sm px-6 py-12 sm:px-10 sm:py-14 md:px-14 md:py-16 overflow-hidden">
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0 opacity-[0.35]"
@@ -66,7 +66,7 @@ export default function Footer() {
                     Strategic Partnership
                   </span>
                 </span>
-                <h2 className="text-3xl md:text-5xl lg:text-[3.4rem] font-semibold text-white mb-5 leading-[1.08] tracking-tight">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white mb-5 leading-[1.08] tracking-tight">
                   Ready to scale your{' '}
                   <span
                     className="bg-clip-text text-transparent"
@@ -87,14 +87,14 @@ export default function Footer() {
               <div className="flex flex-wrap items-center gap-4 shrink-0">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-7 py-3.5 rounded-full font-bold text-sm hover:bg-white transition-all shrink-0 shadow-md"
+                  className="btn btn-primary shadow-md shrink-0"
                 >
                   <span>Request Mandate</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </Link>
                 <a
                   href="tel:+917879716775"
-                  className="inline-flex items-center gap-2.5 bg-white/10 text-white border border-white/20 px-6 py-3.5 rounded-full font-semibold text-sm hover:bg-white/20 transition-colors backdrop-blur-sm shrink-0"
+                  className="btn btn-ghost backdrop-blur-sm shrink-0"
                 >
                   <Phone className="w-4 h-4 text-brand-light" /> Talk to us
                 </a>
@@ -114,7 +114,7 @@ export default function Footer() {
             ].map((item) => (
               <div key={item.k} className="border-l-2 border-brand-light/50 pl-4">
                 <div className="text-white font-bold text-lg md:text-xl tracking-tight">{item.k}</div>
-                <div className="text-[11px] uppercase tracking-widest text-slate-400 font-semibold mt-1.5 leading-relaxed">
+                <div className="text-xs uppercase tracking-widest text-slate-400 font-semibold mt-1.5 leading-relaxed">
                   {item.v}
                 </div>
               </div>
@@ -123,9 +123,9 @@ export default function Footer() {
         </ScrollReveal>
 
         {/* Section 3: Directory Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 mb-16">
           {/* Brand Info */}
-          <ScrollReveal direction="up" delay={0.05} className="lg:pr-6">
+          <ScrollReveal direction="up" delay={0.05}>
             <Link to="/" className="flex items-center gap-3 mb-5 group">
               <img
                 src="/images/pinnacle-icon-transparent.png"
@@ -146,7 +146,7 @@ export default function Footer() {
           {/* Practice Areas */}
           <ScrollReveal direction="up" delay={0.1}>
             <div className="flex items-center gap-3 mb-5">
-              <span className="text-brand-light font-bold text-[11px] tracking-widest">01</span>
+              <span className="text-brand-light font-bold text-xs tracking-widest">01</span>
               <span className="h-px flex-1 bg-white/25" />
               <h3 className="text-white font-bold text-xs uppercase tracking-widest">
                 Practice Areas
@@ -163,7 +163,7 @@ export default function Footer() {
                       <span className="block text-xs font-semibold text-slate-200 group-hover:text-brand-light transition-colors">
                         {item.label}
                       </span>
-                      <span className="block text-[11px] text-slate-500 font-medium mt-0.5">
+                      <span className="block text-xs text-slate-500 font-medium mt-0.5">
                         {item.sub}
                       </span>
                     </span>
@@ -177,7 +177,7 @@ export default function Footer() {
           {/* Company */}
           <ScrollReveal direction="up" delay={0.15}>
             <div className="flex items-center gap-3 mb-5">
-              <span className="text-brand-light font-bold text-[11px] tracking-widest">02</span>
+              <span className="text-brand-light font-bold text-xs tracking-widest">02</span>
               <span className="h-px flex-1 bg-white/25" />
               <h3 className="text-white font-bold text-xs uppercase tracking-widest">Company</h3>
             </div>
@@ -192,7 +192,7 @@ export default function Footer() {
                       <span className="block text-xs font-semibold text-slate-200 group-hover:text-brand-light transition-colors">
                         {item.label}
                       </span>
-                      <span className="block text-[11px] text-slate-500 font-medium mt-0.5">
+                      <span className="block text-xs text-slate-500 font-medium mt-0.5">
                         {item.sub}
                       </span>
                     </span>
@@ -206,41 +206,48 @@ export default function Footer() {
           {/* Contact Info */}
           <ScrollReveal direction="up" delay={0.2}>
             <div className="flex items-center gap-3 mb-5">
-              <span className="text-brand-light font-bold text-[11px] tracking-widest">03</span>
+              <span className="text-brand-light font-bold text-xs tracking-widest">03</span>
               <span className="h-px flex-1 bg-white/25" />
               <h3 className="text-white font-bold text-xs uppercase tracking-widest">
                 Direct Contact
               </h3>
             </div>
-            <ul className="space-y-3 text-xs font-medium">
+            <ul className="space-y-1">
               <li>
                 <a
                   href="mailto:shikha@pinnacleconsultant.co.in"
-                  className="group flex items-start gap-3 p-2.5 -mx-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-brand-light/40 hover:bg-white/[0.08] transition-all"
+                  className="group flex items-start justify-between gap-3 py-2.5 rounded-lg -mx-2 px-2 hover:bg-white/5 transition-colors"
                 >
-                  <Mail className="w-4 h-4 shrink-0 text-brand-light mt-px" />
-                  <span className="break-all text-slate-200 group-hover:text-white transition-colors">
-                    shikha@pinnacleconsultant.co.in
+                  <span>
+                    <span className="block text-xs font-semibold text-slate-200 group-hover:text-brand-light transition-colors break-all">
+                      shikha@pinnacleconsultant.co.in
+                    </span>
+                    <span className="block text-xs text-slate-500 font-medium mt-0.5">Email</span>
                   </span>
+                  <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all mt-0.5" />
                 </a>
               </li>
               <li>
                 <a
                   href="tel:+917879716775"
-                  className="group flex items-start gap-3 p-2.5 -mx-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-brand-light/40 hover:bg-white/[0.08] transition-all"
+                  className="group flex items-start justify-between gap-3 py-2.5 rounded-lg -mx-2 px-2 hover:bg-white/5 transition-colors"
                 >
-                  <Phone className="w-4 h-4 shrink-0 text-brand-light mt-px" />
-                  <span className="text-slate-200 group-hover:text-white transition-colors">
-                    +91-7879716775
+                  <span>
+                    <span className="block text-xs font-semibold text-slate-200 group-hover:text-brand-light transition-colors">
+                      +91-7879716775
+                    </span>
+                    <span className="block text-xs text-slate-500 font-medium mt-0.5">Call</span>
                   </span>
+                  <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all mt-0.5" />
                 </a>
               </li>
               <li>
-                <div className="flex items-start gap-3 p-2.5 -mx-2.5 rounded-xl bg-white/5 border border-white/10">
-                  <MapPin className="w-4 h-4 shrink-0 text-brand-light mt-px" />
-                  <span className="leading-relaxed text-slate-200">
-                    Pinnacle Consultants, <br />
-                    Gurugram, Haryana, India
+                <div className="flex items-start justify-between gap-3 py-2.5 rounded-lg -mx-2 px-2">
+                  <span>
+                    <span className="block text-xs font-semibold text-slate-200 leading-relaxed">
+                      Pinnacle Consultants, Gurugram, Haryana, India
+                    </span>
+                    <span className="block text-xs text-slate-500 font-medium mt-0.5">Office</span>
                   </span>
                 </div>
               </li>
@@ -249,12 +256,15 @@ export default function Footer() {
                   href="https://www.linkedin.com/company/pinnacleconsultant-india/"
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-center gap-3 p-2.5 -mx-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-brand-light/40 hover:bg-white/[0.08] transition-all"
+                  className="group flex items-start justify-between gap-3 py-2.5 rounded-lg -mx-2 px-2 hover:bg-white/5 transition-colors"
                 >
-                  <Linkedin className="w-4 h-4 shrink-0 text-brand-light" />
-                  <span className="text-slate-200 group-hover:text-white transition-colors">
-                    LinkedIn Company Page
+                  <span>
+                    <span className="block text-xs font-semibold text-slate-200 group-hover:text-brand-light transition-colors">
+                      LinkedIn Company Page
+                    </span>
+                    <span className="block text-xs text-slate-500 font-medium mt-0.5">Follow us</span>
                   </span>
+                  <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all mt-0.5" />
                 </a>
               </li>
             </ul>
@@ -276,7 +286,7 @@ export default function Footer() {
             aria-label="Back to top"
             className="group inline-flex items-center gap-2.5 text-slate-400 hover:text-brand-light transition-colors"
           >
-            <span className="text-[11px] uppercase tracking-widest font-bold">Back to top</span>
+            <span className="text-xs uppercase tracking-widest font-bold">Back to top</span>
             <span className="w-9 h-9 rounded-full border border-white/15 bg-white/5 flex items-center justify-center group-hover:bg-brand-light group-hover:border-brand-light group-hover:text-brand-onaccent group-hover:-translate-y-0.5 transition-all">
               <ArrowUp className="w-4 h-4" />
             </span>

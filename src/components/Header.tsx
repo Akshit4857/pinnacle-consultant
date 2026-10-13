@@ -70,7 +70,7 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
                 </button>
               )}
               <ThemeSwitcher inline />
-              <span className="uppercase tracking-widest text-[10px] font-bold">Connect —</span>
+              <span className="uppercase tracking-widest text-xs font-bold">Connect —</span>
               <a
                 href="https://www.linkedin.com/company/pinnacleconsultant-india/"
                 target="_blank"
@@ -99,13 +99,13 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
                 <img
                   src="/images/pinnacle-icon-transparent.png"
                   alt="Pinnacle Consultant"
-                  className="w-8 h-8 object-contain rounded-md group-hover:scale-105 transition-transform"
+                  className="w-8 h-8 object-contain rounded-lg group-hover:scale-105 transition-transform"
                 />
                 <div className="flex flex-col">
                   <span className="text-xl md:text-2xl font-bold text-white tracking-tight leading-none">
                     Pinnacle<span className="text-brand-light">.</span>
                   </span>
-                  <span className="text-[9px] uppercase tracking-widest text-slate-300 font-semibold mt-0.5">
+                  <span className="text-xs uppercase tracking-widest text-slate-300 font-semibold mt-0.5">
                     Consultant
                   </span>
                 </div>
@@ -116,7 +116,7 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
                 <Link
                   to="/"
                   className={cn(
-                    'text-[13px] font-semibold transition-colors',
+                    'text-sm font-semibold transition-colors',
                     location.pathname === '/' ? 'text-brand-light' : 'text-white hover:text-brand-light'
                   )}
                 >
@@ -131,7 +131,7 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
                 >
                   <button
                     className={cn(
-                      'text-[13px] font-semibold transition-colors flex items-center gap-1.5 py-2',
+                      'text-sm font-semibold transition-colors flex items-center gap-1.5 py-2',
                       ['/staffing', '/tech-ev', '/industry-4-0', '/market-research'].includes(
                         location.pathname
                       )
@@ -166,7 +166,7 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
                                 <div className="text-white text-xs font-semibold group-hover:text-brand-light transition-colors">
                                   {s.name}
                                 </div>
-                                <div className="text-[11px] text-slate-400 mt-0.5 font-normal">
+                                <div className="text-xs text-slate-400 mt-0.5 font-normal">
                                   {s.desc}
                                 </div>
                               </div>
@@ -181,7 +181,7 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
                 <Link
                   to="/impact"
                   className={cn(
-                    'text-[13px] font-semibold transition-colors',
+                    'text-sm font-semibold transition-colors',
                     location.pathname === '/impact'
                       ? 'text-brand-light'
                       : 'text-white hover:text-brand-light'
@@ -193,7 +193,7 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
                 <Link
                   to="/about"
                   className={cn(
-                    'text-[13px] font-semibold transition-colors',
+                    'text-sm font-semibold transition-colors',
                     location.pathname === '/about'
                       ? 'text-brand-light'
                       : 'text-white hover:text-brand-light'
@@ -205,7 +205,7 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
                 <Link
                   to="/faq"
                   className={cn(
-                    'text-[13px] font-semibold transition-colors',
+                    'text-sm font-semibold transition-colors',
                     location.pathname === '/faq'
                       ? 'text-brand-light'
                       : 'text-white hover:text-brand-light'

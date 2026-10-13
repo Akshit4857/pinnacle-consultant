@@ -284,76 +284,74 @@ export default function Home() {
             </p>
           </ScrollReveal>
 
-          <div className="grid lg:grid-cols-12 gap-8 items-stretch">
-            {/* Card 1: Manpower Staffing (Large Hero Bento Card - Span 7) */}
-            <ScrollReveal direction="up" delay={0.05} className="lg:col-span-7 flex flex-col">
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
+            {/* Card 1: Manpower Staffing */}
+            <ScrollReveal direction="up" delay={0.05} className="flex flex-col">
               <TiltCard
                 maxTilt={4}
                 lift={8}
-                className="bg-brand-dark text-white rounded-[2.5rem] p-6 sm:p-8 md:p-12 shadow-xl group border border-white/10 flex flex-col justify-between"
+                className="bg-brand-card rounded-3xl p-6 sm:p-8 md:p-10 border border-brand-edge shadow-md hover:shadow-xl transition-all flex flex-col justify-between group"
               >
-                <div className="absolute top-0 right-0 w-80 h-80 bg-brand-light/10 rounded-full blur-3xl pointer-events-none" />
-                
                 <div>
-                  <div className="flex flex-wrap items-center justify-between gap-3 mb-8">
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-2xl bg-brand-light text-brand-onaccent flex items-center justify-center font-bold">
+                      <div className="w-12 h-12 rounded-2xl bg-brand-dark text-brand-light flex items-center justify-center font-bold">
                         <Briefcase className="w-6 h-6" />
                       </div>
                       <div>
-                        <span className="text-[10px] font-bold text-brand-light uppercase tracking-widest block">
+                        <span className="text-xs font-bold text-emerald-800 uppercase tracking-widest block">
                           Practice 01
                         </span>
-                        <h3 className="text-2xl md:text-3xl font-semibold text-white">Manpower Staffing</h3>
+                        <h3 className="text-2xl font-bold text-brand-ink">Manpower Staffing</h3>
                       </div>
                     </div>
-                    <span className="bg-white/10 border border-white/20 text-brand-light text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                    <span className="bg-emerald-50 text-emerald-800 border border-emerald-200/60 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                       5-15 Days TAT
                     </span>
                   </div>
 
-                  <p className="text-slate-300 font-medium text-sm sm:text-base leading-relaxed mb-8 max-w-xl">
+                  <p className="text-brand-muted font-medium text-sm leading-relaxed mb-6">
                     Strategic CXO & specialized technical placements alongside contractual blue & white-collar workforce deployments. 100% statutory labor, PF, ESIC, and payroll compliance guaranteed.
                   </p>
 
                   {/* Sourcing Velocity Stepper Strip */}
-                  <div className="bg-white/5 border border-white/10 rounded-2xl p-5 mb-8">
-                    <div className="text-xs font-bold text-slate-300 mb-3 flex items-center justify-between">
+                  <div className="bg-brand-bg border border-brand-edge rounded-2xl p-4.5 mb-6">
+                    <div className="text-xs font-bold text-brand-ink mb-3 flex items-center justify-between">
                       <span>Talent Pipeline Velocity</span>
-                      <span className="text-brand-light">100% Audited</span>
+                      <span className="text-emerald-700 font-bold">100% Audited</span>
                     </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-[10px] font-semibold text-white">
-                      <div className="bg-brand-light/20 py-2 rounded-xl text-brand-light">1. Sourced</div>
-                      <div className="bg-brand-light/20 py-2 rounded-xl text-brand-light">2. Tech Screened</div>
-                      <div className="bg-brand-light/20 py-2 rounded-xl text-brand-light">3. Statutory KYC</div>
-                      <div className="bg-brand-light text-brand-onaccent py-2 rounded-xl font-bold flex items-center justify-center gap-1">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-semibold">
+                      <div className="bg-white border border-brand-edge py-2 rounded-xl text-brand-ink">1. Sourced</div>
+                      <div className="bg-white border border-brand-edge py-2 rounded-xl text-brand-ink">2. Tech Screened</div>
+                      <div className="bg-white border border-brand-edge py-2 rounded-xl text-brand-ink">3. Statutory KYC</div>
+                      <div className="bg-brand-dark text-brand-light py-2 rounded-xl font-bold flex items-center justify-center gap-1">
                         <span>4. On-Site</span>
                         <Check className="w-3 h-3 stroke-[3]" />
                       </div>
                     </div>
                   </div>
 
-                  <div className="grid sm:grid-cols-3 gap-3 text-xs font-semibold text-slate-300 mb-8">
+                  <div className="grid sm:grid-cols-3 gap-2.5 text-xs font-semibold text-brand-muted mb-6">
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-brand-light" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                       <span>Zero Labor Risk</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-brand-light" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                       <span>Surge Scalability</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-brand-light" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                       <span>500+ Placed Roles</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
-                  <span className="text-xs text-slate-400">Led by Shikha Gupta (MBA HR, 10+ Yrs)</span>
+                <div className="pt-6 border-t border-brand-edge flex flex-wrap items-center justify-between gap-3 mt-auto">
+                  <span className="text-xs text-brand-muted">Led by Shikha Gupta (MBA HR, 10+ Yrs)</span>
                   <Link
                     to="/staffing"
-                    className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-6 py-3 rounded-full font-bold text-xs hover:bg-white transition-colors"
+                    className="inline-flex items-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent px-6 py-3 rounded-full font-bold text-xs transition-colors shadow-sm"
                   >
                     <span>Explore Staffing Solutions</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -362,27 +360,31 @@ export default function Home() {
               </TiltCard>
             </ScrollReveal>
 
-            {/* Card 2: EV Infrastructure & AMC (Span 5) */}
-            <ScrollReveal direction="up" delay={0.15} className="lg:col-span-5 flex flex-col">
+            {/* Card 2: EV Infrastructure & AMC */}
+            <ScrollReveal direction="up" delay={0.1} className="flex flex-col">
               <TiltCard
-                maxTilt={5}
+                maxTilt={4}
                 lift={8}
-                className="bg-brand-card rounded-[2.5rem] p-6 sm:p-8 md:p-10 border border-brand-edge shadow-md group flex flex-col justify-between"
+                className="bg-brand-card rounded-3xl p-6 sm:p-8 md:p-10 border border-brand-edge shadow-md hover:shadow-xl transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-brand-dark text-brand-light flex items-center justify-center font-bold">
-                      <Zap className="w-6 h-6" />
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-2xl bg-brand-dark text-brand-light flex items-center justify-center font-bold">
+                        <Zap className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <span className="text-xs font-bold text-emerald-800 uppercase tracking-widest block">
+                          Practice 02
+                        </span>
+                        <h3 className="text-2xl font-bold text-brand-ink">EV Infrastructure & AMC</h3>
+                      </div>
                     </div>
-                    <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <span className="bg-emerald-50 text-emerald-800 border border-emerald-200/60 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                       50MW+ Managed
                     </span>
                   </div>
 
-                  <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-widest block mb-1">
-                    Practice 02
-                  </span>
-                  <h3 className="text-2xl font-bold text-brand-ink mb-3">EV Infrastructure & AMC</h3>
                   <p className="text-brand-muted font-medium text-sm leading-relaxed mb-6">
                     Turnkey site feasibility, DISCOM load approvals, DC fast charger commissioning, battery swapping station attendants, and 24/7 preventive maintenance.
                   </p>
@@ -414,40 +416,44 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-brand-edge flex flex-wrap items-center justify-between gap-2">
-                  <span className="text-xs text-slate-400">Hero • Sun Mobility • Gentari</span>
+                <div className="pt-6 border-t border-brand-edge flex flex-wrap items-center justify-between gap-3 mt-auto">
+                  <span className="text-xs text-brand-muted">Hero • Sun Mobility • Gentari</span>
                   <Link
                     to="/tech-ev"
-                    className="text-xs font-bold text-brand-ink hover:text-emerald-700 flex items-center gap-1 group/btn"
+                    className="inline-flex items-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent px-6 py-3 rounded-full font-bold text-xs transition-colors shadow-sm"
                   >
-                    <span>Commission Hubs</span>
-                    <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                    <span>Commission EV Hubs</span>
+                    <ArrowUpRight className="w-4 h-4" />
                   </Link>
                 </div>
               </TiltCard>
             </ScrollReveal>
 
-            {/* Card 3: Industry 4.0 & Smart Factory (Span 5) */}
-            <ScrollReveal direction="up" delay={0.1} className="lg:col-span-5 flex flex-col">
+            {/* Card 3: Industry 4.0 & Smart Factory */}
+            <ScrollReveal direction="up" delay={0.15} className="flex flex-col">
               <TiltCard
-                maxTilt={5}
+                maxTilt={4}
                 lift={8}
-                className="bg-brand-card rounded-[2.5rem] p-6 sm:p-8 md:p-10 border border-brand-edge shadow-md group flex flex-col justify-between"
+                className="bg-brand-card rounded-3xl p-6 sm:p-8 md:p-10 border border-brand-edge shadow-md hover:shadow-xl transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-brand-dark text-brand-light flex items-center justify-center font-bold">
-                      <Cpu className="w-6 h-6" />
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-2xl bg-brand-dark text-brand-light flex items-center justify-center font-bold">
+                        <Cpu className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <span className="text-xs font-bold text-emerald-800 uppercase tracking-widest block">
+                          Practice 03
+                        </span>
+                        <h3 className="text-2xl font-bold text-brand-ink">Industry 4.0 & Automation</h3>
+                      </div>
                     </div>
-                    <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                    <span className="bg-emerald-50 text-emerald-800 border border-emerald-200/60 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                       Zero Downtime
                     </span>
                   </div>
 
-                  <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-widest block mb-1">
-                    Practice 03
-                  </span>
-                  <h3 className="text-2xl font-bold text-brand-ink mb-3">Industry 4.0 & Automation</h3>
                   <p className="text-brand-muted font-medium text-sm leading-relaxed mb-6">
                     Transforming manufacturing floors into agile, connected operations using non-invasive IoT sensors, SCADA dashboards, and predictive maintenance ML.
                   </p>
@@ -474,94 +480,92 @@ export default function Home() {
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>Predictive vibration & acoustic anomaly triggers</span>
+                      <span>Predictive vibration & anomaly triggers</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-brand-edge flex flex-wrap items-center justify-between gap-2">
-                  <span className="text-xs text-slate-400">Brownfield & Greenfield Retrofit</span>
+                <div className="pt-6 border-t border-brand-edge flex flex-wrap items-center justify-between gap-3 mt-auto">
+                  <span className="text-xs text-brand-muted">Brownfield & Greenfield Retrofit</span>
                   <Link
                     to="/industry-4-0"
-                    className="text-xs font-bold text-brand-ink hover:text-emerald-700 flex items-center gap-1 group/btn"
+                    className="inline-flex items-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent px-6 py-3 rounded-full font-bold text-xs transition-colors shadow-sm"
                   >
                     <span>Factory Digital Audit</span>
-                    <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                    <ArrowUpRight className="w-4 h-4" />
                   </Link>
                 </div>
               </TiltCard>
             </ScrollReveal>
 
-            {/* Card 4: Market Research Reports (Large Dossier Bento Card - Span 7) */}
-            <ScrollReveal direction="up" delay={0.2} className="lg:col-span-7 flex flex-col">
+            {/* Card 4: Market Research Reports */}
+            <ScrollReveal direction="up" delay={0.2} className="flex flex-col">
               <TiltCard
                 maxTilt={4}
                 lift={8}
-                className="bg-brand-dark text-white rounded-[2.5rem] p-6 sm:p-8 md:p-12 shadow-xl group border border-white/10 flex flex-col justify-between"
+                className="bg-brand-card rounded-3xl p-6 sm:p-8 md:p-10 border border-brand-edge shadow-md hover:shadow-xl transition-all flex flex-col justify-between group"
               >
-                <div className="absolute top-0 right-0 w-80 h-80 bg-brand-light/10 rounded-full blur-3xl pointer-events-none" />
-
                 <div>
-                  <div className="flex flex-wrap items-center justify-between gap-3 mb-8">
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-2xl bg-brand-light text-brand-onaccent flex items-center justify-center font-bold">
+                      <div className="w-12 h-12 rounded-2xl bg-brand-dark text-brand-light flex items-center justify-center font-bold">
                         <BarChart3 className="w-6 h-6" />
                       </div>
                       <div>
-                        <span className="text-[10px] font-bold text-brand-light uppercase tracking-widest block">
+                        <span className="text-xs font-bold text-emerald-800 uppercase tracking-widest block">
                           Practice 04
                         </span>
-                        <h3 className="text-2xl md:text-3xl font-semibold text-white">Strategic Market Research</h3>
+                        <h3 className="text-2xl font-bold text-brand-ink">Strategic Market Research</h3>
                       </div>
                     </div>
-                    <span className="bg-white/10 border border-white/20 text-brand-light text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                    <span className="bg-emerald-50 text-emerald-800 border border-emerald-200/60 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                       Primary Data
                     </span>
                   </div>
 
-                  <p className="text-slate-300 font-medium text-sm sm:text-base leading-relaxed mb-8 max-w-xl">
+                  <p className="text-brand-muted font-medium text-sm leading-relaxed mb-6">
                     Proprietary sectoral forecasts, OEM component benchmarking, battery chemistry comparative models, and Voice of Customer (VoC) studies to de-risk high-stakes capital decisions.
                   </p>
 
                   {/* Research Highlights Box */}
-                  <div className="bg-white/5 border border-white/10 rounded-2xl p-5 mb-8">
-                    <div className="grid sm:grid-cols-3 gap-4 text-xs font-medium text-slate-200">
+                  <div className="bg-brand-bg border border-brand-edge rounded-2xl p-4.5 mb-6">
+                    <div className="grid sm:grid-cols-3 gap-3 text-xs font-medium text-brand-muted">
                       <div>
-                        <div className="text-brand-light font-bold text-sm mb-1">+28.4% CAGR</div>
-                        <div className="text-[11px] text-slate-400">Commercial EV Fleet Adoption Forecast</div>
+                        <div className="text-brand-ink font-bold text-sm mb-1">+28.4% CAGR</div>
+                        <div className="text-[11px] text-brand-muted">Commercial EV Adoption</div>
                       </div>
                       <div>
-                        <div className="text-brand-light font-bold text-sm mb-1">OEM Benchmarking</div>
-                        <div className="text-[11px] text-slate-400">Supply Chain & Tier-1 Sourcing Audits</div>
+                        <div className="text-brand-ink font-bold text-sm mb-1">OEM Benchmarks</div>
+                        <div className="text-[11px] text-brand-muted">Tier-1 Sourcing Audits</div>
                       </div>
                       <div>
-                        <div className="text-brand-light font-bold text-sm mb-1">Unit OPEX Models</div>
-                        <div className="text-[11px] text-slate-400">Swapping vs Fixed Charging Economics</div>
+                        <div className="text-brand-ink font-bold text-sm mb-1">OPEX Models</div>
+                        <div className="text-[11px] text-brand-muted">Swapping vs Charging</div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="grid sm:grid-cols-3 gap-3 text-xs font-semibold text-slate-300 mb-8">
+                  <div className="grid sm:grid-cols-3 gap-2.5 text-xs font-semibold text-brand-muted mb-6">
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-brand-light" />
-                      <span>Ground OEM Field Surveys</span>
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>Ground OEM Surveys</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-brand-light" />
-                      <span>DISCOM Tariff Modeling</span>
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>DISCOM Tariff Models</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-brand-light" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                       <span>Custom Dossiers</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
-                  <span className="text-xs text-slate-400">Commission Proprietary Study</span>
+                <div className="pt-6 border-t border-brand-edge flex flex-wrap items-center justify-between gap-3 mt-auto">
+                  <span className="text-xs text-brand-muted">Commission Proprietary Study</span>
                   <Link
                     to="/market-research"
-                    className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-6 py-3 rounded-full font-bold text-xs hover:bg-white transition-colors"
+                    className="inline-flex items-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent px-6 py-3 rounded-full font-bold text-xs transition-colors shadow-sm"
                   >
                     <span>Explore Research Scopes</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -589,11 +593,11 @@ export default function Home() {
             </div>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-brand-ink hover:text-brand-light-2 transition-colors group mb-1"
+              className="inline-flex items-center gap-2 text-xs font-bold text-brand-ink hover:text-brand-light-2 transition-colors group mb-1"
             >
               <span>Read More</span>
-              <div className="w-9 h-9 rounded-full border border-brand-edge flex items-center justify-center group-hover:border-brand-light-2 group-hover:bg-brand-light-2 group-hover:text-white transition-all">
-                <ArrowUpRight className="w-4 h-4" />
+              <div className="w-8 h-8 rounded-full border border-brand-edge flex items-center justify-center group-hover:border-brand-light-2 group-hover:bg-brand-light-2 group-hover:text-white transition-all">
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </div>
             </Link>
           </ScrollReveal>
@@ -660,11 +664,11 @@ export default function Home() {
                               <div className="pt-2 flex items-center">
                                 <Link
                                   to="/contact"
-                                  className="inline-flex items-center gap-2.5 text-xs font-bold text-brand-ink hover:text-brand-light-2 transition-colors group/btn"
+                                  className="inline-flex items-center gap-2 text-xs font-bold text-brand-ink hover:text-brand-light-2 transition-colors group/btn"
                                 >
                                   <span>Read More</span>
-                                  <div className="w-10 h-10 rounded-full bg-brand-light-2 text-white flex items-center justify-center font-bold shadow-md group-hover/btn:scale-105 group-hover/btn:bg-brand-light-4 transition-all">
-                                    <ArrowUpRight className="w-4 h-4" />
+                                  <div className="w-8 h-8 rounded-full bg-brand-dark text-white flex items-center justify-center font-bold shadow-sm group-hover/btn:bg-brand-light-2 group-hover/btn:text-white transition-all">
+                                    <ArrowUpRight className="w-3.5 h-3.5" />
                                   </div>
                                 </Link>
                               </div>
@@ -713,12 +717,12 @@ export default function Home() {
                             </h3>
                           </div>
 
-                          <div className="pt-6 flex items-center justify-between relative z-10">
+                          <div className="pt-6 flex items-center gap-2 relative z-10">
                             <span className="text-xs font-bold text-brand-muted group-hover:text-brand-ink transition-colors">
                               Read More
                             </span>
-                            <div className="w-10 h-10 rounded-full bg-white/90 text-slate-800 border border-white/60 flex items-center justify-center font-bold group-hover:bg-brand-light-2 group-hover:text-white transition-colors shadow-sm">
-                              <ArrowUpRight className="w-4 h-4" />
+                            <div className="w-8 h-8 rounded-full bg-white/90 text-slate-800 border border-white/60 flex items-center justify-center font-bold group-hover:bg-brand-light-2 group-hover:text-white transition-colors shadow-sm">
+                              <ArrowUpRight className="w-3.5 h-3.5" />
                             </div>
                           </div>
                         </motion.div>
@@ -747,9 +751,19 @@ export default function Home() {
                 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white tracking-tight leading-tight mb-6"
                 stagger={0.04}
               />
-              <p className="text-slate-300 font-medium text-sm sm:text-base leading-relaxed mb-8">
+              <p className="text-slate-300 font-medium text-sm sm:text-base leading-relaxed mb-6">
                 Pinnacle Consultant was founded in January 2025 in Gurugram, India. We bring together a rare convergence of deep workforce strategy and heavy automotive/clean mobility infrastructure authority.
               </p>
+
+              <div className="mb-8">
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-7 py-3.5 rounded-full font-bold text-sm hover:bg-white transition-colors shadow-lg"
+                >
+                  <span>Read Complete Founding Story</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
+              </div>
 
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm space-y-3 text-xs text-slate-300">
                 <div className="flex items-center gap-3">
@@ -765,16 +779,6 @@ export default function Home() {
                   <span>Founders Personally Lead Key Enterprise Accounts</span>
                 </div>
               </div>
-
-              <div className="mt-8">
-                <Link
-                  to="/about"
-                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-8 py-4 rounded-full font-bold text-sm hover:bg-white transition-colors shadow-lg"
-                >
-                  <span>Read Complete Founding Story</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </Link>
-              </div>
             </ScrollReveal>
 
             {/* Right Staggered Executive Profiles */}
@@ -782,30 +786,25 @@ export default function Home() {
               {/* Shikha Gupta Profile */}
               <ScrollReveal direction="right" delay={0.1}>
                 <div className="bg-brand-dark-2/90 border border-white/10 rounded-[2.5rem] p-7 sm:p-9 md:p-10 backdrop-blur-md hover:bg-brand-dark-4 transition-colors">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-6">
-                    <div className="flex items-center gap-4">
-                      <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shrink-0 border-2 border-brand-light/40 shadow-lg">
-                        <img
-                          src="/images/shikha_gupta.jpg"
-                          alt="Shikha Gupta - Founder & Workforce Strategist"
-                          className="w-full h-full object-cover object-top"
-                        />
-                        <div className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-brand-light text-brand-onaccent flex items-center justify-center shadow-md">
-                          <Users className="w-3.5 h-3.5" />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-1">Shikha Gupta</h3>
-                        <div className="text-xs font-bold text-brand-light uppercase tracking-wider">
-                          Founder & Workforce Strategist
-                        </div>
-                        <div className="text-[11px] text-slate-300 font-medium mt-1">
-                          MBA (HR) • 10+ Yrs Workforce Architecture
-                        </div>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shrink-0 border-2 border-brand-light/40 shadow-lg">
+                      <img
+                        src="/images/shikha_gupta.jpg"
+                        alt="Shikha Gupta - Founder & Workforce Strategist"
+                        className="w-full h-full object-cover object-top"
+                      />
+                      <div className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-brand-light text-brand-onaccent flex items-center justify-center shadow-md">
+                        <Users className="w-3.5 h-3.5" />
                       </div>
                     </div>
-                    <div className="hidden sm:flex w-12 h-12 rounded-2xl bg-white/10 text-brand-light items-center justify-center font-bold shrink-0">
-                      <Users className="w-6 h-6" />
+                    <div>
+                      <h3 className="text-2xl sm:text-3xl font-bold text-white mb-1">Shikha Gupta</h3>
+                      <div className="text-xs font-bold text-brand-light uppercase tracking-wider">
+                        Founder & Workforce Strategist
+                      </div>
+                      <div className="text-[11px] text-slate-300 font-medium mt-1">
+                        MBA (HR) • 10+ Yrs Workforce Architecture
+                      </div>
                     </div>
                   </div>
 
@@ -813,8 +812,8 @@ export default function Home() {
                     A workforce strategist with a decade of expertise across HR consulting, talent acquisition, SAP HCM implementation, and marketplace-driven hiring ecosystems. Having recruited 500+ professionals, she blends operational rigour with an innate understanding of how mobility and service networks operate.
                   </p>
 
-                  {/* Horizontal Credential Pills */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  {/* Horizontal Credential Pills with clear breathing room */}
+                  <div className="flex flex-wrap gap-2 mb-6 pt-1">
                     <span className="bg-black/30 border border-white/10 text-brand-light text-[11px] font-semibold px-3 py-1 rounded-full">
                       MBA — HR & Marketing
                     </span>
@@ -838,30 +837,25 @@ export default function Home() {
               {/* Ashu Gupta Profile */}
               <ScrollReveal direction="right" delay={0.2}>
                 <div className="bg-brand-dark-2/90 border border-white/10 rounded-[2.5rem] p-7 sm:p-9 md:p-10 backdrop-blur-md hover:bg-brand-dark-4 transition-colors">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-6">
-                    <div className="flex items-center gap-4">
-                      <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shrink-0 border-2 border-brand-light/40 shadow-lg">
-                        <img
-                          src="/images/ashu_gupta.jpg"
-                          alt="Ashu Gupta - Co-Founder & EV Infrastructure Leader"
-                          className="w-full h-full object-cover object-top"
-                        />
-                        <div className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-brand-light text-brand-onaccent flex items-center justify-center shadow-md">
-                          <Zap className="w-3.5 h-3.5" />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-1">Ashu Gupta</h3>
-                        <div className="text-xs font-bold text-brand-light uppercase tracking-wider">
-                          Co-Founder & EV Infrastructure Leader
-                        </div>
-                        <div className="text-[11px] text-slate-300 font-medium mt-1">
-                          14+ Yrs Auto & Clean Mobility • 50MW+ Deployed
-                        </div>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shrink-0 border-2 border-brand-light/40 shadow-lg">
+                      <img
+                        src="/images/ashu_gupta.jpg"
+                        alt="Ashu Gupta - Co-Founder & EV Infrastructure Leader"
+                        className="w-full h-full object-cover object-top"
+                      />
+                      <div className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-brand-light text-brand-onaccent flex items-center justify-center shadow-md">
+                        <Zap className="w-3.5 h-3.5" />
                       </div>
                     </div>
-                    <div className="hidden sm:flex w-12 h-12 rounded-2xl bg-white/10 text-brand-light items-center justify-center font-bold shrink-0">
-                      <Zap className="w-6 h-6" />
+                    <div>
+                      <h3 className="text-2xl sm:text-3xl font-bold text-white mb-1">Ashu Gupta</h3>
+                      <div className="text-xs font-bold text-brand-light uppercase tracking-wider">
+                        Co-Founder & EV Infrastructure Leader
+                      </div>
+                      <div className="text-[11px] text-slate-300 font-medium mt-1">
+                        14+ Yrs Auto & Clean Mobility • 50MW+ Deployed
+                      </div>
                     </div>
                   </div>
 
@@ -869,8 +863,8 @@ export default function Home() {
                     An automotive and EV infrastructure authority with 14+ years of hands-on experience in building and scaling charging networks across India. He has led site acquisition, installation, and infrastructure expansion across 200+ locations, managing 50MW+ charging projects.
                   </p>
 
-                  {/* Horizontal Credential Pills */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  {/* Horizontal Credential Pills with clear breathing room */}
+                  <div className="flex flex-wrap gap-2 mb-6 pt-1">
                     <span className="bg-black/30 border border-white/10 text-brand-light text-[11px] font-semibold px-3 py-1 rounded-full">
                       14+ Yrs Auto & EV
                     </span>
@@ -966,7 +960,7 @@ export default function Home() {
               <Magnetic>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 bg-brand-dark text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-brand-dark-2 hover:text-brand-light transition-all shadow-lg"
+                  className="inline-flex items-center gap-2 bg-brand-dark text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-white hover:text-brand-onaccent transition-all shadow-xl"
                 >
                   <span>Submit Project Mandate</span>
                   <ArrowUpRight className="w-4 h-4" />
@@ -977,7 +971,7 @@ export default function Home() {
                   href="https://wa.me/917879716775"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 bg-white text-brand-dark px-6 py-4 rounded-full font-bold text-sm hover:bg-slate-50 transition-all border border-brand-dark/15 shadow-sm"
+                  className="inline-flex items-center gap-2 bg-white/90 text-brand-dark px-6 py-3.5 rounded-full font-semibold text-sm hover:bg-white transition-all border border-brand-dark/15 shadow-sm"
                 >
                   <MessageSquare className="w-4 h-4 text-emerald-600" />
                   <span>WhatsApp: +91-7879716775</span>
@@ -986,9 +980,9 @@ export default function Home() {
               <Magnetic>
                 <button
                   onClick={() => setIsBrochureOpen(true)}
-                  className="inline-flex items-center gap-2 bg-transparent text-brand-dark px-6 py-4 rounded-full font-bold text-sm hover:bg-brand-dark/10 transition-colors border border-brand-dark/30"
+                  className="inline-flex items-center gap-2 bg-transparent text-brand-dark px-6 py-3.5 rounded-full font-semibold text-sm hover:bg-black/5 transition-colors border border-brand-dark/25"
                 >
-                  <Download className="w-4 h-4" />
+                  <Download className="w-4 h-4 text-brand-dark" />
                   <span>Get Corporate Deck</span>
                 </button>
               </Magnetic>
