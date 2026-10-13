@@ -127,11 +127,17 @@ export default function Footer() {
           {/* Brand Info */}
           <ScrollReveal direction="up" delay={0.05}>
             <Link to="/" className="flex items-center gap-3 mb-5 group">
-              <img
-                src="/images/pinnacle-icon-transparent.png"
-                alt="Pinnacle Consultant"
-                className="w-9 h-9 object-contain rounded-lg group-hover:scale-105 transition-transform"
-              />
+              <span className="relative inline-flex items-center justify-center">
+                <span
+                  aria-hidden="true"
+                  className="absolute -inset-1 rounded-xl bg-brand-light/15 blur-md opacity-40 group-hover:opacity-70 transition-opacity duration-300"
+                />
+                <img
+                  src="/images/pinnacle-icon-transparent.png"
+                  alt="Pinnacle Consultant"
+                  className="relative w-9 h-9 object-contain rounded-lg drop-shadow-[0_0_4px_var(--color-brand-light)] group-hover:scale-105 transition-transform"
+                />
+              </span>
               <span className="text-2xl font-bold text-white tracking-tight">
                 Pinnacle<span className="text-brand-light">.</span>
               </span>

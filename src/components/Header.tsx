@@ -4,6 +4,7 @@ import { Menu, X, CheckCircle2, Mail, Phone, ChevronDown, Linkedin, Users, Zap, 
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import ThemeSwitcher from './ThemeSwitcher';
+import VerticalSwitcher from './VerticalSwitcher';
 
 interface HeaderProps {
   onOpenBrochure?: () => void;
@@ -96,11 +97,17 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
             <div className="flex items-center justify-between">
               {/* Logo */}
               <Link to="/" className="flex items-center gap-3 group">
-                <img
-                  src="/images/pinnacle-icon-transparent.png"
-                  alt="Pinnacle Consultant"
-                  className="w-8 h-8 object-contain rounded-lg group-hover:scale-105 transition-transform"
-                />
+                <span className="relative inline-flex items-center justify-center">
+                  <span
+                    aria-hidden="true"
+                    className="absolute -inset-1 rounded-xl bg-brand-light/15 blur-md opacity-40 group-hover:opacity-70 transition-opacity duration-300"
+                  />
+                  <img
+                    src="/images/pinnacle-icon-transparent.png"
+                    alt="Pinnacle Consultant"
+                    className="relative w-8 h-8 object-contain rounded-lg drop-shadow-[0_0_4px_var(--color-brand-light)] group-hover:scale-105 transition-transform"
+                  />
+                </span>
                 <div className="flex flex-col">
                   <span className="text-xl md:text-2xl font-bold text-white tracking-tight leading-none">
                     Pinnacle<span className="text-brand-light">.</span>
@@ -216,7 +223,8 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
               </nav>
 
               {/* Desktop CTA */}
-              <div className="hidden lg:flex items-center gap-4">
+              <div className="hidden lg:flex items-center gap-3">
+                <VerticalSwitcher />
                 <Link
                   to="/contact"
                   className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-5 py-2.5 rounded-full font-bold text-xs hover:bg-white transition-all shadow-md"
@@ -247,6 +255,7 @@ export default function Header({ onOpenBrochure }: HeaderProps) {
                 className="xl:hidden bg-brand-dark border-t border-white/10 overflow-hidden absolute w-full shadow-2xl"
               >
                 <div className="px-5 py-6 flex flex-col gap-3">
+                  <VerticalSwitcher className="self-start mb-1" />
                   <Link to="/" className="text-sm font-semibold text-white py-1">
                     Home
                   </Link>
