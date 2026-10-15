@@ -155,7 +155,7 @@ export default function Contact() {
                   lift={5}
                   className="bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-5 cursor-pointer group transition-colors"
                 >
-                  <div onClick={() => copyToClipboard('shikha@pinnacleconsultant.co.in', 'email')} className="h-full">
+                  <div onClick={() => copyToClipboard('info@pinnacleconsultant.co.in', 'email')} className="h-full">
                     <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3.5">
                       <div className="w-10 h-10 rounded-xl bg-brand-light/15 text-brand-light flex items-center justify-center shrink-0">
@@ -164,7 +164,7 @@ export default function Contact() {
                       <div>
                         <div className="text-xs text-slate-400 font-medium">Official Desk Email</div>
                         <div className="text-sm font-bold text-white group-hover:text-brand-light transition-colors">
-                          shikha@pinnacleconsultant.co.in
+                          info@pinnacleconsultant.co.in
                         </div>
                       </div>
                     </div>
@@ -226,7 +226,7 @@ export default function Contact() {
                     <div className="flex-1">
                       <div className="text-xs text-slate-400 font-medium">Registered Office</div>
                       <div className="text-sm font-bold text-white mb-2">
-                        Pinnacle Consultants, Gurugram, Haryana, India
+                        Pinnacle Consultant, Gurugram, Haryana, India
                       </div>
                       <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
                         <span>Pan-India Presence</span>
@@ -410,7 +410,7 @@ export default function Contact() {
               className="bg-brand-bg rounded-xl border border-brand-edge"
             >
               <div
-                onClick={() => copyToClipboard('shikha@pinnacleconsultant.co.in', 'email-mob')}
+                onClick={() => copyToClipboard('info@pinnacleconsultant.co.in', 'email-mob')}
                 className="p-4 flex items-center justify-between h-full"
               >
               <div className="flex items-center gap-3">
@@ -420,7 +420,7 @@ export default function Contact() {
                 <div>
                   <div className="text-[10px] text-slate-500 font-bold uppercase">Email</div>
                   <div className="text-xs font-bold text-brand-ink break-all">
-                    shikha@pinnacleconsultant.co.in
+                    info@pinnacleconsultant.co.in
                   </div>
                 </div>
               </div>

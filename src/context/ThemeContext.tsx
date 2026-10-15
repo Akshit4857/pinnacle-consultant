@@ -8,10 +8,14 @@ import {
   type ThemeMode,
 } from '../lib/themes';
 
+export interface SetThemeOptions {
+  silent?: boolean;
+}
+
 interface ThemeContextValue {
   theme: ThemeId;
   mode: ThemeMode;
-  setTheme: (theme: ThemeId) => void;
+  setTheme: (theme: ThemeId, options?: SetThemeOptions) => void;
   setMode: (mode: ThemeMode) => void;
   /** Increments on every user-initiated theme/mode change (0 = initial load). */
   transitionId: number;
@@ -46,6 +50,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [transitionId, setTransitionId] = useState(0);
   const prevThemeRef = useRef(theme);
   const prevModeRef = useRef(mode);
+  const isSilentRef = useRef(false);
+
+  const setTheme = (newTheme: ThemeId, options?: SetThemeOptions) => {
+    isSilentRef.current = !!options?.silent;
+    setThemeState(newTheme);
+  };
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -56,7 +66,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
     if (prevThemeRef.current !== theme) {
       prevThemeRef.current = theme;
-      setTransitionId((id) => id + 1);
+      if (!isSilentRef.current) {
+        setTransitionId((id) => id + 1);
+      }
+      isSilentRef.current = false;
     }
   }, [theme]);
 
@@ -79,7 +92,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <ThemeContext.Provider
-      value={{ theme, mode, setTheme: setThemeState, setMode: setModeState, transitionId }}
+      value={{ theme, mode, setTheme, setMode: setModeState, transitionId }}
     >
       {children}
     </ThemeContext.Provider>

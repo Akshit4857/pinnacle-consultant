@@ -1,6 +1,7 @@
 import { useEffect, useId, useState } from 'react';
 import { Users, Zap, type LucideIcon } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { cn } from '../lib/utils';
 import type { ThemeId } from '../lib/themes';
@@ -11,25 +12,50 @@ interface Option {
   id: Side;
   label: string;
   icon: LucideIcon;
+  path: string;
 }
 
 const OPTIONS: Option[] = [
-  { id: 'talent', label: 'Manpower', icon: Users },
-  { id: 'ev', label: 'EV', icon: Zap },
+  { id: 'talent', label: 'Manpower', icon: Users, path: '/staffing' },
+  { id: 'ev', label: 'EV', icon: Zap, path: '/tech-ev' },
 ];
 
 export default function VerticalSwitcher({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme();
+  const location = useLocation();
+  const navigate = useNavigate();
   const uid = useId().replace(/:/g, '');
-  const [side, setSide] = useState<Side>(theme === 'ev' ? 'ev' : 'talent');
 
+  const [side, setSide] = useState<Side>(() => {
+    if (location.pathname === '/tech-ev') return 'ev';
+    if (location.pathname === '/staffing') return 'talent';
+    return theme === 'talent' ? 'talent' : 'ev';
+  });
+
+  // Sync side & silent theme when route changes
   useEffect(() => {
-    if (theme === 'ev' || theme === 'talent') setSide(theme);
-  }, [theme]);
+    if (location.pathname === '/tech-ev') {
+      setSide('ev');
+      if (theme !== 'ev') {
+        setTheme('ev', { silent: true });
+      }
+    } else if (location.pathname === '/staffing') {
+      setSide('talent');
+      if (theme !== 'talent') {
+        setTheme('talent', { silent: true });
+      }
+    } else if (theme === 'ev' || theme === 'talent') {
+      setSide(theme);
+    }
+  }, [location.pathname, theme, setTheme]);
 
+  // When user clicks EV or Manpower, directly navigate without flashing old page theme
   const select = (id: Side) => {
     setSide(id);
-    setTheme(id);
+    const targetPath = id === 'ev' ? '/tech-ev' : '/staffing';
+    if (location.pathname !== targetPath) {
+      navigate(targetPath);
+    }
   };
 
   return (
@@ -52,7 +78,7 @@ export default function VerticalSwitcher({ className }: { className?: string }) 
             aria-pressed={active}
             aria-label={`Switch to ${opt.label} vertical`}
             className={cn(
-              'relative flex items-center justify-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-bold transition-colors duration-200',
+              'relative flex items-center justify-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-bold transition-colors duration-200 cursor-pointer',
               active ? 'text-brand-dark' : 'text-white/70 hover:text-white'
             )}
           >

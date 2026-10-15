@@ -147,10 +147,10 @@ export default function MarketResearch() {
                 </Magnetic>
                 <Magnetic strength={0.2}>
                   <a
-                    href="mailto:shikha@pinnacleconsultant.co.in"
+                    href="mailto:info@pinnacleconsultant.co.in"
                     className="inline-flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-full font-semibold text-sm hover:bg-white/20 transition-colors backdrop-blur-sm"
                   >
-                    <span>shikha@pinnacleconsultant.co.in</span>
+                    <span>info@pinnacleconsultant.co.in</span>
                   </a>
                 </Magnetic>
               </motion.div>

@@ -221,12 +221,12 @@ export default function Footer() {
             <ul className="space-y-1">
               <li>
                 <a
-                  href="mailto:shikha@pinnacleconsultant.co.in"
+                  href="mailto:info@pinnacleconsultant.co.in"
                   className="group flex items-start justify-between gap-3 py-2.5 rounded-lg -mx-2 px-2 hover:bg-white/5 transition-colors"
                 >
                   <span>
                     <span className="block text-xs font-semibold text-slate-200 group-hover:text-brand-light transition-colors break-all">
-                      shikha@pinnacleconsultant.co.in
+                      info@pinnacleconsultant.co.in
                     </span>
                     <span className="block text-xs text-slate-500 font-medium mt-0.5">Email</span>
                   </span>
@@ -251,7 +251,7 @@ export default function Footer() {
                 <div className="flex items-start justify-between gap-3 py-2.5 rounded-lg -mx-2 px-2">
                   <span>
                     <span className="block text-xs font-semibold text-slate-200 leading-relaxed">
-                      Pinnacle Consultants, Gurugram, Haryana, India
+                      Pinnacle Consultant, Gurugram, Haryana, India
                     </span>
                     <span className="block text-xs text-slate-500 font-medium mt-0.5">Office</span>
                   </span>
