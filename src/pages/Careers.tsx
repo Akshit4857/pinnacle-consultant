@@ -8,7 +8,6 @@ import {
   BriefcaseBusiness,
   ArrowRight,
   Filter,
-  RefreshCw,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import FloatingOrb from '../components/motion/FloatingOrb';
@@ -37,7 +36,6 @@ export interface JobItem {
 export default function Careers() {
   const [jobs, setJobs] = useState<JobItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   // Filters state
   const [searchQuery, setSearchQuery] = useState('');
@@ -51,18 +49,20 @@ export default function Careers() {
     async function loadJobs() {
       try {
         setLoading(true);
-        setError(null);
         const res = await fetch('/api/jobs', { cache: 'no-store' });
-        if (!res.ok) {
-          throw new Error('Failed to load active job opportunities');
+        if (res.ok) {
+          const data = await res.json();
+          if (isMounted) {
+            setJobs(Array.isArray(data?.data) ? data.data : []);
+            return;
+          }
         }
-        const data = await res.json();
         if (isMounted) {
-          setJobs(data.data || []);
+          setJobs([]);
         }
-      } catch (err: any) {
+      } catch (_err) {
         if (isMounted) {
-          setError(err.message || 'Unable to fetch openings. Please refresh.');
+          setJobs([]);
         }
       } finally {
         if (isMounted) {
@@ -190,22 +190,24 @@ export default function Careers() {
           </p>
 
           {/* Integrated Category Filter Pills directly in the Hero */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-2.5">
-            {departments.map((dept) => (
-              <button
-                key={dept}
-                onClick={() => setSelectedDept(dept)}
-                className={cn(
-                  'flex items-center gap-2 px-5 py-2.5 min-h-11 rounded-full font-semibold text-xs sm:text-sm transition-[color,background-color,border-color,transform] duration-150 active:scale-[0.96] border shadow-xs cursor-pointer',
-                  selectedDept === dept
-                    ? 'bg-brand-light text-brand-onaccent border-brand-light shadow-md font-bold scale-[1.02]'
-                    : 'bg-white/10 text-white border-white/15 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm'
-                )}
-              >
-                <span>{dept}</span>
-              </button>
-            ))}
-          </div>
+          {jobs.length > 0 && (
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-2.5">
+              {departments.map((dept) => (
+                <button
+                  key={dept}
+                  onClick={() => setSelectedDept(dept)}
+                  className={cn(
+                    'flex items-center gap-2 px-5 py-2.5 min-h-11 rounded-full font-semibold text-xs sm:text-sm transition-[color,background-color,border-color,transform] duration-150 active:scale-[0.96] border shadow-xs cursor-pointer',
+                    selectedDept === dept
+                      ? 'bg-brand-light text-brand-onaccent border-brand-light shadow-md font-bold scale-[1.02]'
+                      : 'bg-white/10 text-white border-white/15 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm'
+                  )}
+                >
+                  <span>{dept}</span>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -316,49 +318,52 @@ export default function Careers() {
             </div>
           )}
 
-          {/* Error State */}
-          {error && !loading && (
-            <div className="bg-red-50 border border-red-200 rounded-2xl p-6 text-center text-red-800">
-              <p className="text-sm font-semibold">{error}</p>
-              <button
-                onClick={() => window.location.reload()}
-                className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-red-900 bg-red-100 hover:bg-red-200 px-4 py-2 rounded-lg transition-colors cursor-pointer"
-              >
-                <RefreshCw className="w-3.5 h-3.5" /> Refresh Openings
-              </button>
-            </div>
-          )}
-
-          {/* Clean Empty State (When no jobs in Google Sheet) */}
-          {!loading && !error && filteredJobs.length === 0 && (
+          {/* Clean Empty State (When no jobs active or sheet is empty) */}
+          {!loading && filteredJobs.length === 0 && (
             <div className="py-14 sm:py-20 text-center max-w-xl mx-auto">
               <div className="w-14 h-14 rounded-2xl bg-white/70 text-brand-dark flex items-center justify-center mx-auto mb-4 border border-brand-edge shadow-xs">
                 <BriefcaseBusiness className="w-6 h-6 text-brand-dark" />
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-brand-ink mb-2">
-                No openings right now, check back soon.
+                No active openings right now
               </h3>
-              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm mx-auto font-medium">
-                We are currently reviewing upcoming client mandates. Openings will appear here automatically once posted to the Jobs sheet.
+              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-md mx-auto font-medium mb-6">
+                We are currently reviewing upcoming client workforce mandates across Clean Mobility, Industrial Automation, and Technical Staffing. Openings will appear here automatically once published.
               </p>
-              {(searchQuery || selectedDept !== 'All' || selectedType !== 'All' || selectedWorkMode !== 'All') && (
-                <button
-                  onClick={() => {
-                    setSearchQuery('');
-                    setSelectedDept('All');
-                    setSelectedType('All');
-                    setSelectedWorkMode('All');
-                  }}
-                  className="btn btn-primary text-xs py-2.5 px-5 mt-6 cursor-pointer"
+              <div className="inline-flex flex-wrap items-center justify-center gap-3">
+                <Link
+                  to="/contact"
+                  className="btn btn-primary text-xs py-2.5 px-5 shadow-sm"
                 >
-                  Clear Active Filters
-                </button>
+                  Submit Spontaneous Application
+                </Link>
+                <a
+                  href="mailto:info@pinnacleconsultant.co.in"
+                  className="btn btn-outline text-xs py-2.5 px-5"
+                >
+                  info@pinnacleconsultant.co.in
+                </a>
+              </div>
+              {(searchQuery || selectedDept !== 'All' || selectedType !== 'All' || selectedWorkMode !== 'All') && (
+                <div className="mt-6">
+                  <button
+                    onClick={() => {
+                      setSearchQuery('');
+                      setSelectedDept('All');
+                      setSelectedType('All');
+                      setSelectedWorkMode('All');
+                    }}
+                    className="text-xs font-semibold text-brand-dark hover:underline cursor-pointer"
+                  >
+                    Clear Active Filters
+                  </button>
+                </div>
               )}
             </div>
           )}
 
           {/* Job Cards Grid */}
-          {!loading && !error && filteredJobs.length > 0 && (
+          {!loading && filteredJobs.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <AnimatePresence>
                 {filteredJobs.map((job) => (
