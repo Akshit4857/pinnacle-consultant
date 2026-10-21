@@ -327,23 +327,6 @@ export default function Careers() {
               <h3 className="text-xl sm:text-2xl font-bold text-brand-ink mb-2">
                 No active openings right now
               </h3>
-              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-md mx-auto font-medium mb-6">
-                We are currently reviewing upcoming client workforce mandates across Clean Mobility, Industrial Automation, and Technical Staffing. Openings will appear here automatically once published.
-              </p>
-              <div className="inline-flex flex-wrap items-center justify-center gap-3">
-                <Link
-                  to="/contact"
-                  className="btn btn-primary text-xs py-2.5 px-5 shadow-sm"
-                >
-                  Submit Spontaneous Application
-                </Link>
-                <a
-                  href="mailto:info@pinnacleconsultant.co.in"
-                  className="btn btn-outline text-xs py-2.5 px-5"
-                >
-                  info@pinnacleconsultant.co.in
-                </a>
-              </div>
               {(searchQuery || selectedDept !== 'All' || selectedType !== 'All' || selectedWorkMode !== 'All') && (
                 <div className="mt-6">
                   <button
