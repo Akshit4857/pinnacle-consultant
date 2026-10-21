@@ -263,7 +263,7 @@ export default function Industry40() {
   };
 
   return (
-    <div className="w-full overflow-x-clip">
+    <div className="w-full">
       {/* Hero Section */}
       <section className="pt-36 pb-20 md:pt-42 md:pb-24 bg-brand-dark bg-grid-dark text-white relative overflow-hidden">
         {/* Background photo & overlay */}
@@ -282,21 +282,53 @@ export default function Industry40() {
 
         <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
           <div className="max-w-2xl lg:max-w-3xl text-left">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-6 leading-[1.15] tracking-tight">
-              Automate Smarter. Operate Better.{' '}
-              <span className="text-brand-light block sm:inline">Scale Faster</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-[1.15] tracking-tight">
+              {[
+                <span key="l1" className="block">
+                  Automate Smarter. Operate Better.
+                </span>,
+                <span key="l2" className="block text-brand-light">
+                  Scale Faster
+                </span>,
+              ].map((line, i) => (
+                <span key={`w-${i}`} className="block overflow-hidden pb-[0.06em] -mb-[0.06em]">
+                  <motion.span
+                    className="block"
+                    initial={{ y: '110%', opacity: 0 }}
+                    animate={{ y: '0%', opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    {line}
+                  </motion.span>
+                </span>
+              ))}
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed font-normal mb-8 max-w-2xl">
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed font-normal mb-8 max-w-2xl"
+            >
               At Pinnacle Consultants, we help businesses transform daily operations through intelligent automation, connected devices, and customized digital workflows. From smart homes and commercial workplaces to enterprise processes and industrial shop floors, we identify practical opportunities to eliminate repetitive tasks, improve efficiency, and build connected environments.
-            </p>
+            </motion.p>
 
-            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 mb-10 max-w-2xl text-xs sm:text-sm text-slate-200 font-medium backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.35 }}
+              className="p-4 rounded-2xl bg-white/5 border border-white/10 mb-10 max-w-2xl text-xs sm:text-sm text-slate-200 font-medium backdrop-blur-sm"
+            >
               <span className="text-brand-light font-bold">One partner. Multiple possibilities.</span>{' '}
               Automation engineered around your specific operational needs.
-            </div>
+            </motion.div>
 
-            <div className="flex flex-wrap items-center gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.45 }}
+              className="flex flex-wrap items-center gap-4"
+            >
               <Magnetic>
                 <button
                   onClick={() => scrollToSection('capabilities')}
@@ -316,7 +348,7 @@ export default function Industry40() {
                   <ArrowUpRight className="w-4 h-4" />
                 </button>
               </Magnetic>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -338,15 +370,14 @@ export default function Industry40() {
             </p>
           </ScrollReveal>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            className="grid md:grid-cols-2 gap-8"
-          >
-            {capabilities.map((cap) => (
-              <motion.div key={cap.id} variants={staggerChild}>
+          <div className="grid md:grid-cols-2 gap-8">
+            {capabilities.map((cap, idx) => (
+              <ScrollReveal
+                key={cap.id}
+                direction="up"
+                delay={idx * 0.1}
+                className="h-full"
+              >
                 <TiltCard
                   maxTilt={4}
                   lift={6}
@@ -401,9 +432,9 @@ export default function Industry40() {
                     </button>
                   </div>
                 </TiltCard>
-              </motion.div>
+              </ScrollReveal>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -487,24 +518,20 @@ export default function Industry40() {
           </div>
 
           {/* Connected Infographic Step Grid */}
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative"
-          >
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
             {workflowSteps.map((step, idx) => {
               const StepIcon = step.icon;
               const isFiltered = activeStageFilter !== null;
               const isMatch = !isFiltered || step.stage === activeStageFilter;
 
               return (
-                <motion.div
+                <ScrollReveal
                   key={step.step}
-                  variants={staggerChild}
-                  className={`relative group transition-[opacity,transform] duration-300 ${isMatch ? 'opacity-100 scale-100' : 'opacity-30 scale-[0.98] pointer-events-none'
-                    }`}
+                  direction="up"
+                  delay={idx * 0.08}
+                  className={`relative group transition-[opacity,transform] duration-300 h-full ${
+                    isMatch ? 'opacity-100 scale-100' : 'opacity-30 scale-[0.98] pointer-events-none'
+                  }`}
                 >
                   <TiltCard
                     maxTilt={3}
@@ -568,10 +595,10 @@ export default function Industry40() {
                       <ArrowRight className="w-3.5 h-3.5" />
                     </div>
                   )}
-                </motion.div>
+                </ScrollReveal>
               );
             })}
-          </motion.div>
+          </div>
 
           {/* Bottom Reassurance Banner */}
           <div className="mt-14 p-5 rounded-2xl bg-white/[0.03] border border-white/10 text-center flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-slate-300">
@@ -612,20 +639,21 @@ export default function Industry40() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {valueProps.map((val, idx) => (
-              <TiltCard
-                key={idx}
-                maxTilt={4}
-                lift={4}
-                className="bg-brand-card p-6 sm:p-8 rounded-2xl border border-brand-edge shadow-sm flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-12 h-12 rounded-xl bg-brand-bg text-brand-ink flex items-center justify-center mb-5">
-                    <val.icon className="w-6 h-6 text-emerald-700" />
+              <ScrollReveal key={idx} direction="up" delay={idx * 0.08} className="h-full">
+                <TiltCard
+                  maxTilt={4}
+                  lift={4}
+                  className="bg-brand-card p-6 sm:p-8 rounded-2xl border border-brand-edge shadow-sm flex flex-col justify-between h-full"
+                >
+                  <div>
+                    <div className="w-12 h-12 rounded-xl bg-brand-bg text-brand-ink flex items-center justify-center mb-5">
+                      <val.icon className="w-6 h-6 text-emerald-700" />
+                    </div>
+                    <h3 className="text-lg font-bold text-brand-ink mb-2">{val.title}</h3>
+                    <p className="text-xs text-brand-muted leading-relaxed font-medium">{val.desc}</p>
                   </div>
-                  <h3 className="text-lg font-bold text-brand-ink mb-2">{val.title}</h3>
-                  <p className="text-xs text-brand-muted leading-relaxed font-medium">{val.desc}</p>
-                </div>
-              </TiltCard>
+                </TiltCard>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -650,30 +678,31 @@ export default function Industry40() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {engagementModels.map((model, idx) => (
-              <TiltCard
-                key={idx}
-                maxTilt={4}
-                lift={5}
-                className="bg-brand-bg p-6 rounded-2xl border border-brand-edge flex flex-col justify-between hover:border-brand-dark transition-colors"
-              >
-                <div>
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-brand-light/30 px-2.5 py-1 rounded-full mb-3 inline-block tabular-nums">
-                    Model 0{idx + 1}
+              <ScrollReveal key={idx} direction="up" delay={idx * 0.08} className="h-full">
+                <TiltCard
+                  maxTilt={4}
+                  lift={5}
+                  className="bg-brand-bg p-6 rounded-2xl border border-brand-edge flex flex-col justify-between hover:border-brand-dark transition-colors h-full"
+                >
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-brand-light/30 px-2.5 py-1 rounded-full mb-3 inline-block tabular-nums">
+                      Model 0{idx + 1}
+                    </div>
+                    <h3 className="text-base font-bold text-brand-ink mb-2">{model.title}</h3>
+                    <p className="text-xs text-brand-muted leading-relaxed font-medium mb-6">
+                      {model.desc}
+                    </p>
+                    <ul className="space-y-2 pt-4 border-t border-brand-edge">
+                      {model.points.map((pt, pIdx) => (
+                        <li key={pIdx} className="flex items-start gap-2 text-xs text-brand-muted font-medium">
+                          <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h3 className="text-base font-bold text-brand-ink mb-2">{model.title}</h3>
-                  <p className="text-xs text-brand-muted leading-relaxed font-medium mb-6">
-                    {model.desc}
-                  </p>
-                  <ul className="space-y-2 pt-4 border-t border-brand-edge">
-                    {model.points.map((pt, pIdx) => (
-                      <li key={pIdx} className="flex items-start gap-2 text-xs text-brand-muted font-medium">
-                        <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
-                        <span>{pt}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </TiltCard>
+                </TiltCard>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -683,7 +712,7 @@ export default function Industry40() {
       <section className="py-16 md:py-24 bg-brand-dark text-white relative overflow-hidden">
         <FloatingOrb className="top-0 right-0" size={320} blurClass="blur-3xl" delay={1} />
         <div className="container mx-auto px-4 md:px-8 max-w-6xl relative z-10">
-          <div className="max-w-2xl mb-14">
+          <ScrollReveal direction="up" className="max-w-2xl mb-14">
             <span className="text-brand-light font-bold text-xs tracking-widest uppercase mb-2 block">
               Differentiators
             </span>
@@ -695,28 +724,29 @@ export default function Industry40() {
             <p className="text-slate-300 text-sm md:text-base leading-relaxed font-medium">
               At Pinnacle Consultants, we bring cross-industry experience spanning technology, consulting, manufacturing, and emerging mobility ecosystems. We focus on understanding the real problem before recommending a solution, aligning technology decisions with operational needs and business outcomes.
             </p>
-          </div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-2 gap-6">
             {differentiators.map((diff, idx) => (
-              <TiltCard
-                key={idx}
-                maxTilt={4}
-                lift={5}
-                className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 hover:bg-white/10 transition-colors"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-brand-light text-brand-onaccent flex items-center justify-center font-bold shrink-0 text-sm tabular-nums">
-                    0{idx + 1}
+              <ScrollReveal key={idx} direction="up" delay={idx * 0.1} className="h-full">
+                <TiltCard
+                  maxTilt={4}
+                  lift={5}
+                  className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 hover:bg-white/10 transition-colors h-full"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-brand-light text-brand-onaccent flex items-center justify-center font-bold shrink-0 text-sm tabular-nums">
+                      0{idx + 1}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-white mb-2">{diff.title}</h3>
+                      <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+                        {diff.desc}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-2">{diff.title}</h3>
-                    <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
-                      {diff.desc}
-                    </p>
-                  </div>
-                </div>
-              </TiltCard>
+                </TiltCard>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -739,7 +769,8 @@ export default function Industry40() {
             </p>
           </ScrollReveal>
 
-          <div className="bg-brand-card rounded-[2rem] border border-brand-edge p-6 sm:p-10 md:p-12 shadow-xl">
+          <ScrollReveal scale={0.98} duration={0.6} className="w-full">
+            <div className="bg-brand-card rounded-[2rem] border border-brand-edge p-6 sm:p-10 md:p-12 shadow-xl">
             {!formSubmitted ? (
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-5">
@@ -908,6 +939,7 @@ export default function Industry40() {
               </div>
             )}
           </div>
+          </ScrollReveal>
         </div>
       </section>
 

@@ -31,7 +31,7 @@ export default function WordReveal({
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: true, margin: '0px 0px -40px 0px' }}
       transition={{ staggerChildren: stagger, delayChildren: delay }}
       {...props}
     >

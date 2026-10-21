@@ -58,7 +58,7 @@ export function ScrollReveal({
   distance = 32,
   scale = 1,
   className = '',
-  viewportMargin = '-60px',
+  viewportMargin = '0px 0px -40px 0px',
   ...props
 }: ScrollRevealProps) {
   const getOffset = () => {
