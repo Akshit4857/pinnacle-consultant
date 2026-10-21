@@ -320,15 +320,18 @@ export default function Careers() {
 
           {/* Clean Empty State (When no jobs active or sheet is empty) */}
           {!loading && filteredJobs.length === 0 && (
-            <div className="py-14 sm:py-20 text-center max-w-xl mx-auto">
-              <div className="w-14 h-14 rounded-2xl bg-white/70 text-brand-dark flex items-center justify-center mx-auto mb-4 border border-brand-edge shadow-xs">
+            <div className="py-12 px-6 sm:py-16 sm:px-10 text-center max-w-lg mx-auto bg-brand-card rounded-3xl border border-brand-edge shadow-xs my-6">
+              <div className="w-14 h-14 rounded-2xl bg-brand-bg text-brand-dark flex items-center justify-center mx-auto mb-4 border border-brand-edge shadow-xs">
                 <BriefcaseBusiness className="w-6 h-6 text-brand-dark" />
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-brand-ink mb-2">
                 No active openings right now
               </h3>
+              <p className="text-sm text-slate-500 leading-relaxed max-w-sm mx-auto">
+                There are currently no open positions. Please check back later for upcoming opportunities.
+              </p>
               {(searchQuery || selectedDept !== 'All' || selectedType !== 'All' || selectedWorkMode !== 'All') && (
-                <div className="mt-6">
+                <div className="mt-5">
                   <button
                     onClick={() => {
                       setSearchQuery('');
