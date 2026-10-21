@@ -41,7 +41,7 @@ export default function Staffing() {
       icon: Zap,
       title: 'EV & Clean Mobility',
       subtitle: 'High-voltage technicians & battery engineers',
-      badge: '50MW+ Infra Supported',
+      badge: 'Pan-India EV Network',
       desc: 'Specialized electrical, mechanical, and BMS engineers trained to operate in high-voltage charging networks, OEM plants, and testing depots.',
       tat: '7-14 Days',
       profiles: [
@@ -113,14 +113,14 @@ export default function Staffing() {
     {
       step: '01',
       title: 'Technical & Domain Screen',
-      desc: 'Rigorous 2-round assessment verifying real-world problem solving, code quality, and hands-on industrial machine experience.',
+      desc: 'Two-round assessment evaluating practical problem solving, code quality, or hands-on machine experience.',
       metric: 'Top 8% Selected',
     },
     {
       step: '02',
       title: '100% Statutory Clearance',
       desc: 'Full compliance vetting: UAN & PF verification, ESIC documentation, police background verification, and Aadhaar-linked KYC.',
-      metric: 'Zero Legal Audit Risk',
+      metric: 'Audit-Ready Compliance',
     },
     {
       step: '03',
@@ -131,7 +131,7 @@ export default function Staffing() {
     {
       step: '04',
       title: 'Dedicated HRBP & Digital Timesheet',
-      desc: 'Biometric shift monitoring, dedicated account manager on ground, automated payroll dispersal, and guaranteed 48-hour backfill replacement.',
+      desc: 'Biometric attendance tracking, dedicated on-ground account manager, monthly payroll processing, and 48-hour backfill replacements.',
       metric: '48h Backfill SLA',
     },
   ];
@@ -140,7 +140,7 @@ export default function Staffing() {
     {
       feature: 'Statutory Compliance Liability',
       traditional: 'Client remains liable for PF/ESIC penalties & labor disputes',
-      pinnacle: '100% Pinnacle Indemnity — zero statutory liability on client books',
+      pinnacle: '100% Pinnacle indemnity with zero statutory liability on client books',
     },
     {
       feature: 'Placement & Onboarding Turnaround',
@@ -166,7 +166,7 @@ export default function Staffing() {
 
   return (
     <div className="w-full">
-      {/* 1. Hero Section (Editorial Talent Hub) */}
+      {/* Hero Section */}
       <section className="bg-brand-dark text-white overflow-hidden pt-28 pb-16 md:pt-44 md:pb-28 relative">
         {/* Background Editorial Photo */}
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -181,13 +181,13 @@ export default function Staffing() {
 
         <div className="container mx-auto px-4 md:px-8 relative z-10 max-w-7xl">
           <div className="max-w-3xl">
-            <h1 className="text-3xl sm:text-6xl lg:text-7xl font-semibold leading-[1.08] tracking-tight mb-6 drop-shadow-md">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[2.65rem] xl:text-[3rem] font-semibold leading-[1.14] tracking-tight mb-5 drop-shadow-md">
               {[
-                <span key="l1" className="block">We Don't Just Fill Seats.</span>,
+                <span key="l1" className="block">Deploy Pre-Vetted,</span>,
                 <span key="l2" className="block">
-                  We Deploy <span className="text-brand-light">High-Performance</span>
+                  High-Performance <span className="text-brand-light">Technical Teams</span>
                 </span>,
-                <span key="l3" className="block text-brand-light">Technical Workforce.</span>,
+                <span key="l3" className="block text-brand-light">with Zero Compliance Risk</span>,
               ].map((line, i) => (
                 <span key={`w-${i}`} className="block overflow-hidden pb-[0.06em] -mb-[0.06em]">
                   <motion.span
@@ -208,7 +208,7 @@ export default function Staffing() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-slate-100 text-lg sm:text-xl font-medium leading-relaxed mb-8 max-w-2xl drop-shadow-sm"
             >
-              Led by workforce strategists with a decade of enterprise placement rigour. We connect mobility, clean energy, and industrial enterprises with certified talent while managing 100% statutory labor compliance, PF, ESIC, and payroll risk mitigation.
+              Led by workforce specialists with 10+ years in enterprise placement and HR operations. We connect mobility, clean energy, and manufacturing businesses with pre-screened talent while handling 100% statutory labor compliance, PF, ESIC, and monthly payroll.
             </motion.p>
 
             <motion.div
@@ -220,16 +220,16 @@ export default function Staffing() {
               <Magnetic>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-8 py-4 rounded-full font-bold text-sm hover:bg-white transition-colors shadow-lg"
+                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent pl-8 pr-7 py-4 rounded-full font-bold text-sm hover:bg-white active:scale-[0.96] transition-all shadow-lg"
                 >
-                  <span>Commission Staffing Mandate</span>
+                  <span>Discuss Your Staffing Needs</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </Link>
               </Magnetic>
               <Magnetic strength={0.2}>
                 <button
                   onClick={() => setIsBrochureOpen(true)}
-                  className="inline-flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-full font-semibold text-sm hover:bg-white/20 transition-colors backdrop-blur-sm"
+                  className="inline-flex items-center gap-2 bg-white/10 text-white border border-white/20 pl-6 pr-5 py-4 rounded-full font-semibold text-sm hover:bg-white/20 active:scale-[0.96] transition-all backdrop-blur-sm"
                 >
                   <Download className="w-4 h-4 text-brand-light" />
                   <span>Download Compliance & Rate Matrix</span>
@@ -240,41 +240,41 @@ export default function Staffing() {
             {/* Live Trust Metrics */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-white/10 max-w-2xl mb-8">
               <div>
-                <div className="text-2xl sm:text-3xl font-bold text-brand-light inline-flex items-baseline">
+                <div className="text-2xl sm:text-3xl font-bold text-brand-light inline-flex items-baseline tabular-nums">
                   <CountUp to={500} separator="," duration={2.2} digitEffect="slide" />
                   <span>+</span>
                 </div>
                 <div className="text-[11px] text-slate-300 uppercase tracking-wider font-medium mt-0.5">
-                  Recruited Talent
+                  Professionals Placed
                 </div>
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-bold text-brand-light inline-flex items-baseline">
+                <div className="text-2xl sm:text-3xl font-bold text-brand-light inline-flex items-baseline tabular-nums">
                   <CountUp to={5} duration={1.2} digitEffect="slide" />
                   <span>-</span>
                   <CountUp to={15} duration={1.5} digitEffect="slide" />
                   <span>d</span>
                 </div>
                 <div className="text-[11px] text-slate-300 uppercase tracking-wider font-medium mt-0.5">
-                  Deployment SLA
+                  Average Placement Time
                 </div>
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-bold text-brand-light inline-flex items-baseline">
+                <div className="text-2xl sm:text-3xl font-bold text-brand-light inline-flex items-baseline tabular-nums">
                   <CountUp to={100} duration={2} digitEffect="slide" />
                   <span>%</span>
                 </div>
                 <div className="text-[11px] text-slate-300 uppercase tracking-wider font-medium mt-0.5">
-                  Statutory Cleared
+                  Statutory Compliance
                 </div>
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-bold text-brand-light inline-flex items-baseline">
+                <div className="text-2xl sm:text-3xl font-bold text-brand-light inline-flex items-baseline tabular-nums">
                   <CountUp to={48} duration={2} digitEffect="slide" />
                   <span>h</span>
                 </div>
                 <div className="text-[11px] text-slate-300 uppercase tracking-wider font-medium mt-0.5">
-                  Backfill Guarantee
+                  Replacement Guarantee
                 </div>
               </div>
             </div>
@@ -298,7 +298,7 @@ export default function Staffing() {
         </div>
       </section>
 
-      {/* 2. Interactive Workforce ROI & Statutory Savings Calculator */}
+      {/* Workforce ROI & Savings Calculator */}
       <section className="py-16 md:py-24 relative z-20 -mt-10">
         <ScrollReveal scale={0.98} delay={0.05} className="container mx-auto px-4 md:px-8 max-w-6xl">
           <div className="bg-brand-card rounded-[2.5rem] shadow-2xl border border-brand-edge p-6 sm:p-8 md:p-14">
@@ -307,37 +307,53 @@ export default function Staffing() {
               <div className="flex-1 w-full">
                 <div className="inline-flex items-center gap-2 bg-brand-light/20 text-brand-ink px-3.5 py-1.5 rounded-full text-xs font-bold mb-4 tracking-wider uppercase">
                   <SlidersHorizontal className="w-3.5 h-3.5" />
-                  <span>Interactive Workforce Calculator</span>
+                  <span>Workforce Cost Calculator</span>
                 </div>
 
                 <h2 className="text-3xl sm:text-4xl font-semibold text-brand-ink tracking-tight mb-3">
-                  Calculate Your Scale & Cost Savings
+                  Estimate Your Staffing Cost Savings
                 </h2>
                 <p className="text-brand-muted font-medium text-[15px] sm:text-sm leading-relaxed mb-8">
-                  Adjust your cohort size to simulate monthly administrative hours saved, recruitment cost reductions, and zero-liability statutory protection.
+                  Select your team size to estimate monthly administrative hours saved, hiring cost reductions, and statutory compliance protection.
                 </p>
 
                 {/* Staffing Model Toggle */}
-                <div className="bg-brand-bg p-1.5 rounded-2xl flex items-center gap-2 border border-brand-edge mb-8 max-w-md">
+                <div className="bg-brand-bg p-1.5 rounded-2xl flex items-center gap-1.5 border border-brand-edge mb-8 max-w-md relative select-none">
                   <button
+                    type="button"
                     onClick={() => setStaffingModel('contractual')}
-                    className={`flex-1 py-2.5 min-h-11 px-4 rounded-xl text-xs font-bold transition-all text-center ${
+                    className={`relative flex-1 py-2.5 min-h-11 px-4 rounded-xl text-xs transition-colors duration-150 active:scale-[0.97] text-center cursor-pointer ${
                       staffingModel === 'contractual'
-                        ? 'bg-brand-dark text-brand-light shadow-md'
-                        : 'text-brand-muted hover:text-brand-ink'
+                        ? 'text-brand-light font-extrabold'
+                        : 'text-brand-muted hover:text-brand-ink font-semibold'
                     }`}
                   >
-                    Contractual Flexi-Staffing
+                    {staffingModel === 'contractual' && (
+                      <motion.span
+                        layoutId="staffing-model-pill"
+                        className="absolute inset-0 rounded-xl bg-brand-dark shadow-md"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30, mass: 0.7 }}
+                      />
+                    )}
+                    <span className="relative z-10">Contractual Flexi-Staffing</span>
                   </button>
                   <button
+                    type="button"
                     onClick={() => setStaffingModel('lateral')}
-                    className={`flex-1 py-2.5 min-h-11 px-4 rounded-xl text-xs font-bold transition-all text-center ${
+                    className={`relative flex-1 py-2.5 min-h-11 px-4 rounded-xl text-xs transition-colors duration-150 active:scale-[0.97] text-center cursor-pointer ${
                       staffingModel === 'lateral'
-                        ? 'bg-brand-dark text-brand-light shadow-md'
-                        : 'text-brand-muted hover:text-brand-ink'
+                        ? 'text-brand-light font-extrabold'
+                        : 'text-brand-muted hover:text-brand-ink font-semibold'
                     }`}
                   >
-                    Lateral Technical Search
+                    {staffingModel === 'lateral' && (
+                      <motion.span
+                        layoutId="staffing-model-pill"
+                        className="absolute inset-0 rounded-xl bg-brand-dark shadow-md"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30, mass: 0.7 }}
+                      />
+                    )}
+                    <span className="relative z-10">Lateral Technical Search</span>
                   </button>
                 </div>
 
@@ -347,7 +363,7 @@ export default function Staffing() {
                     <span className="font-bold text-brand-ink text-sm uppercase tracking-wider">
                       Target Deployment Size
                     </span>
-                    <span className="text-3xl font-bold text-brand-ink">
+                    <span className="text-3xl font-bold text-brand-ink tabular-nums">
                       {hiresCount} <span className="text-base text-slate-500 font-semibold">Specialists</span>
                     </span>
                   </div>
@@ -377,17 +393,17 @@ export default function Staffing() {
                 <div className="flex flex-col sm:flex-row items-center gap-4">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center justify-center gap-2 bg-brand-dark text-white px-7 py-3.5 rounded-full font-bold text-sm hover:bg-brand-light hover:text-brand-onaccent transition-colors shadow-lg w-full sm:w-auto"
+                    className="inline-flex items-center justify-center gap-2 bg-brand-dark text-white pl-7 pr-6 py-3.5 rounded-full font-bold text-sm hover:bg-brand-light hover:text-brand-onaccent transition-[background-color,color,transform] duration-150 active:scale-[0.96] shadow-lg w-full sm:w-auto"
                   >
-                    <span>Claim Your Workforce Proposal</span>
+                    <span>Request a Detailed Quote</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </Link>
                   <button
                     onClick={() => setIsBrochureOpen(true)}
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-brand-edge bg-brand-bg hover:bg-white text-brand-ink text-sm font-semibold transition-colors w-full sm:w-auto"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-brand-edge bg-brand-bg hover:bg-white text-brand-ink text-sm font-semibold transition-[background-color,transform] duration-150 active:scale-[0.96] w-full sm:w-auto cursor-pointer"
                   >
                     <Download className="w-4 h-4 text-emerald-700 shrink-0" />
-                    <span>Download SLA & Pricing Benchmark</span>
+                    <span>Download Rate & SLA Matrix</span>
                   </button>
                 </div>
               </div>
@@ -398,9 +414,9 @@ export default function Staffing() {
 
                 <div className="border-b border-white/10 pb-4">
                   <span className="text-brand-light text-xs font-bold uppercase tracking-wider block mb-1">
-                    Simulated Value Proposition
+                    Estimated Monthly Impact
                   </span>
-                  <h3 className="text-xl font-bold text-white">Monthly Impact Forecast</h3>
+                  <h3 className="text-xl font-bold text-white">Monthly Savings & Protection</h3>
                 </div>
 
                 {/* Metric 1: Cost Saved */}
@@ -411,7 +427,7 @@ export default function Staffing() {
                       <TrendingUp className="w-4 h-4" />
                     </div>
                   </div>
-                  <div className="text-3xl sm:text-4xl font-bold text-brand-light break-words">
+                  <div className="text-3xl sm:text-4xl font-bold text-brand-light break-words tabular-nums">
                     ₹{costSavingsThousands.toLocaleString('en-IN')},000
                     <span className="text-xs text-slate-300 font-normal"> / mo</span>
                   </div>
@@ -428,7 +444,7 @@ export default function Staffing() {
                       <Clock className="w-4 h-4" />
                     </div>
                   </div>
-                  <div className="text-3xl sm:text-4xl font-bold text-white">
+                  <div className="text-3xl sm:text-4xl font-bold text-white tabular-nums">
                     {timeSavedHours} <span className="text-base font-semibold text-slate-300">Hours</span>
                     <span className="text-xs text-slate-300 font-normal"> / mo</span>
                   </div>
@@ -458,7 +474,7 @@ export default function Staffing() {
         </ScrollReveal>
       </section>
 
-      {/* 3. Domain Verticals (Interactive Talent Matrix) */}
+      {/* Domain Specializations */}
       <section className="py-16 md:py-24 bg-grid-light relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           <ScrollReveal direction="up" className="mb-16 text-center max-w-2xl mx-auto">
@@ -467,11 +483,11 @@ export default function Staffing() {
             </span>
             <WordReveal
               as="h2"
-              text="Specialized Manpower Verticals"
+              text="Our Staffing Specializations"
               className="text-3xl sm:text-4xl md:text-5xl font-semibold text-brand-ink mb-4 tracking-tight"
             />
             <p className="text-brand-muted font-medium text-[15px] sm:text-base">
-              Pre-screened, SLA-governed technical talent deployed across clean mobility, digital architecture, and smart factories.
+              Pre-screened technical talent deployed across clean mobility, software engineering, and smart manufacturing.
             </p>
           </ScrollReveal>
 
@@ -516,9 +532,9 @@ export default function Staffing() {
                     </div>
                     <button
                       onClick={() => setActiveVertical(v.id)}
-                      className="flex items-center justify-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent px-5 py-3 min-h-11 rounded-xl font-bold text-xs transition-colors w-full shadow-sm"
+                      className="flex items-center justify-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent active:scale-[0.98] px-5 py-3 min-h-11 rounded-xl font-bold text-xs transition-colors w-full shadow-sm"
                     >
-                      <span>Explore Profiles & Scope</span>
+                      <span>View Available Profiles</span>
                       <ChevronRight className="w-4 h-4" />
                     </button>
                   </div>
@@ -598,9 +614,9 @@ export default function Staffing() {
                 <div className="p-6 md:p-8 border-t border-brand-edge bg-brand-bg">
                   <Link
                     to="/contact"
-                    className="flex items-center justify-center w-full gap-2 bg-brand-dark text-white py-4 rounded-full font-bold text-sm hover:bg-brand-light hover:text-brand-onaccent transition-colors shadow-lg"
+                    className="flex items-center justify-center w-full gap-2 bg-brand-dark text-white py-4 rounded-full font-bold text-sm hover:bg-brand-light hover:text-brand-onaccent active:scale-[0.98] transition-all shadow-lg"
                   >
-                    <span>Request Profile Dossier</span>
+                    <span>Request Candidate Profiles</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </Link>
                 </div>
@@ -610,20 +626,20 @@ export default function Staffing() {
         </AnimatePresence>
       </section>
 
-      {/* 4. The 4-Stage Vetting Engine (Proven Blueprint) */}
+      {/* Vetting & Screening Process */}
       <section className="py-16 md:py-24 bg-brand-card border-y border-brand-edge relative">
         <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           <ScrollReveal direction="up" className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-emerald-800 font-bold text-xs tracking-widest uppercase mb-2 block">
-              Rigorous Quality Control
+              Our Screening Process
             </span>
             <WordReveal
               as="h2"
-              text="The 4-Stage Deployment Engine"
+              text="Our Four-Stage Screening & Onboarding Process"
               className="text-3xl sm:text-4xl md:text-5xl font-semibold text-brand-ink tracking-tight mb-4"
             />
             <p className="text-brand-muted font-medium text-[15px] sm:text-base">
-              Why leading mobility and manufacturing enterprises trust Pinnacle over generic manpower vendors.
+              How we verify technical skills, conduct background checks, and guarantee compliance before day one.
             </p>
           </ScrollReveal>
 
@@ -646,7 +662,7 @@ export default function Staffing() {
                 >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <span className="text-3xl font-extrabold text-brand-ink font-mono">{stage.step}</span>
+                    <span className="text-3xl font-extrabold text-brand-ink tabular-nums">{stage.step}</span>
                     <span className="bg-brand-light text-brand-onaccent font-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider">
                       {stage.metric}
                     </span>
@@ -657,7 +673,7 @@ export default function Staffing() {
 
                 <div className="pt-4 border-t border-brand-edge flex items-center gap-2 text-xs font-bold text-emerald-800">
                   <BadgeCheck className="w-4 h-4" />
-                  <span>SLA Stage Cleared</span>
+                  <span>Verified Stage</span>
                 </div>
                 </TiltCard>
               </motion.div>
@@ -666,18 +682,18 @@ export default function Staffing() {
         </div>
       </section>
 
-      {/* 5. Pinnacle Compliance Shield vs Traditional Agencies */}
+      {/* Traditional Agencies vs Pinnacle Managed Staffing */}
       <section className="py-16 md:py-24 bg-brand-bg">
         <div className="container mx-auto px-4 md:px-8 max-w-6xl">
           <ScrollReveal direction="up" className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-emerald-800 font-bold text-xs tracking-widest uppercase mb-2 block">
-              Enterprise Risk Comparison
+              How We Compare
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-brand-ink tracking-tight mb-4">
-              Why Traditional Staffing Fails You
+              Traditional Agencies vs. Pinnacle Managed Staffing
             </h2>
             <p className="text-brand-muted font-medium text-[15px] sm:text-base">
-              How Pinnacle's compliance-first workforce infrastructure eliminates legal liability and operational friction.
+              Why growing mobility and industrial companies choose our fully compliant, SLA-backed staffing model.
             </p>
           </ScrollReveal>
 
@@ -722,7 +738,7 @@ export default function Staffing() {
         </div>
       </section>
 
-      {/* 6. Legal Indemnity & Founder Quote Banner */}
+      {/* Founder Commitment */}
       <section className="py-16 md:py-24 bg-brand-dark text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-brand-light/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -731,13 +747,13 @@ export default function Staffing() {
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
               <div className="lg:col-span-8">
                 <span className="text-brand-light text-xs font-bold uppercase tracking-wider block mb-3">
-                  Founder & Workforce Strategist Commitment
+                  Our Commitment
                 </span>
                 <blockquote className="text-xl sm:text-2xl md:text-3xl font-semibold leading-snug mb-6 text-white">
-                  “We are in the business of enduring operational partnerships — not transactional headcounts. Statutory compliance, workplace safety, and 48-hour backfill reliability come before everything.”
+                  “We build long-term partnerships rather than filling transactional headcounts. Complete statutory compliance, safety readiness, and fast backfills guide every deployment.”
                 </blockquote>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl overflow-hidden border border-brand-light/40 shrink-0">
+                  <div className="w-12 h-12 rounded-xl overflow-hidden border border-brand-light/40 outline outline-1 -outline-offset-1 outline-black/10 shrink-0">
                     <img
                       src="/images/shikha_gupta.jpg"
                       alt="Shikha Gupta - Founder & Workforce Strategist"
@@ -757,15 +773,15 @@ export default function Staffing() {
                 <div className="w-12 h-12 rounded-2xl bg-brand-light text-brand-onaccent flex items-center justify-center mx-auto">
                   <Users className="w-6 h-6" />
                 </div>
-                <h3 className="text-lg font-bold text-white">Ready to Deploy Your Next Cohort?</h3>
+                <h3 className="text-lg font-bold text-white">Need to Hire Technical Talent?</h3>
                 <p className="text-xs text-slate-300 font-medium">
-                  Receive pre-screened candidate dossiers within 5 business days.
+                  Receive pre-screened candidate profiles within 5 to 15 business days.
                 </p>
                 <Link
                   to="/contact"
-                  className="bg-brand-light text-brand-onaccent py-3.5 px-6 rounded-full font-bold text-xs hover:bg-white transition-colors shadow-md mt-2"
+                  className="bg-brand-light text-brand-onaccent py-3.5 px-6 rounded-full font-bold text-xs hover:bg-white active:scale-[0.96] transition-all shadow-md mt-2"
                 >
-                  Schedule Staffing Consultation
+                  Talk to Our Staffing Team
                 </Link>
               </div>
             </div>

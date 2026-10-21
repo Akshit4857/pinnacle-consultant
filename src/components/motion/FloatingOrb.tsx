@@ -30,6 +30,8 @@ export default function FloatingOrb({
         width: size,
         height: size,
         animation: `float-orb ${9 + (delay % 4)}s ease-in-out ${delay}s infinite`,
+        willChange: 'transform',
+        transform: 'translateZ(0)',
       }}
     />
   );

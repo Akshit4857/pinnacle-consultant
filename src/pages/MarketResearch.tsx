@@ -28,68 +28,68 @@ export default function MarketResearch() {
       id: 'sectoral',
       icon: BarChart3,
       title: 'Sectoral Research Reports',
-      tag: 'Strategic Outlook',
-      headline: 'In-depth reports for stakeholders, investors, and decision-makers',
-      desc: 'Deep-dive qualitative and quantitative landscape studies charting market expansion curves, supply chain hurdles, and technological inflections across India.',
+      tag: 'Sector Reports',
+      headline: 'Quarterly deep dives into capacity, policy, and technology adoption',
+      desc: 'Detailed studies on domestic manufacturing capability, raw material supply, and policy shifts across Indian states.',
       points: [
-        'EV adoption trends & policy impact assessments',
-        'Battery technology outlook & gigafactory roadmaps',
-        'OEM supplier ecosystem maps & capacity analysis',
-        'Logistics tech benchmarking & freight electrification',
-        'Pharma & healthcare industry growth forecasts',
+        'State-by-state EV subsidies, tariff shifts, and registration numbers',
+        'Cell chemistry adoption, domestic pack assembly, and gigafactory timelines',
+        'Tier-1 and Tier-2 supplier footprints and monthly manufacturing output',
+        'Commercial fleet electrification economics and route viability',
+        'Specialty packaging, cold chain capacity, and regional pharma corridors',
       ],
-      targetAudience: 'Venture Capitalists, CPOs, Fleet Operators, Strategy Heads',
+      targetAudience: 'Fleet operators, component manufacturers, and energy investors',
     },
     {
       id: 'competitor',
       icon: Search,
-      title: 'Competitor & Market Analysis',
-      tag: 'Competitive Intelligence',
-      headline: 'Detailed studies for product launch, pricing, and expansion',
-      desc: 'Actionable competitive benchmarking designed to identify market white spaces, optimize unit economics, and validate new territory launches.',
+      title: 'Competitor & Pricing Studies',
+      tag: 'Pricing & Competition',
+      headline: 'Compare pricing, dealer margins, and feature sets across competitors',
+      desc: 'We benchmark competing product specs, discount structures, and distribution channels to help you price and position effectively.',
       points: [
-        'Comprehensive SWOT & PESTEL environmental frameworks',
-        'Go-to-market strategy assessment & pricing benchmarks',
-        'Voice of Customer (VoC) surveys & feedback synthesis',
-        'Distribution channel mapping & margin structure analysis',
+        'Feature-by-feature product comparisons and teardown notes',
+        'Distributor margins, retail price points, and promotional structures',
+        'Interviews with fleet buyers, plant heads, and commercial users',
+        'Regional dealership terms, credit cycles, and warehouse requirements',
       ],
-      targetAudience: 'Brand Leaders, Growth Strategists, Product Managers',
+      targetAudience: 'Product heads, commercial directors, and founders',
     },
     {
       id: 'custom',
       icon: Compass,
-      title: 'Custom Research Projects',
-      tag: 'Tailored Advisory',
-      headline: 'Tailored studies to address your unique business questions',
-      desc: 'Bespoke intelligence mandates addressing high-stakes commercial dilemmas, capital deployment decisions, and vendor network verification.',
+      title: 'Custom Research Briefs',
+      tag: 'Custom Mandates',
+      headline: 'Targeted studies for joint ventures, plant investments, and vendor diligence',
+      desc: 'Confidential investigations when you need to verify a supplier’s actual floor capacity, evaluate an acquisition target, or test market demand before committing capital.',
       points: [
-        'Commercial & technical feasibility studies',
-        'Demand forecasting & capacity planning models',
-        'Partner, supplier & vendor landscape vetting',
-        'Regulatory policy advisory & incentive qualification',
+        'Independent technical and commercial feasibility assessments',
+        'Unit economics, addressable market size, and 3-year demand curves',
+        'Physical plant visits and supplier background verification',
+        'State industrial policy, PLI eligibility, and local clearance requirements',
       ],
-      targetAudience: 'Founders, MDs, Procurement Committees, Board Advisors',
+      targetAudience: 'Managing directors, investment committees, and corporate strategy teams',
     },
   ];
 
   const sampleReports = [
     {
-      title: 'India EV Charging Infrastructure Outlook 2025-2030',
+      title: 'India EV Charging Infrastructure Outlook 2025–2030',
       category: 'Clean Mobility',
       pages: '48 Pages',
-      highlights: 'MW Charging Hubs • DISCOM Grid Capacity • Fleet Electrification Economics',
+      highlights: 'High-power highway hubs, DISCOM power approvals, and fleet charging economics',
     },
     {
-      title: 'Battery Swapping vs High-Speed DC Fast Charging in Commercial Fleets',
+      title: 'Commercial Fleet Battery Swapping vs Fast Charging',
       category: 'E-Mobility',
       pages: '36 Pages',
-      highlights: 'Total Cost of Ownership (TCO) • Uptime Comparison • B2B Adoption Rates',
+      highlights: 'Capex comparison, battery lease models, and 3-wheeler turnaround times',
     },
     {
-      title: 'Smart Factory & Industrial IoT Adoption Across Indian MSMEs',
+      title: 'Shop-Floor IoT and Predictive Maintenance Adoption',
       category: 'Industry 4.0',
       pages: '42 Pages',
-      highlights: 'OEE Benchmarks • Sensor Retrofit Cost Models • ROI Payback Periods',
+      highlights: 'Typical payback periods, sensor retrofit costs, and downtime reduction rates',
     },
   ];
 
@@ -97,7 +97,7 @@ export default function MarketResearch() {
 
   return (
     <div className="w-full">
-      {/* 1. Hero Header */}
+      {/* Hero Header */}
       <section className="pt-36 pb-16 md:pt-40 md:pb-20 bg-brand-dark bg-grid-dark text-white overflow-hidden relative">
         <FloatingOrb className="-top-[275px] right-[-275px]" size={550} delay={0} />
         <div className="container mx-auto px-4 md:px-8 relative z-10 max-w-6xl">
@@ -105,8 +105,8 @@ export default function MarketResearch() {
             <div className="lg:col-span-7">
               <h1 className="text-3xl sm:text-6xl md:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight">
                 {[
-                  <span key="l1" className="block">Data-backed decisions</span>,
-                  <span key="l2" className="block text-brand-light">start with deep insights.</span>,
+                  <span key="l1" className="block">Industry Research Built on</span>,
+                  <span key="l2" className="block text-brand-light">Direct Supplier and Field Interviews.</span>,
                 ].map((line, i) => (
                   <span key={`w-${i}`} className="block overflow-hidden pb-[0.06em] -mb-[0.06em]">
                     <motion.span
@@ -127,7 +127,7 @@ export default function MarketResearch() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed font-medium mb-8"
               >
-                We offer customized research and intelligence for emerging and traditional sectors. Cut through market noise with ground-verified data, competitive intelligence, and predictive sector forecasts.
+                We conduct ground-level interviews, track supplier capacities, and model cost economics across Indian EV, clean energy, and manufacturing sectors so your capital decisions are backed by evidence.
               </motion.p>
 
               <motion.div
@@ -139,16 +139,16 @@ export default function MarketResearch() {
                 <Magnetic>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-8 py-4 rounded-full font-bold text-sm hover:bg-white transition-colors shadow-lg"
+                    className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent pl-8 pr-7 py-4 rounded-full font-bold text-sm hover:bg-white active:scale-[0.96] transition-all shadow-lg"
                   >
-                    <span>Commission Custom Research</span>
+                    <span>Discuss a Custom Research Brief</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </Link>
                 </Magnetic>
                 <Magnetic strength={0.2}>
                   <a
                     href="mailto:info@pinnacleconsultant.co.in"
-                    className="inline-flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-4 rounded-full font-semibold text-sm hover:bg-white/20 transition-colors backdrop-blur-sm"
+                    className="inline-flex items-center gap-2 bg-white/10 text-white border border-white/20 pl-6 pr-5 py-4 rounded-full font-semibold text-sm hover:bg-white/20 active:scale-[0.96] transition-all backdrop-blur-sm"
                   >
                     <span>info@pinnacleconsultant.co.in</span>
                   </a>
@@ -161,14 +161,14 @@ export default function MarketResearch() {
                 <img
                   src="/images/market_research_analyst.jpg"
                   alt="Industrial Market Research & Competitive Intelligence"
-                  className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-700 outline outline-1 -outline-offset-1 outline-black/10"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5 flex flex-wrap items-center justify-between gap-2 text-xs">
                   <span className="bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-brand-light font-semibold">
-                    Proprietary Sector Reports
+                    Primary Field Research
                   </span>
-                  <span className="text-white font-medium">95%+ Forecast Precision</span>
+                  <span className="text-white font-medium">Ground-Level Verification</span>
                 </div>
               </div>
             </div>
@@ -176,7 +176,7 @@ export default function MarketResearch() {
         </div>
       </section>
 
-      {/* 2. Core Pillars Grid */}
+      {/* Core Research Pillars */}
       <section className="py-16 md:py-24 bg-grid-light relative z-20">
         <div className="container mx-auto px-4 md:px-8 max-w-6xl">
           <ScrollReveal direction="up" className="text-center max-w-2xl mx-auto mb-16">
@@ -185,11 +185,11 @@ export default function MarketResearch() {
             </span>
             <WordReveal
               as="h2"
-              text="Intelligence That Shapes High-Stakes Strategy"
+              text="Research Formats Built for Decision Makers"
               className="text-3xl sm:text-4xl md:text-5xl font-semibold text-brand-ink tracking-tight mb-4"
             />
             <p className="text-brand-muted font-medium text-[15px] sm:text-sm">
-              Customized research solutions designed for emerging mobility, manufacturing, and industrial ecosystems.
+              Custom studies and sector benchmarks designed for clean mobility, component manufacturing, and industrial operations.
             </p>
           </ScrollReveal>
 
@@ -241,9 +241,9 @@ export default function MarketResearch() {
                   </div>
                   <button
                     onClick={() => setActiveResearch(pillar.id)}
-                    className="w-full flex items-center justify-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent py-3 rounded-xl font-medium text-xs transition-colors"
+                    className="w-full flex items-center justify-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent active:scale-[0.98] py-3 rounded-xl font-medium text-xs transition-colors"
                   >
-                    View Report Structure <ChevronRight className="w-4 h-4" />
+                    Review Methodology &amp; Details <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
                 </TiltCard>
@@ -253,7 +253,7 @@ export default function MarketResearch() {
         </div>
       </section>
 
-      {/* 3. Featured Industry Reports Showcase */}
+      {/* Featured Industry Reports */}
       <section className="py-14 md:py-20 bg-brand-card border-t border-b border-brand-edge">
         <div className="container mx-auto px-4 md:px-8 max-w-6xl">
           <ScrollReveal direction="up" className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
@@ -263,12 +263,12 @@ export default function MarketResearch() {
               </span>
               <WordReveal
                 as="h2"
-                text="Featured Industry Intelligence Briefs"
+                text="Available Research Briefs"
                 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-brand-ink tracking-tight"
               />
             </div>
             <p className="text-slate-500 text-[15px] md:text-sm font-medium max-w-sm">
-              Proprietary market dossiers authored by our senior energy and mobility researchers.
+              Sample research summaries prepared by our mobility and industrial research team.
             </p>
           </ScrollReveal>
 
@@ -291,7 +291,7 @@ export default function MarketResearch() {
                     <span className="bg-brand-card px-2.5 py-1 rounded-md text-brand-ink border border-brand-edge">
                       {report.category}
                     </span>
-                    <span>{report.pages}</span>
+                    <span className="tabular-nums">{report.pages}</span>
                   </div>
                   <h3 className="text-base font-semibold text-brand-ink mb-3 leading-snug">
                     {report.title}
@@ -305,7 +305,7 @@ export default function MarketResearch() {
                   to="/contact"
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-ink hover:text-emerald-700 transition-colors pt-4 border-t border-brand-edge"
                 >
-                  <span>Request Sample Executive Summary</span>
+                  <span>Request Summary &amp; Table of Contents</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </Link>
                 </TiltCard>
@@ -315,7 +315,7 @@ export default function MarketResearch() {
         </div>
       </section>
 
-      {/* 4. Slide-Out Detail Drawer */}
+      {/* Research Detail Drawer */}
       <AnimatePresence>
         {activeResearch && selectedData && (
           <>
@@ -336,7 +336,7 @@ export default function MarketResearch() {
               <div className="p-6 md:p-8 border-b border-brand-edge flex items-center justify-between gap-4 bg-brand-bg">
                 <div className="min-w-0">
                   <span className="bg-brand-light text-brand-onaccent px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-2 inline-block">
-                    Research Mandate
+                    Brief Overview
                   </span>
                   <h2 className="text-2xl font-semibold text-brand-ink">{selectedData.title}</h2>
                 </div>
@@ -355,7 +355,7 @@ export default function MarketResearch() {
 
                 <div className="mb-8">
                   <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-brand-edge pb-2">
-                    Methodological Depth
+                    What the Study Covers
                   </h3>
                   <ul className="space-y-3 pt-2">
                     {selectedData.points.map((pt, i) => (
@@ -371,7 +371,7 @@ export default function MarketResearch() {
 
                 <div className="bg-brand-dark text-white p-6 rounded-2xl">
                   <h4 className="text-xs font-bold text-brand-light uppercase tracking-wider mb-1">
-                    Stakeholder Focus
+                    Relevant Stakeholders
                   </h4>
                   <p className="text-xs font-medium text-slate-200">{selectedData.targetAudience}</p>
                 </div>
@@ -380,9 +380,9 @@ export default function MarketResearch() {
               <div className="p-6 md:p-8 border-t border-brand-edge bg-brand-card">
                 <Link
                   to="/contact"
-                  className="flex items-center justify-center w-full gap-2 bg-brand-dark text-white py-4 rounded-full font-semibold text-sm hover:bg-brand-light hover:text-brand-onaccent transition-colors shadow-lg"
+                  className="flex items-center justify-center w-full gap-2 bg-brand-dark text-white py-4 rounded-full font-semibold text-sm hover:bg-brand-light hover:text-brand-onaccent active:scale-[0.98] transition-all shadow-lg"
                 >
-                  Inquire For Research Mandate <ArrowUpRight className="w-4 h-4" />
+                  Request a Proposal for This Study <ArrowUpRight className="w-4 h-4" />
                 </Link>
               </div>
             </motion.div>
@@ -390,26 +390,26 @@ export default function MarketResearch() {
         )}
       </AnimatePresence>
 
-      {/* 5. Bottom Consultation Banner */}
+      {/* Scoping Callout */}
       <section className="py-14 md:py-20 container mx-auto px-4 md:px-8 max-w-5xl">
         <ScrollReveal scale={0.96} duration={0.7} className="w-full">
           <div className="bg-brand-dark text-white rounded-[2.5rem] p-6 sm:p-10 md:p-14 text-center relative overflow-hidden shadow-xl">
             <FloatingOrb className="top-0 right-0" size={320} blurClass="blur-3xl" delay={1} />
             <WordReveal
               as="h2"
-              text="Have a specialized business dilemma?"
+              text="Need Specific Market or Supplier Data?"
               className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 tracking-tight"
             />
             <p className="text-slate-300 text-[15px] sm:text-base max-w-xl mx-auto mb-8 font-medium">
-              Speak directly with our research practice heads to commission tailored market intelligence, partner landscape analysis, or feasibility studies.
+              Talk with our research leads to discuss your scope, target sectors, and required turnaround time.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Magnetic>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent px-8 py-4 rounded-full font-bold text-sm hover:bg-white transition-colors shadow-lg"
+                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent pl-8 pr-7 py-4 rounded-full font-bold text-sm hover:bg-white active:scale-[0.96] transition-all shadow-lg"
                 >
-                  <span>Consult Market Researchers</span>
+                  <span>Schedule a Research Scoping Call</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </Link>
               </Magnetic>

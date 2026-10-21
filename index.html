@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
 
@@ -66,12 +66,12 @@
         },
         "contactPoint": {
           "@type": "ContactPoint",
-          "telephone": "+91-7879716775",
+          "telephone": "+91-7000081129",
           "contactType": "customer service",
           "email": "info@pinnacleconsultant.co.in"
         },
         "sameAs": [
-          "https://www.linkedin.com/company/pinnacleconsultant-india/"
+          "https://www.linkedin.com/company/pinnacleconsultant-india/posts/"
         ]
       }
     </script>
@@ -80,16 +80,9 @@
     <script>
       (function () {
         try {
-          var migrate = { forest: 'ev', ocean: 'talent', sunset: 'industry', royal: 'intel', crimson: 'prime' };
-          var t = localStorage.getItem('pc-theme');
-          if (t && migrate[t]) {
-            t = migrate[t];
-            localStorage.setItem('pc-theme', t);
-          }
-          if (t) document.documentElement.setAttribute('data-theme', t);
-          if (localStorage.getItem('pc-mode') === 'dark') {
-            document.documentElement.setAttribute('data-mode', 'dark');
-          }
+          var p = window.location.pathname;
+          var t = p === '/tech-ev' ? 'ev' : p === '/staffing' ? 'talent' : 'prime';
+          document.documentElement.setAttribute('data-theme', t);
         } catch (e) {}
       })();
     </script>

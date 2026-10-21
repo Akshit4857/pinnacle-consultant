@@ -20,6 +20,7 @@ import {
   Sparkles,
   FileCheck2,
   CheckCircle2,
+  Lock,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
@@ -48,38 +49,37 @@ export default function Contact() {
   const faqs = [
     {
       q: 'How fast can Pinnacle deploy manpower for our operations?',
-      a: 'For contractual & field operations (EV technicians, retail, warehouse, assembly), deployments begin within 7 to 14 days of scope sign-off. For lateral & leadership executive searches, candidate shortlists are delivered within 48 to 72 hours.',
+      a: 'For contractual and field operations (EV technicians, retail staff, warehouse workers, and assembly operators), deployments begin within 7 to 14 days of agreement sign-off. For lateral and leadership executive roles, candidate profiles are delivered within 48 to 72 hours.',
     },
     {
       q: 'Do you manage statutory compliance and payroll?',
-      a: 'Yes, 100%. Pinnacle acts as the legal employer of record (EOR) for contractual deployments, managing PF, ESIC, Professional Tax, bonus payouts, and state CLRA licenses with zero compliance exposure for your firm.',
+      a: 'Yes. For contractual staffing, Pinnacle acts as the employer of record, handling PF, ESIC, Professional Tax, monthly payroll, and state labor registrations directly.',
     },
     {
       q: 'What is your operational footprint for EV infrastructure AMC?',
-      a: 'We operate across North, West, and South India covering major industrial hubs, metropolitan charge corridors, and commercial depot clusters with 24/7 technical field SLAs.',
+      a: 'We support EV infrastructure across industrial belts, transit corridors, and fleet depots in North, West, and South India, backed by on-call field technicians.',
     },
     {
       q: 'Can we sign an NDA prior to discussing technical requirements?',
-      a: 'Absolutely. We regularly execute mutual NDAs before reviewing proprietary charging blueprints, plant layouts, or confidential hiring mandates.',
+      a: 'Yes. We routinely execute mutual NDAs before reviewing proprietary charging blueprints, plant layouts, or confidential hiring searches.',
     },
   ];
 
   return (
     <div className="w-full">
-      {/* Upper Main Hero & Contact Section */}
+      {/* Hero & Contact Section */}
       <section className="pt-28 pb-16 md:pt-36 md:pb-20 bg-brand-dark bg-grid-dark text-white relative overflow-hidden">
-        {/* Ambient Decorative Glows */}
         <FloatingOrb className="-top-[275px] right-[-275px]" size={550} delay={0} />
         <FloatingOrb className="bottom-0 left-0" size={320} colorClass="bg-brand-light/5" blurClass="blur-3xl" delay={2} />
 
         <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Left Column: Heading, Direct Contact Cards & Trust Badges */}
+            {/* Direct Reach & Credentials */}
             <div className="lg:col-span-5 flex flex-col justify-start">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 leading-[1.15] tracking-tight">
                 {[
                   <span key="l1" className="block">
-                    Let's Scale Your <span className="text-brand-light">Operations.</span>
+                    Get in Touch with Our <span className="text-brand-light">Practice Leads.</span>
                   </span>,
                 ].map((line, i) => (
                   <span key={`w-${i}`} className="block overflow-hidden pb-[0.06em] -mb-[0.06em]">
@@ -99,12 +99,12 @@ export default function Contact() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.15 }}
-                className="text-base md:text-lg text-slate-300 leading-relaxed font-normal mb-6"
+                className="text-base md:text-lg text-slate-300 leading-relaxed font-normal mb-6 text-pretty"
               >
-                Submit your manpower, EV infrastructure, or research mandate below. Our practice leads evaluate scope and provide customized solutions within 24 hours.
+                Tell us about your hiring numbers, EV charging targets, or research questions. Our practice leads review your details and respond within one business day.
               </motion.p>
 
-              {/* Quick Trust Badges */}
+              {/* Trust Badges */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -113,11 +113,11 @@ export default function Contact() {
               >
                 <div className="bg-white/5 border border-white/10 p-3 rounded-xl backdrop-blur-sm flex items-center gap-2.5">
                   <Clock className="w-4 h-4 text-brand-light shrink-0" />
-                  <span>24h Response SLA</span>
+                  <span className="tabular-nums">24h Response SLA</span>
                 </div>
                 <div className="bg-white/5 border border-white/10 p-3 rounded-xl backdrop-blur-sm flex items-center gap-2.5">
                   <ShieldCheck className="w-4 h-4 text-brand-light shrink-0" />
-                  <span>100% Compliant</span>
+                  <span className="tabular-nums">100% Compliant</span>
                 </div>
                 <div className="bg-white/5 border border-white/10 p-3 rounded-xl backdrop-blur-sm flex items-center gap-2.5">
                   <Users className="w-4 h-4 text-brand-light shrink-0" />
@@ -129,19 +129,19 @@ export default function Contact() {
                 </div>
               </motion.div>
 
-              {/* Mobile Quick Action Buttons (Visible only on smaller screens for instant reach) */}
+              {/* Mobile Actions */}
               <div className="flex lg:hidden flex-wrap gap-2.5 mb-6">
                 <a
-                  href="https://wa.me/917879716775"
+                  href="https://wa.me/917000081129"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex-1 min-w-[140px] min-h-11 inline-flex items-center justify-center gap-2 bg-brand-light text-brand-onaccent py-3 px-4 rounded-xl font-bold text-xs hover:bg-white transition-colors shadow-md"
+                  className="flex-1 min-w-[140px] min-h-11 inline-flex items-center justify-center gap-2 bg-brand-light text-brand-onaccent py-3 px-4 rounded-xl font-bold text-xs hover:bg-white transition-colors duration-150 active:scale-[0.96] shadow-md"
                 >
                   <MessageSquare className="w-4 h-4" /> WhatsApp Chat
                 </a>
                 <a
-                  href="tel:+917879716775"
-                  className="flex-1 min-w-[140px] min-h-11 inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white py-3 px-4 rounded-xl font-bold text-xs hover:bg-white/20 transition-colors"
+                  href="tel:+917000081129"
+                  className="flex-1 min-w-[140px] min-h-11 inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white py-3 px-4 rounded-xl font-bold text-xs hover:bg-white/20 transition-colors duration-150 active:scale-[0.96]"
                 >
                   <Phone className="w-4 h-4 text-brand-light" /> Call Us Direct
                 </a>
@@ -187,7 +187,7 @@ export default function Contact() {
                 >
                   <div className="flex items-center justify-between">
                     <div
-                      onClick={() => copyToClipboard('+91-7879716775', 'phone')}
+                      onClick={() => copyToClipboard('+91-7000081129', 'phone')}
                       className="flex items-center gap-3.5 cursor-pointer group"
                     >
                       <div className="w-10 h-10 rounded-xl bg-brand-light/15 text-brand-light flex items-center justify-center shrink-0">
@@ -196,13 +196,13 @@ export default function Contact() {
                       <div>
                         <div className="text-xs text-slate-400 font-medium">Direct Line / WhatsApp</div>
                         <div className="text-sm font-bold text-white group-hover:text-brand-light transition-colors">
-                          +91-7879716775
+                          +91-7000081129
                         </div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
                       <a
-                        href="https://wa.me/917879716775"
+                        href="https://wa.me/917000081129"
                         target="_blank"
                         rel="noreferrer"
                         className="inline-flex items-center gap-1.5 bg-brand-light text-brand-onaccent text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-white transition-colors"
@@ -231,7 +231,7 @@ export default function Contact() {
                       <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
                         <span>Pan-India Presence</span>
                         <a
-                          href="https://www.linkedin.com/company/pinnacleconsultant-india/"
+                          href="https://www.linkedin.com/company/pinnacleconsultant-india/posts/"
                           target="_blank"
                           rel="noreferrer"
                           className="text-brand-light font-bold hover:underline flex items-center gap-1"
@@ -245,7 +245,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Right Column: Prominent Contact Form (Visible Immediately Above The Fold) */}
+            {/* Ingestion Form */}
             <div className="lg:col-span-7">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -256,9 +256,9 @@ export default function Contact() {
                 <div className="mb-6 border-b border-brand-edge pb-5">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h2 className="text-2xl font-bold text-brand-ink">Submit Project Mandate</h2>
+                      <h2 className="text-2xl font-bold text-brand-ink">Tell Us About Your Project</h2>
                       <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
-                        Fill in your project requirements for an actionable proposal within 24 hours.
+                        Share your project parameters and we will get back to you within 24 hours.
                       </p>
                     </div>
                     <span className="hidden sm:inline-flex items-center gap-1 bg-brand-light/20 text-brand-ink text-[11px] font-bold px-3 py-1 rounded-full">
@@ -279,7 +279,7 @@ export default function Contact() {
                           <input
                             type="text"
                             required
-                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-medium text-brand-ink"
+                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 font-medium text-brand-ink"
                             placeholder="e.g. Rahul Sharma"
                           />
                         </div>
@@ -294,8 +294,8 @@ export default function Contact() {
                           <input
                             type="text"
                             required
-                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-medium text-brand-ink"
-                            placeholder="e.g. Exponent Energy"
+                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 font-medium text-brand-ink"
+                            placeholder="e.g. Hero MotoCorp / Ather Energy"
                           />
                         </div>
                       </div>
@@ -311,7 +311,7 @@ export default function Contact() {
                           <input
                             type="email"
                             required
-                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-medium text-brand-ink"
+                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 font-medium text-brand-ink"
                             placeholder="rahul@company.com"
                           />
                         </div>
@@ -326,7 +326,7 @@ export default function Contact() {
                           <input
                             type="tel"
                             required
-                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-medium text-brand-ink"
+                            className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 font-medium text-brand-ink"
                             placeholder="+91 XXXXX XXXXX"
                           />
                         </div>
@@ -337,37 +337,38 @@ export default function Contact() {
                       <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                         Practice Area / Solution Required *
                       </label>
-                      <select className="w-full bg-brand-bg border border-brand-edge rounded-xl px-4 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all font-semibold text-brand-ink">
-                        <option>Manpower Staffing (Corporate & Contractual)</option>
-                        <option>EV Infrastructure Setup & Maintenance (AMC)</option>
-                        <option>Industry 4.0 & Smart Factory Automation</option>
-                        <option>Market Research & Sectoral Intelligence Reports</option>
+                      <select className="w-full bg-brand-bg border border-brand-edge rounded-xl px-4 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 font-semibold text-brand-ink">
+                        <option>Manpower Staffing (Corporate &amp; Contractual)</option>
+                        <option>EV Infrastructure Setup &amp; Maintenance (AMC)</option>
+                        <option>Industrial Automation Solutions</option>
+                        <option>Market Research &amp; Sectoral Intelligence Reports</option>
                         <option>Executive Search / Direct Founder Advisory</option>
                       </select>
                     </div>
 
                     <div className="space-y-1.5">
                       <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                        Describe Requirements & Scope *
+                        Describe Requirements &amp; Scope *
                       </label>
                       <textarea
                         rows={4}
                         required
-                        className="w-full bg-brand-bg border border-brand-edge rounded-xl px-4 py-3 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-all resize-none font-medium text-brand-ink"
+                        className="w-full bg-brand-bg border border-brand-edge rounded-xl px-4 py-3 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 resize-none font-medium text-brand-ink"
                         placeholder="Detail your estimated staffing count, target locations, EV charger specifications, or project launch timeline..."
                       ></textarea>
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full bg-brand-dark text-white py-4 rounded-xl font-bold text-sm sm:text-base hover:bg-brand-light hover:text-brand-onaccent transition-all duration-200 flex items-center justify-center gap-2 group shadow-lg cursor-pointer"
+                      className="w-full bg-brand-dark text-white py-4 pl-6 pr-5 rounded-xl font-bold text-sm sm:text-base hover:bg-brand-light hover:text-brand-onaccent transition-[color,background-color,transform] duration-200 active:scale-[0.96] flex items-center justify-center gap-2 group shadow-lg cursor-pointer"
                     >
-                      Submit Project Mandate
+                      <span>Send Project Details</span>
                       <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
 
                     <div className="flex items-center justify-center gap-2 text-center text-xs text-slate-500 pt-2 font-medium">
-                      <span>🔒 100% Confidential Mandate • No Spam Guarantee</span>
+                      <Lock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <span>Your details are kept confidential. No spam or marketing lists.</span>
                     </div>
                   </form>
                 ) : (
@@ -379,15 +380,15 @@ export default function Contact() {
                     <div className="w-16 h-16 bg-brand-light/25 text-brand-ink rounded-full flex items-center justify-center mb-5">
                       <CheckCircle className="w-9 h-9 text-emerald-700" />
                     </div>
-                    <h3 className="text-2xl font-bold text-brand-ink mb-2">Mandate Received!</h3>
+                    <h3 className="text-2xl font-bold text-brand-ink mb-2">Message Received</h3>
                     <p className="text-brand-muted font-medium mb-6 max-w-md text-[15px] sm:text-sm leading-relaxed">
-                      Thank you. Your requirements have been routed directly to our coordination leads. We will review the parameters and connect back with a scoped plan within 24 hours.
+                      Thank you for reaching out. We have received your project details and will follow up within 24 hours.
                     </p>
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="inline-flex items-center gap-2 bg-brand-dark text-white text-xs font-bold px-5 py-2.5 min-h-11 rounded-xl hover:bg-brand-light hover:text-brand-onaccent transition-colors"
+                      className="inline-flex items-center gap-2 bg-brand-dark text-white text-xs font-bold px-5 py-2.5 min-h-11 rounded-xl hover:bg-brand-light hover:text-brand-onaccent transition-colors duration-150 active:scale-[0.96] cursor-pointer"
                     >
-                      Submit Another Mandate
+                      Send Another Inquiry
                     </button>
                   </motion.div>
                 )}
@@ -397,7 +398,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Mobile Direct Contact Details (Shown below form on mobile so it is not hidden) */}
+      {/* Mobile Contact Channels */}
       <section className="lg:hidden py-10 bg-brand-card border-b border-brand-edge">
         <div className="container mx-auto px-4">
           <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 text-center">
@@ -411,7 +412,7 @@ export default function Contact() {
             >
               <div
                 onClick={() => copyToClipboard('info@pinnacleconsultant.co.in', 'email-mob')}
-                className="p-4 flex items-center justify-between h-full"
+                className="p-4 flex items-center justify-between h-full cursor-pointer"
               >
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-brand-dark text-brand-light flex items-center justify-center">
@@ -436,8 +437,8 @@ export default function Contact() {
               className="bg-brand-bg rounded-xl border border-brand-edge"
             >
               <div
-                onClick={() => copyToClipboard('+91-7879716775', 'phone-mob')}
-                className="p-4 flex items-center justify-between h-full"
+                onClick={() => copyToClipboard('+91-7000081129', 'phone-mob')}
+                className="p-4 flex items-center justify-between h-full cursor-pointer"
               >
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-brand-dark text-brand-light flex items-center justify-center">
@@ -445,7 +446,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="text-[10px] text-slate-500 font-bold uppercase">Phone</div>
-                  <div className="text-xs font-bold text-brand-ink">+91-7879716775</div>
+                  <div className="text-xs font-bold text-brand-ink">+91-7000081129</div>
                 </div>
               </div>
               {copiedField === 'phone-mob' && (
@@ -457,12 +458,12 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Engagement Process Section: How We Work With You */}
+      {/* Engagement Process */}
       <section className="py-14 md:py-20 bg-brand-card border-b border-brand-edge">
         <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           <ScrollReveal direction="up" distance={20} className="text-center max-w-2xl mx-auto mb-14">
             <span className="text-emerald-700 font-bold text-xs uppercase tracking-wider bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200">
-              Structured Engagement
+              Next Steps
             </span>
             <WordReveal
               as="h2"
@@ -470,7 +471,7 @@ export default function Contact() {
               className="text-3xl md:text-4xl font-bold text-brand-ink mt-3 mb-3"
             />
             <p className="text-brand-muted text-sm md:text-base font-medium">
-              A transparent, outcome-oriented workflow from initial mandate review to on-ground execution.
+              What to expect after you share your requirements with us.
             </p>
           </ScrollReveal>
 
@@ -488,15 +489,15 @@ export default function Contact() {
                 lift={6}
                 className="bg-brand-bg rounded-2xl p-6 sm:p-8 border border-brand-edge relative group hover:border-brand-dark transition-colors h-full"
               >
-              <div className="w-12 h-12 rounded-xl bg-brand-dark text-brand-light font-bold text-lg flex items-center justify-center mb-6 shadow-md">
+              <div className="w-12 h-12 rounded-xl bg-brand-dark text-brand-light font-bold text-lg flex items-center justify-center mb-6 shadow-md tabular-nums">
                 01
               </div>
-              <h3 className="text-lg font-bold text-brand-ink mb-2">Requirement Discovery</h3>
-              <p className="text-[15px] sm:text-sm text-brand-muted leading-relaxed font-medium mb-4">
-                Within 24 hours of form submission, our practice lead connects to clarify role parameters, headcount volume, compliance mandates, or EV technical blueprints.
+              <h3 className="text-lg font-bold text-brand-ink mb-2">Requirement Scoping</h3>
+              <p className="text-[15px] sm:text-sm text-brand-muted leading-relaxed font-medium mb-4 text-pretty">
+                We review your submission and contact you within 24 hours to clarify headcount targets, location requirements, compliance needs, or charger specs.
               </p>
-              <div className="text-xs font-semibold text-emerald-800 flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5" /> SLA: 24 Hours
+              <div className="text-xs font-semibold text-emerald-800 flex items-center gap-1.5 tabular-nums">
+                <Clock className="w-3.5 h-3.5" /> Response within 24 hours
               </div>
               </TiltCard>
             </motion.div>
@@ -508,15 +509,15 @@ export default function Contact() {
                 lift={6}
                 className="bg-brand-bg rounded-2xl p-6 sm:p-8 border border-brand-edge relative group hover:border-brand-dark transition-colors h-full"
               >
-              <div className="w-12 h-12 rounded-xl bg-brand-dark text-brand-light font-bold text-lg flex items-center justify-center mb-6 shadow-md">
+              <div className="w-12 h-12 rounded-xl bg-brand-dark text-brand-light font-bold text-lg flex items-center justify-center mb-6 shadow-md tabular-nums">
                 02
               </div>
-              <h3 className="text-lg font-bold text-brand-ink mb-2">Scoped Proposal & SLA</h3>
-              <p className="text-[15px] sm:text-sm text-brand-muted leading-relaxed font-medium mb-4">
-                We deliver a detailed commercial proposal with transparent rate cards, statutory breakdowns (PF, ESIC, CLRA), deployment timelines, and legal draft agreements.
+              <h3 className="text-lg font-bold text-brand-ink mb-2">Commercial Proposal</h3>
+              <p className="text-[15px] sm:text-sm text-brand-muted leading-relaxed font-medium mb-4 text-pretty">
+                We share a clear commercial estimate detailing wage structures, statutory benefits (PF, ESIC), and deployment schedules.
               </p>
-              <div className="text-xs font-semibold text-emerald-800 flex items-center gap-1.5">
-                <FileCheck2 className="w-3.5 h-3.5" /> Turnaround: 48 Hours
+              <div className="text-xs font-semibold text-emerald-800 flex items-center gap-1.5 tabular-nums">
+                <FileCheck2 className="w-3.5 h-3.5" /> Turnaround: 48 hours
               </div>
               </TiltCard>
             </motion.div>
@@ -528,15 +529,15 @@ export default function Contact() {
                 lift={6}
                 className="bg-brand-bg rounded-2xl p-6 sm:p-8 border border-brand-edge relative group hover:border-brand-dark transition-colors h-full"
               >
-              <div className="w-12 h-12 rounded-xl bg-brand-dark text-brand-light font-bold text-lg flex items-center justify-center mb-6 shadow-md">
+              <div className="w-12 h-12 rounded-xl bg-brand-dark text-brand-light font-bold text-lg flex items-center justify-center mb-6 shadow-md tabular-nums">
                 03
               </div>
-              <h3 className="text-lg font-bold text-brand-ink mb-2">Rapid Deployment</h3>
-              <p className="text-[15px] sm:text-sm text-brand-muted leading-relaxed font-medium mb-4">
-                Contract signing and seamless rollout. We assign a dedicated Key Account Manager (KAM) to oversee on-ground execution, daily attendance, and uptime SLAs.
+              <h3 className="text-lg font-bold text-brand-ink mb-2">On-Ground Mobilization</h3>
+              <p className="text-[15px] sm:text-sm text-brand-muted leading-relaxed font-medium mb-4 text-pretty">
+                Once agreements are signed, we begin sourcing and deployment with a dedicated account manager tracking daily shifts and SLAs.
               </p>
               <div className="text-xs font-semibold text-emerald-800 flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5" /> Dedicated KAM Assigned
+                <CheckCircle2 className="w-3.5 h-3.5" /> Dedicated account manager
               </div>
               </TiltCard>
             </motion.div>
@@ -544,7 +545,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Frequently Asked Inquiries Section */}
+      {/* Frequently Asked Inquiries */}
       <section className="py-14 md:py-20 bg-brand-bg">
         <div className="container mx-auto px-4 md:px-8 max-w-4xl">
           <ScrollReveal direction="up" distance={20} className="text-center mb-12">
@@ -557,7 +558,7 @@ export default function Contact() {
               className="text-3xl md:text-4xl font-bold text-brand-ink mt-3 mb-2"
             />
             <p className="text-brand-muted text-sm md:text-base font-medium">
-              Everything you need to know about initiating a mandate with Pinnacle.
+              Common questions about working with Pinnacle.
             </p>
           </ScrollReveal>
 
@@ -576,7 +577,7 @@ export default function Contact() {
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 font-bold text-base text-brand-ink hover:text-emerald-800 transition-colors"
+                  className="w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 font-bold text-base text-brand-ink hover:text-emerald-800 transition-colors cursor-pointer"
                 >
                   <span>{faq.q}</span>
                   <ChevronDown
@@ -595,7 +596,7 @@ export default function Contact() {
                       transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-[15px] sm:text-sm text-brand-muted font-medium leading-relaxed border-t border-brand-edge pt-3">
+                      <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-[15px] sm:text-sm text-brand-muted font-medium leading-relaxed border-t border-brand-edge pt-3 text-pretty">
                         {faq.a}
                       </div>
                     </motion.div>
@@ -605,31 +606,31 @@ export default function Contact() {
             ))}
           </motion.div>
 
-          {/* Bottom Fast Connect Banner */}
+          {/* Direct Connect Banner */}
           <ScrollReveal direction="up" distance={25}>
             <div className="mt-12 bg-brand-dark text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
               <div>
-                <h4 className="text-lg font-bold text-white mb-1">Prefer immediate voice discussion?</h4>
-                <p className="text-xs sm:text-sm text-slate-300 font-medium">
-                  Our founders and coordinators are accessible directly on call or WhatsApp.
+                <h4 className="text-lg font-bold text-white mb-1">Prefer to speak with someone right now?</h4>
+                <p className="text-xs sm:text-sm text-slate-300 font-medium text-pretty">
+                  Our practice coordinators are available directly by phone or WhatsApp during business hours.
                 </p>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
                 <Magnetic>
                   <a
-                    href="https://wa.me/917879716775"
+                    href="https://wa.me/917000081129"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent font-bold text-xs sm:text-sm px-5 py-3 min-h-11 rounded-xl hover:bg-white transition-colors"
+                    className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent font-bold text-xs sm:text-sm px-5 py-3 min-h-11 rounded-xl hover:bg-white transition-colors duration-150 active:scale-[0.96]"
                   >
                     <MessageSquare className="w-4 h-4" /> Message on WhatsApp
                   </a>
                 </Magnetic>
                 <a
-                  href="tel:+917879716775"
-                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm px-5 py-3 min-h-11 rounded-xl transition-colors border border-white/20"
+                  href="tel:+917000081129"
+                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm px-5 py-3 min-h-11 rounded-xl transition-colors duration-150 active:scale-[0.96] border border-white/20"
                 >
-                  <Phone className="w-4 h-4 text-brand-light" /> +91-7879716775
+                  <Phone className="w-4 h-4 text-brand-light" /> +91-7000081129
                 </a>
               </div>
             </div>

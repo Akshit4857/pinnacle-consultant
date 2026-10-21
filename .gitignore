@@ -7,3 +7,5 @@ coverage/
 .env*
 !.env.example
 .originkit/
+.taste-skill/
+.failed-applications-queue.json

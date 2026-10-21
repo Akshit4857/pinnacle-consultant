@@ -64,7 +64,7 @@ export default function BrochureModal({ onClose }: Props) {
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="block w-full pl-10 pr-3 py-3 border border-brand-edge rounded-xl focus:ring-2 focus:ring-brand-light focus:border-brand-light outline-none transition-all font-medium text-brand-ink"
+                      className="block w-full pl-10 pr-3 py-3 border border-brand-edge rounded-xl focus:ring-2 focus:ring-brand-light focus:border-brand-light outline-none transition-colors duration-150 font-medium text-brand-ink"
                       placeholder="e.g. John Doe"
                     />
                   </div>
@@ -80,7 +80,7 @@ export default function BrochureModal({ onClose }: Props) {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="block w-full pl-10 pr-3 py-3 border border-brand-edge rounded-xl focus:ring-2 focus:ring-brand-light focus:border-brand-light outline-none transition-all font-medium text-brand-ink"
+                      className="block w-full pl-10 pr-3 py-3 border border-brand-edge rounded-xl focus:ring-2 focus:ring-brand-light focus:border-brand-light outline-none transition-colors duration-150 font-medium text-brand-ink"
                       placeholder="e.g. john@company.com"
                     />
                   </div>
@@ -88,7 +88,7 @@ export default function BrochureModal({ onClose }: Props) {
 
                 <button
                   type="submit"
-                  className="w-full mt-6 bg-brand-dark hover:bg-brand-light text-white hover:text-brand-ink font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors"
+                  className="w-full mt-6 bg-brand-dark hover:bg-brand-light text-white hover:text-brand-ink font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors duration-150 active:scale-[0.98]"
                 >
                   <Download className="w-5 h-5" />
                   Download PDF
@@ -100,7 +100,7 @@ export default function BrochureModal({ onClose }: Props) {
               <div className="w-16 h-16 bg-brand-light text-brand-onaccent rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-medium text-brand-ink mb-2">Lead Confirmed!</h3>
+              <h3 className="text-2xl font-medium text-brand-ink mb-2">Request Received</h3>
               <p className="text-slate-500 mb-8 font-medium">
                 Thank you, <span className="font-medium text-brand-ink">{name}</span>. Your download has started automatically.
               </p>

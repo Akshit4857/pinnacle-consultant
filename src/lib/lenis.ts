@@ -1,11 +1,7 @@
-import Lenis from 'lenis';
-
-let lenisInstance: Lenis | null = null;
-
-export function getLenis(): Lenis | null {
-  return lenisInstance;
+export function getLenis() {
+  return null;
 }
 
-export function setLenis(lenis: Lenis | null) {
-  lenisInstance = lenis;
+export function setLenis(_lenis: unknown) {
+  // no-op: native smooth scrolling active
 }

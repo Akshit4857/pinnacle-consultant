@@ -1,26 +1,25 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, ArrowUp, Phone } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
-import { getLenis } from '../lib/lenis';
 
 const practices = [
   { to: '/staffing', label: 'Manpower Staffing', sub: 'Corporate & Contractual' },
   { to: '/tech-ev', label: 'EV Infrastructure', sub: 'Charging, AMC & Maintenance' },
-  { to: '/industry-4-0', label: 'Industry 4.0', sub: 'Smart Factory Automation' },
+  { to: '/industry-4-0', label: 'Industrial Automation Solutions', sub: 'IoT & Smart Factory' },
   { to: '/market-research', label: 'Market Research', sub: 'Strategic Intelligence' },
 ];
 
 const company = [
   { to: '/about', label: 'About Us', sub: 'Vision & Values' },
+  { to: '/careers', label: 'Careers', sub: 'Active Opportunities' },
   { to: '/impact', label: 'Clients & Impact', sub: 'Case Studies' },
   { to: '/faq', label: 'Compliance FAQ', sub: 'Hiring & Labor Queries' },
+  { to: '/privacy', label: 'Privacy Policy', sub: 'Data & Privacy' },
   { to: '/contact', label: 'Contact', sub: 'Submit Workforce Mandate' },
 ];
 
 function scrollToTop() {
-  const lenis = getLenis();
-  if (lenis) lenis.scrollTo(0, { duration: 1.2 });
-  else window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 export default function Footer() {
@@ -61,22 +60,14 @@ export default function Footer() {
             <div className="relative flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
               <div className="max-w-2xl">
                 <span className="inline-flex items-center gap-2.5 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 mb-6 backdrop-blur-sm">
-                  <span className="w-2 h-2 rounded-full bg-brand-light animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-brand-light" />
                   <span className="text-brand-light font-bold text-xs tracking-widest uppercase">
                     Strategic Partnership
                   </span>
                 </span>
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white mb-5 leading-[1.08] tracking-tight">
                   Ready to scale your{' '}
-                  <span
-                    className="bg-clip-text text-transparent"
-                    style={{
-                      backgroundImage:
-                        'linear-gradient(100deg, #fff 10%, var(--color-brand-light) 55%, var(--color-brand-light-4) 95%)',
-                    }}
-                  >
-                    workforce & operations?
-                  </span>
+                  <span className="text-brand-light">workforce & operations?</span>
                 </h2>
                 <p className="text-slate-300 text-base md:text-lg font-medium leading-relaxed">
                   Partner with Pinnacle to deploy elite talent, roll out EV charging hubs,
@@ -87,14 +78,14 @@ export default function Footer() {
               <div className="flex flex-wrap items-center gap-4 shrink-0">
                 <Link
                   to="/contact"
-                  className="btn btn-primary shadow-md shrink-0"
+                  className="btn btn-primary shadow-md shrink-0 active:scale-[0.98] transition-transform duration-150"
                 >
                   <span>Request Mandate</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </Link>
                 <a
-                  href="tel:+917879716775"
-                  className="btn btn-ghost backdrop-blur-sm shrink-0"
+                  href="tel:+917000081129"
+                  className="btn btn-ghost backdrop-blur-sm shrink-0 active:scale-[0.98] transition-transform duration-150"
                 >
                   <Phone className="w-4 h-4 text-brand-light" /> Talk to us
                 </a>
@@ -110,7 +101,7 @@ export default function Footer() {
               { k: 'Jan 2025', v: 'Founded by operators' },
               { k: '4 Practices', v: 'Staffing · EV · Ind 4.0 · Intel' },
               { k: '100%', v: 'Statutory compliance' },
-              { k: 'Enterprise', v: 'Hero · Exponent · Sun Mobility · Gentari' },
+              { k: 'Enterprise', v: 'Hero · Ather · Magenta EV · FEPL · Vertiv EV' },
             ].map((item) => (
               <div key={item.k} className="border-l-2 border-brand-light/50 pl-4">
                 <div className="text-white font-bold text-lg md:text-xl tracking-tight">{item.k}</div>
@@ -143,20 +134,19 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-xs text-slate-400 leading-relaxed font-medium mb-6">
-              New-age consulting firm founded in 2025 by industry practitioners. Powering Indian
-              enterprises across Manpower Staffing, EV Infrastructure, Industry 4.0, and Market
-              Intelligence.
+              Gurugram-based operational consulting firm founded in 2025 by industry practitioners.
+              Supporting Indian enterprises across Manpower Staffing, EV Infrastructure, Industry 4.0, and
+              Market Intelligence.
             </p>
           </ScrollReveal>
 
           {/* Practice Areas */}
           <ScrollReveal direction="up" delay={0.1}>
             <div className="flex items-center gap-3 mb-5">
-              <span className="text-brand-light font-bold text-xs tracking-widest">01</span>
-              <span className="h-px flex-1 bg-white/25" />
               <h3 className="text-white font-bold text-xs uppercase tracking-widest">
                 Practice Areas
               </h3>
+              <span className="h-px flex-1 bg-white/20" />
             </div>
             <ul className="space-y-1">
               {practices.map((item) => (
@@ -173,7 +163,7 @@ export default function Footer() {
                         {item.sub}
                       </span>
                     </span>
-                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all mt-0.5" />
+                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200 mt-0.5" />
                   </Link>
                 </li>
               ))}
@@ -183,9 +173,8 @@ export default function Footer() {
           {/* Company */}
           <ScrollReveal direction="up" delay={0.15}>
             <div className="flex items-center gap-3 mb-5">
-              <span className="text-brand-light font-bold text-xs tracking-widest">02</span>
-              <span className="h-px flex-1 bg-white/25" />
               <h3 className="text-white font-bold text-xs uppercase tracking-widest">Company</h3>
+              <span className="h-px flex-1 bg-white/20" />
             </div>
             <ul className="space-y-1">
               {company.map((item) => (
@@ -202,7 +191,7 @@ export default function Footer() {
                         {item.sub}
                       </span>
                     </span>
-                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all mt-0.5" />
+                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200 mt-0.5" />
                   </Link>
                 </li>
               ))}
@@ -212,11 +201,10 @@ export default function Footer() {
           {/* Contact Info */}
           <ScrollReveal direction="up" delay={0.2}>
             <div className="flex items-center gap-3 mb-5">
-              <span className="text-brand-light font-bold text-xs tracking-widest">03</span>
-              <span className="h-px flex-1 bg-white/25" />
               <h3 className="text-white font-bold text-xs uppercase tracking-widest">
                 Direct Contact
               </h3>
+              <span className="h-px flex-1 bg-white/20" />
             </div>
             <ul className="space-y-1">
               <li>
@@ -230,21 +218,21 @@ export default function Footer() {
                     </span>
                     <span className="block text-xs text-slate-500 font-medium mt-0.5">Email</span>
                   </span>
-                  <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all mt-0.5" />
+                  <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200 mt-0.5" />
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+917879716775"
+                  href="tel:+917000081129"
                   className="group flex items-start justify-between gap-3 py-2.5 rounded-lg -mx-2 px-2 hover:bg-white/5 transition-colors"
                 >
                   <span>
                     <span className="block text-xs font-semibold text-slate-200 group-hover:text-brand-light transition-colors">
-                      +91-7879716775
+                      +91-7000081129
                     </span>
                     <span className="block text-xs text-slate-500 font-medium mt-0.5">Call</span>
                   </span>
-                  <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all mt-0.5" />
+                  <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200 mt-0.5" />
                 </a>
               </li>
               <li>
@@ -259,7 +247,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com/company/pinnacleconsultant-india/"
+                  href="https://www.linkedin.com/company/pinnacleconsultant-india/posts/"
                   target="_blank"
                   rel="noreferrer"
                   className="group flex items-start justify-between gap-3 py-2.5 rounded-lg -mx-2 px-2 hover:bg-white/5 transition-colors"
@@ -270,7 +258,7 @@ export default function Footer() {
                     </span>
                     <span className="block text-xs text-slate-500 font-medium mt-0.5">Follow us</span>
                   </span>
-                  <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all mt-0.5" />
+                  <ArrowUpRight className="w-3.5 h-3.5 shrink-0 text-slate-600 group-hover:text-brand-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200 mt-0.5" />
                 </a>
               </li>
             </ul>
@@ -290,10 +278,10 @@ export default function Footer() {
           <button
             onClick={scrollToTop}
             aria-label="Back to top"
-            className="group inline-flex items-center gap-2.5 min-h-11 text-slate-400 hover:text-brand-light transition-colors"
+            className="group inline-flex items-center gap-2.5 min-h-11 text-slate-400 hover:text-brand-light transition-colors active:scale-95"
           >
             <span className="text-xs uppercase tracking-widest font-bold">Back to top</span>
-            <span className="w-9 h-9 rounded-full border border-white/15 bg-white/5 flex items-center justify-center group-hover:bg-brand-light group-hover:border-brand-light group-hover:text-brand-onaccent group-hover:-translate-y-0.5 transition-all">
+            <span className="w-9 h-9 rounded-full border border-white/15 bg-white/5 flex items-center justify-center group-hover:bg-brand-light group-hover:border-brand-light group-hover:text-brand-onaccent group-hover:-translate-y-0.5 transition-[color,background-color,border-color,transform] duration-200">
               <ArrowUp className="w-4 h-4" />
             </span>
           </button>

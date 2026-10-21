@@ -79,6 +79,6 @@ export function migrateThemeId(value: string | null | undefined): ThemeId | null
   return null;
 }
 
-export const DEFAULT_THEME: ThemeId = 'ev';
+export const DEFAULT_THEME: ThemeId = 'prime';
 export const THEME_STORAGE_KEY = 'pc-theme';
 export const MODE_STORAGE_KEY = 'pc-mode';

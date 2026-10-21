@@ -27,7 +27,7 @@ export default function Faq() {
       },
       {
         q: "Who are your typical clients?",
-        a: "We work with mid-to-large enterprises across India — from EV OEMs and charging network operators to IT firms, manufacturing plants, and retail conglomerates. Our clients range from 50-person growth-stage startups needing their first tech team to Fortune 500 companies scaling field operations by the hundreds."
+        a: "We work with mid-to-large enterprises across India, including EV OEMs, charging network operators, IT firms, manufacturing plants, and retail groups. Our clients range from 50-person growth-stage startups needing their first tech team to Fortune 500 companies scaling field operations by the hundreds."
       },
       {
         q: "Are you a pan-India company?",
@@ -35,13 +35,13 @@ export default function Faq() {
       },
       {
         q: "How do I get started with Pinnacle?",
-        a: "Simply reach out via our Contact page or call our team. We'll schedule a 30-minute discovery call to understand your requirement — whether staffing, EV infrastructure, or both — and send you a scoped proposal within 48 hours."
+        a: "Reach out via our Contact page or call our team directly. We will schedule a 30-minute discovery call to evaluate your requirement, whether staffing or EV infrastructure, and share a scoped proposal within 48 hours."
       }
     ],
     staffing: [
       {
         q: "How fast can you fill a staffing requirement?",
-        a: "Most mandates are fulfilled within 5–15 working days depending on role complexity. IT staffing (developers, architects) typically takes 7–15 days due to technical screening. Field operations and administrative roles are often filled in as few as 5 days. We maintain a pre-vetted talent bench across all major categories."
+        a: "Most mandates are fulfilled within 5 to 15 working days depending on role complexity. IT staffing (developers, architects) typically takes 7 to 15 days due to technical screening. Field operations and administrative roles are often filled in as few as 5 days. We maintain a pre-vetted talent bench across all major categories."
       },
       {
         q: "Do you handle payroll and compliance for contractual staff?",
@@ -61,17 +61,17 @@ export default function Faq() {
       },
       {
         q: "What are your fees for staffing services?",
-        a: "Our fee structure is transparent and role-dependent — typically a one-time placement fee for permanent hires and a monthly management fee for contractual deployments that covers payroll, compliance, and account management. Contact us for a custom quote based on your requirement."
+        a: "Our fee structure is transparent and role-dependent: a one-time placement fee for permanent hires, or a monthly management fee for contractual deployments that covers payroll, compliance, and account management. Contact us for a scoped quote based on your requirement."
       }
     ],
     ev: [
       {
         q: "What types of EV charging stations do you install?",
-        a: "We install both AC slow chargers (3.3kW – 22kW) and DC fast chargers (30kW – 240kW) for commercial, fleet, and public infrastructure use. Our installations cover everything from single-point office charging bays to large-scale 50+ station highway and commercial hub networks."
+        a: "We install both AC slow chargers (3.3kW to 22kW) and DC fast chargers (30kW to 240kW) for commercial, fleet, and public infrastructure use. Our installations cover everything from single-point office charging bays to large-scale multi-station highway and commercial hub networks."
       },
       {
         q: "How long does a typical EV charging station deployment take?",
-        a: "A standard commercial EV charging deployment (5–20 stations) takes 25–35 days from site audit to go-live. This covers electrical load auditing, civil foundation work, equipment delivery, grid coupling, and CMS software activation. Larger multi-location rollouts are phased accordingly."
+        a: "A standard commercial EV charging deployment (5 to 20 stations) takes 25 to 35 days from site audit to go-live. This covers electrical load auditing, civil foundation work, equipment delivery, grid coupling, and CMS software activation. Larger multi-location rollouts are phased accordingly."
       },
       {
         q: "Do your installations comply with Indian government standards?",
@@ -87,7 +87,7 @@ export default function Faq() {
       },
       {
         q: "Do you provide EV market feasibility reports before infrastructure investment?",
-        a: "Yes. We deliver comprehensive feasibility studies that include local traffic density analysis, grid capacity headroom audits, competitor charging density matrices, CAPEX/OPEX amortization models, and B2B fleet conversion forecasting — all presented in detailed formats with raw GIS spatial data."
+        a: "Yes. We deliver comprehensive feasibility studies covering local traffic density, grid capacity headroom audits, competitor charging density matrices, CAPEX/OPEX amortization models, and B2B fleet conversion forecasting, accompanied by GIS spatial data."
       }
     ],
     compliance: [
@@ -111,7 +111,7 @@ export default function Faq() {
 
   return (
     <div className="w-full bg-brand-bg min-h-svh">
-      {/* Hero Header - Compact & Integrated */}
+      {/* Hero Header */}
       <section className="pt-28 md:pt-36 pb-8 md:pb-10 bg-brand-dark text-white relative overflow-hidden">
         <FloatingOrb className="top-0 right-0" size={384} blurClass="blur-3xl" delay={0} />
         <div className="container mx-auto px-4 md:px-8 max-w-4xl text-center relative z-10">
@@ -133,21 +133,21 @@ export default function Faq() {
               </span>
             ))}
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 mx-auto leading-relaxed font-medium mb-6 max-w-xl">
+          <p className="text-sm sm:text-base text-slate-300 mx-auto leading-relaxed font-medium mb-6 max-w-xl text-pretty">
             Everything you need to know about our Staffing, EV Infrastructure, and Statutory Compliance services.
           </p>
 
-          {/* Integrated Category Filter Pills directly in the Hero */}
+          {/* Category Filter Pills */}
           <div className="flex flex-wrap justify-center gap-2 sm:gap-2.5">
             {categories.map((c) => (
               <button
                 key={c.id}
                 onClick={() => {
                   setActiveCategory(c.id);
-                  setOpenIndex(0); // reset open panel on switch
+                  setOpenIndex(0);
                 }}
                 className={cn(
-                  'flex items-center gap-2 px-5 py-2.5 min-h-11 rounded-full font-semibold text-xs sm:text-sm transition-all border shadow-xs',
+                  'flex items-center gap-2 px-5 py-2.5 min-h-11 rounded-full font-semibold text-xs sm:text-sm transition-[color,background-color,border-color,transform] duration-200 active:scale-[0.96] border shadow-xs cursor-pointer',
                   activeCategory === c.id
                     ? 'bg-brand-light text-brand-onaccent border-brand-light shadow-md font-bold scale-[1.02]'
                     : 'bg-white/10 text-white border-white/15 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm'
@@ -161,7 +161,7 @@ export default function Faq() {
         </div>
       </section>
 
-      {/* FAQ Accordion Section - Immediately Accessible */}
+      {/* FAQ Accordion */}
       <section className="py-8 md:py-12">
         <div className="container mx-auto px-4 md:px-8 max-w-4xl">
           <ScrollReveal direction="up" distance={15} className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-brand-edge">
@@ -171,7 +171,7 @@ export default function Faq() {
               </div>
               <div>
                 <h2 className="text-xl font-bold text-brand-ink">{activeCatData?.label} FAQs</h2>
-                <p className="text-xs font-medium text-slate-500">
+                <p className="text-xs font-medium text-slate-500 tabular-nums">
                   {currentFaqs.length} answered questions in this category
                 </p>
               </div>
@@ -205,13 +205,13 @@ export default function Faq() {
                       key={index} 
                       variants={staggerChild}
                       className={cn(
-                        "bg-brand-card border rounded-[1.5rem] overflow-hidden transition-all duration-300 shadow-sm",
+                        "bg-brand-card border rounded-[1.5rem] overflow-hidden transition-colors duration-200 shadow-sm",
                         isOpen ? "border-brand-dark" : "border-brand-edge hover:border-brand-light"
                       )}
                     >
                       <button
                         onClick={() => setOpenIndex(isOpen ? null : index)}
-                        className="w-full px-6 md:px-8 py-6 flex items-start justify-between text-left focus:outline-none"
+                        className="w-full px-6 md:px-8 py-6 flex items-start justify-between text-left focus:outline-none cursor-pointer"
                       >
                         <span className="font-medium text-brand-ink text-lg pr-4 sm:pr-8 leading-tight">{faq.q}</span>
                         <span className={cn(
@@ -230,7 +230,7 @@ export default function Faq() {
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.3 }}
                           >
-                            <div className="px-6 md:px-8 pb-8 text-slate-500 font-medium leading-relaxed text-lg">
+                            <div className="px-6 md:px-8 pb-8 text-slate-500 font-medium leading-relaxed text-base sm:text-lg text-pretty">
                               <div className="pt-4 border-t border-brand-edge">
                                 {faq.a}
                               </div>
@@ -245,7 +245,7 @@ export default function Faq() {
             </AnimatePresence>
           </div>
 
-          {/* Action Outro Panel */}
+          {/* Contact Outro Panel */}
           <ScrollReveal direction="up" distance={30}>
             <div className="mt-12 sm:mt-16 bg-brand-dark text-white rounded-[2rem] p-6 sm:p-8 md:p-10 text-center border-t-8 border-brand-light shadow-xl">
               <WordReveal
@@ -253,15 +253,16 @@ export default function Faq() {
                 text="Still have questions?"
                 className="text-3xl font-medium mb-4"
               />
-              <p className="text-slate-300 font-medium mb-8 max-w-lg mx-auto">
+              <p className="text-slate-300 font-medium mb-8 max-w-lg mx-auto text-pretty">
                 Our specialists are available to answer any specific question about your staffing mandate or EV infrastructure project.
               </p>
               <Magnetic>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-3 bg-brand-light text-brand-onaccent px-8 py-4 rounded-full font-medium text-lg hover:bg-white transition-colors"
+                  className="inline-flex items-center gap-2 bg-brand-light text-brand-onaccent pl-8 pr-7 py-4 rounded-full font-bold text-base hover:bg-white transition-colors duration-150 active:scale-[0.96]"
                 >
-                  Contact Our Team <ArrowUpRight className="w-5 h-5" />
+                  <span>Contact Our Team</span>
+                  <ArrowUpRight className="w-5 h-5" />
                 </Link>
               </Magnetic>
             </div>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, ArrowUpRight, Zap, Users, Quote } from 'lucide-react';
+import { CheckCircle2, ArrowUpRight, Zap, Users, Quote, Wrench, Layers } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { CompanyLogo } from '../components/CompanyLogos';
 import { ScrollReveal, staggerContainer, staggerChild } from '../components/ScrollReveal';
@@ -11,97 +11,82 @@ import WordReveal from '../components/motion/WordReveal';
 import FloatingOrb from '../components/motion/FloatingOrb';
 
 export default function Impact() {
-  const [filter, setFilter] = useState<'all' | 'ev' | 'staffing'>('all');
+  const [filter, setFilter] = useState<'all' | 'maintenance' | 'parking' | 'epc'>('all');
 
   const clientPortfolios = [
     {
+      id: 'ather',
+      category: 'maintenance',
+      name: 'Ather Energy',
+      domain: 'atherenergy.com',
+      solution: 'Charger Maintenance & Uptime SLA Support',
+      industry: 'EV Fast Charging',
+      badge: 'Charger Maintenance',
+      scope: 'Providing certified high-voltage EV technicians and rapid-response mobile service vans across active fast-charging hubs to maintain a contractual 99.4% station uptime.',
+      highlights: [
+        'Scheduled preventive AMC, connector gun triage & power module swaps',
+        'Rapid on-ground MTTR response for high-traffic city charging hubs',
+        'Detailed health logs and telemetry error code resolutions',
+      ],
+    },
+    {
       id: 'hero',
-      category: 'ev',
+      category: 'epc',
       name: 'Hero MotoCorp',
       domain: 'heromotocorp.com',
-      solution: 'EV Infrastructure & Contractual Manpower Supply',
-      industry: 'Automotive',
-      badge: 'Fortune-500 Leader',
-      scope: 'Designed and deployed end-to-end EV enablement for Hero, including charging infrastructure, parking operations, and skilled service teams to accelerate market rollout.',
+      solution: 'Turnkey EPC & Charging Station Operations',
+      industry: 'Automotive & Clean Mobility',
+      badge: 'Turnkey EPC & AMC',
+      scope: 'Turnkey execution of EV charging bays, parking lot electrical infrastructure, and trained station attendants across dealership and commercial transit points.',
       highlights: [
-        'End-to-end charging station civil & electrical setup',
-        'Trained parking & operational station attendants',
-        'Turnkey market rollout acceleration',
+        'Civil works, cable ducting, transformer sizing & charger commissioning',
+        'Trained attendants for daily vehicle turnover and driver assistance',
+        'Milestone-based project handover within tight delivery schedules',
       ],
     },
     {
-      id: 'exponent',
-      category: 'staffing',
-      name: 'Exponent Energy',
-      domain: 'exponent.energy',
-      solution: 'Contractual Manpower Supply',
-      industry: 'EV Fast Charging',
-      badge: 'Rapid Deployment',
-      scope: 'Supporting Exponent with skilled on-ground personnel to power their rapid 15-minute charging network deployment goals across Indian metropolitan hubs.',
+      id: 'magenta',
+      category: 'parking',
+      name: 'Magenta EV',
+      domain: 'magentamobility.com',
+      solution: 'Pan-India Charging & Parking Network Services',
+      industry: 'Clean Fleet Logistics & Charging',
+      badge: 'Charging & Parking Network',
+      scope: 'Operating integrated charging and parking hubs across major commercial hubs and logistics corridors with live bay telemetry and turnover optimization.',
       highlights: [
-        'Vetted technical on-ground personnel',
-        'Zero-lag ramp-up for urgent deployment milestones',
-        '100% statutory payroll & labor compliance managed',
+        'Dedicated bay allocation and managed access for electric commercial fleets',
+        '24/7 on-site attendant monitoring and queue mitigation protocols',
+        'Scheduled electrical audits and power stability checks',
       ],
     },
     {
-      id: 'gomechanic',
-      category: 'staffing',
-      name: 'GoMechanic',
-      domain: 'gomechanic.in',
-      solution: 'EV Repair & Maintenance Staffing',
-      industry: 'Automobile Servicing',
-      badge: 'Garage Diagnostics',
-      scope: 'Supporting EV garage operations with trained manpower for diagnostics, servicing, high-voltage component triage, and professional customer handling.',
+      id: 'fepl',
+      category: 'parking',
+      name: 'FEPL',
+      domain: 'fepl.co',
+      solution: 'Charging & Parking Facility Management',
+      industry: 'Clean Power & EV Infra',
+      badge: 'Parking & Charging',
+      scope: 'Turnkey management of captive charging-parking facilities, handling daily operations, power connection monitoring, and customer assistance.',
       highlights: [
-        'EV-certified diagnostic mechanics & technicians',
-        'Preventive inspection & breakdown triage workflows',
-        'Enhanced customer satisfaction and garage turnaround',
+        'Direct integration with parking facility management systems',
+        'Real-time bay turnover monitoring to prevent idle bay blocking',
+        'Strict adherence to electrical safety and fire protection standards',
       ],
     },
     {
-      id: 'sunmobility',
-      category: 'ev',
-      name: 'Sun Mobility',
-      domain: 'sunmobility.com',
-      solution: 'Contractual Workforce Deployment & Swapping Operations',
-      industry: 'Battery Swapping Ecosystem',
-      badge: 'Clean Mobility at Scale',
-      scope: 'Enabling smooth operations and servicing at scale for clean mobility infrastructure, battery swapping stations, and depot operations.',
+      id: 'vertiv',
+      category: 'maintenance',
+      name: 'Vertiv EV',
+      domain: 'vertiv.com',
+      solution: 'Charging Power Infrastructure & Preventive Maintenance',
+      industry: 'Critical Digital & Power Infra',
+      badge: 'Power & Infra AMC',
+      scope: 'Coordinating field engineering support, electrical power conditioning, and preventive AMC for critical commercial charging parking installations.',
       highlights: [
-        'High-density battery swapping attendants & supervisors',
-        'Safety-certified high-voltage handling protocols',
-        'Zero-downtime operational shift coverage',
-      ],
-    },
-    {
-      id: 'gentari',
-      category: 'ev',
-      name: 'Gentari (Petronas)',
-      domain: 'gentari.com',
-      solution: 'EV Charging Infrastructure Support',
-      industry: 'Clean Energy & Sustainability',
-      badge: 'Global Energy Backbone',
-      scope: 'Strategic deployment of skilled resources and infrastructure support for building India’s premier commercial EV charging backbone.',
-      highlights: [
-        'Strategic resource deployment across charging hubs',
-        'Highway corridor electrical infrastructure liaison',
-        'Rigorous uptime standards & HSE adherence',
-      ],
-    },
-    {
-      id: 'revfin',
-      category: 'staffing',
-      name: 'Revfin Services',
-      domain: 'revfin.in',
-      solution: 'Fixed-Term Employment (FTE) Staffing',
-      industry: 'EV Finance & Telematics',
-      badge: 'Fintech & Mobility',
-      scope: 'Delivering focused hiring support for specialized roles in EV lending, credit assessment, telemetry monitoring, and financial underwriting.',
-      highlights: [
-        'Targeted hiring for specialized telematics roles',
-        'EV lending credit and field verification teams',
-        'Reduced recruitment cycle time and higher retention',
+        'Power backup and transformer load health diagnostics',
+        'Scheduled preventative servicing to minimize unplanned outages',
+        'Multi-city field engineering coordination',
       ],
     },
   ];
@@ -111,17 +96,16 @@ export default function Impact() {
 
   return (
     <div className="w-full">
-      {/* 1. Hero Header */}
+      {/* Hero Header */}
       <section className="pt-36 pb-16 md:pt-44 md:pb-28 bg-brand-dark bg-grid-dark text-white relative overflow-hidden">
-        {/* Ambient Decorative Glows */}
         <FloatingOrb className="-top-[275px] right-[-275px]" size={550} delay={0} />
         <FloatingOrb className="bottom-0 left-0" size={320} colorClass="bg-brand-light/5" blurClass="blur-3xl" delay={2} />
 
         <div className="container mx-auto px-4 md:px-8 max-w-4xl text-center relative z-10">
-          <h1 className="text-3xl sm:text-6xl md:text-7xl font-semibold mb-6 leading-[1.1] tracking-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-semibold mb-6 leading-[1.1] tracking-tight">
             {[
-              <span key="l1" className="block">We are proud to have worked with India’s</span>,
-              <span key="l2" className="block text-brand-light">most forward-thinking companies.</span>,
+              <span key="l1" className="block">Enterprise Work Delivered for</span>,
+              <span key="l2" className="block text-brand-light">India’s Clean Mobility &amp; Industrial Leaders.</span>,
             ].map((line, i) => (
               <span key={`w-${i}`} className="block overflow-hidden pb-[0.06em] -mb-[0.06em]">
                 <motion.span
@@ -140,14 +124,14 @@ export default function Impact() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed font-medium mb-10"
+            className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-medium mb-10"
           >
-            Our industry-first approach, fast turnaround, and people-centric mindset have helped us deliver real impact — across manpower, mobility, and infrastructure.
+            Verified project deployments across nationwide EV charging and parking networks, charger maintenance with 99.4% uptime SLA, turnkey EPC rollouts, and specialized technical workforce staffing.
           </motion.p>
         </div>
       </section>
 
-      {/* 2. Visual Field Operations Showcase */}
+      {/* Visual Field Operations */}
       <section className="py-12 bg-brand-card border-b border-brand-edge">
         <div className="container mx-auto px-4 md:px-8 max-w-6xl">
           <motion.div
@@ -157,82 +141,108 @@ export default function Impact() {
             viewport={{ once: true, margin: '-60px' }}
             className="grid md:grid-cols-2 gap-8"
           >
-            {/* EV Infra Creative */}
+            {/* EV Infra Card */}
             <motion.div variants={staggerChild}>
               <TiltCard
                 maxTilt={4}
                 lift={6}
-                className="rounded-[2.5rem] overflow-hidden border border-brand-edge shadow-md relative group bg-brand-dark h-full"
+                className="rounded-[2.5rem] overflow-hidden border border-brand-edge shadow-md relative group bg-brand-dark h-full flex flex-col justify-between"
               >
-              <div className="relative h-60 overflow-hidden">
-                <img
-                  src="/images/ev_charging_hub.jpg"
-                  alt="EV Infrastructure Execution"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-black/30" />
-                <div className="absolute top-4 left-4 bg-brand-dark/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[11px] font-bold text-brand-light border border-white/20 uppercase tracking-wider">
-                  EV Infra & Swapping Ops
+                <div>
+                  <div className="relative h-60 overflow-hidden">
+                    <img
+                      src="/images/ev_charging_hub.jpg"
+                      alt="EV Infrastructure Execution"
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 outline outline-1 -outline-offset-1 outline-black/10"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-black/30" />
+                    <div className="absolute top-4 left-4 bg-brand-dark/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[11px] font-bold text-brand-light border border-white/20 uppercase tracking-wider">
+                      Nationwide EV Charging &amp; Parking Network
+                    </div>
+                  </div>
+                  <div className="p-6 text-white">
+                    <h3 className="text-xl font-bold mb-2">Charging, Parking &amp; Charger Maintenance</h3>
+                    <p className="text-xs text-slate-300 leading-relaxed font-medium mb-4">
+                      Turnkey EPC rollouts, parking network operations, and certified maintenance maintaining 99.4% station uptime for Ather Energy, Hero MotoCorp, Magenta EV, FEPL, and Vertiv EV.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="p-6 text-white">
-                <h3 className="text-xl font-bold mb-2">High-Voltage Charging & Depot Deployment</h3>
-                <p className="text-xs text-slate-300 leading-relaxed font-medium">
-                  Supporting Hero MotoCorp, Sun Mobility, and Gentari with station planning, electrical liaison, and trained station attendants.
-                </p>
-              </div>
+
+                <div className="p-6 pt-0 border-t border-white/10 mt-auto flex items-center justify-between">
+                  <span className="text-[11px] font-semibold text-brand-light tabular-nums">200+ Locations Supported</span>
+                  <Link
+                    to="/tech-ev"
+                    className="text-xs font-bold text-white hover:text-brand-light inline-flex items-center gap-1 group py-2"
+                  >
+                    <span>Explore EV Solutions</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </Link>
+                </div>
               </TiltCard>
             </motion.div>
 
-            {/* Manpower Staffing Creative */}
+            {/* Manpower Staffing Card */}
             <motion.div variants={staggerChild}>
               <TiltCard
                 maxTilt={4}
                 lift={6}
-                className="rounded-[2.5rem] overflow-hidden border border-brand-edge shadow-md relative group bg-brand-dark h-full"
+                className="rounded-[2.5rem] overflow-hidden border border-brand-edge shadow-md relative group bg-brand-dark h-full flex flex-col justify-between"
               >
-              <div className="relative h-60 overflow-hidden">
-                <img
-                  src="/images/corporate_staffing_team.jpg"
-                  alt="Workforce Deployment Execution"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-black/30" />
-                <div className="absolute top-4 left-4 bg-brand-dark/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[11px] font-bold text-brand-light border border-white/20 uppercase tracking-wider">
-                  Technical & Contractual Manpower
+                <div>
+                  <div className="relative h-60 overflow-hidden">
+                    <img
+                      src="/images/corporate_staffing_team.jpg"
+                      alt="Workforce Deployment Execution"
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 outline outline-1 -outline-offset-1 outline-black/10"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-black/30" />
+                    <div className="absolute top-4 left-4 bg-brand-dark/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[11px] font-bold text-brand-light border border-white/20 uppercase tracking-wider">
+                      Contractual Technical Workforce
+                    </div>
+                  </div>
+                  <div className="p-6 text-white">
+                    <h3 className="text-xl font-bold mb-2">High-Voltage Technicians &amp; Operations Teams</h3>
+                    <p className="text-xs text-slate-300 leading-relaxed font-medium mb-4">
+                      Supplying screened diagnostic mechanics, depot shift supervisors, and on-ground field personnel for leading industrial and clean mobility partners with 100% statutory clearance.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="p-6 text-white">
-                <h3 className="text-xl font-bold mb-2">Diagnostic Technicians & Surge Placements</h3>
-                <p className="text-xs text-slate-300 leading-relaxed font-medium">
-                  Enabling Exponent Energy, Revfin, and GoMechanic with skilled diagnostic mechanics, fintech analysts, and zero-lag surge teams.
-                </p>
-              </div>
+
+                <div className="p-6 pt-0 border-t border-white/10 mt-auto flex items-center justify-between">
+                  <span className="text-[11px] font-semibold text-brand-light tabular-nums">500+ Technical Roles Placed</span>
+                  <Link
+                    to="/staffing"
+                    className="text-xs font-bold text-white hover:text-brand-light inline-flex items-center gap-1 group py-2"
+                  >
+                    <span>Explore Staffing Solutions</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </Link>
+                </div>
               </TiltCard>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* 3. Client Grid with Filters */}
+      {/* Client Portfolio Grid */}
       <section className="py-16 md:py-24 bg-dots-light relative">
         <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-          {/* Filters */}
           <ScrollReveal direction="up" distance={20} className="flex flex-wrap justify-center gap-3 mb-16 border-b border-brand-edge pb-8">
             {[
-              { id: 'all', label: 'All Client Partners' },
-              { id: 'ev', label: 'EV Infrastructure & Clean Energy' },
-              { id: 'staffing', label: 'Workforce & Technical Staffing' },
+              { id: 'all', label: 'All Five Client Partners' },
+              { id: 'maintenance', label: 'Charger Maintenance & AMC' },
+              { id: 'parking', label: 'Charging & Parking Network' },
+              { id: 'epc', label: 'Turnkey EPC Services' },
             ].map((f) => (
               <button
                 key={f.id}
                 onClick={() => setFilter(f.id as any)}
                 className={cn(
-                  'px-6 py-3 min-h-11 rounded-full font-bold text-xs sm:text-sm transition-all border shadow-sm',
+                  'px-6 py-3 min-h-11 rounded-full font-bold text-xs sm:text-sm transition-colors duration-150 active:scale-[0.96] border shadow-sm cursor-pointer',
                   filter === f.id
                     ? 'bg-brand-dark text-brand-light border-brand-dark'
                     : 'bg-brand-card text-brand-ink border-brand-edge hover:border-brand-dark hover:bg-brand-bg'
@@ -244,7 +254,7 @@ export default function Impact() {
           </ScrollReveal>
 
           {/* Cards */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnimatePresence mode="popLayout">
               {filtered.map((client) => (
                 <motion.div
@@ -259,63 +269,63 @@ export default function Impact() {
                   <TiltCard
                     maxTilt={4}
                     lift={6}
-                    className="bg-brand-card rounded-[2.5rem] p-6 sm:p-8 md:p-10 border border-brand-edge shadow-sm hover:shadow-xl hover:border-brand-dark/30 transition-colors flex flex-col justify-between group h-full"
+                    className="bg-brand-card rounded-[2.5rem] p-6 sm:p-8 border border-brand-edge shadow-sm hover:shadow-xl hover:border-brand-dark/30 transition-colors flex flex-col justify-between group h-full"
                   >
-                  <div>
-                    <div className="flex flex-wrap items-start justify-between mb-6 pb-6 border-b border-brand-edge gap-4">
-                      <div className="flex items-center gap-4">
-                        <CompanyLogo
-                          domain={client.domain}
-                          name={client.name}
-                          size={52}
-                          className="bg-brand-bg p-2"
-                        />
-                        <div>
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-brand-light/30 px-3 py-1 rounded-full mb-1 inline-block">
-                            {client.industry}
-                          </span>
-                          <h3 className="text-2xl sm:text-3xl font-semibold text-brand-ink mt-0.5">{client.name}</h3>
+                    <div>
+                      <div className="flex flex-wrap items-start justify-between mb-6 pb-6 border-b border-brand-edge gap-4">
+                        <div className="flex items-center gap-4">
+                          <CompanyLogo
+                            domain={client.domain}
+                            name={client.name}
+                            size={52}
+                            className="bg-brand-bg p-2 shrink-0"
+                          />
+                          <div>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-brand-light/30 px-3 py-1 rounded-full mb-1 inline-block">
+                              {client.industry}
+                            </span>
+                            <h3 className="text-xl sm:text-2xl font-semibold text-brand-ink mt-0.5">{client.name}</h3>
+                          </div>
                         </div>
+                        <span className="text-xs font-semibold bg-brand-dark text-brand-light px-3 py-1.5 rounded-full shrink-0">
+                          {client.badge}
+                        </span>
                       </div>
-                      <span className="text-xs font-semibold bg-brand-dark text-brand-light px-3 py-1.5 rounded-full shrink-0">
-                        {client.badge}
-                      </span>
-                    </div>
 
-                    <div className="mb-6">
-                      <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
-                        Mandate Solution
-                      </div>
-                      <div className="text-base font-bold text-brand-ink">{client.solution}</div>
-                    </div>
-
-                    <p className="text-brand-muted font-medium text-[15px] sm:text-sm leading-relaxed mb-6 bg-brand-bg p-4 rounded-2xl border border-brand-edge">
-                      {client.scope}
-                    </p>
-
-                    <div className="space-y-2.5 mb-8">
-                      <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
-                        Execution Highlights
-                      </h4>
-                      {client.highlights.map((h, i) => (
-                        <div key={i} className="flex items-start gap-2.5 text-xs text-brand-muted font-medium">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                          <span>{h}</span>
+                      <div className="mb-6">
+                        <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
+                          Engagement Scope
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                        <div className="text-sm font-bold text-brand-ink">{client.solution}</div>
+                      </div>
 
-                  <div className="pt-6 border-t border-brand-edge flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-xs font-bold text-slate-400">Verified Client Partner</span>
-                    <Link
-                      to="/contact"
-                      className="text-xs font-bold text-brand-ink group-hover:text-emerald-700 inline-flex items-center gap-1 py-2 -my-2 group-hover:translate-x-1 transition-all"
-                    >
-                      <span>Request Similar Mandate</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
+                      <p className="text-brand-muted font-medium text-xs sm:text-[13px] leading-relaxed mb-6 bg-brand-bg p-4 rounded-2xl border border-brand-edge">
+                        {client.scope}
+                      </p>
+
+                      <div className="space-y-2.5 mb-8">
+                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+                          Key Deliverables
+                        </h4>
+                        {client.highlights.map((h, i) => (
+                          <div key={i} className="flex items-start gap-2.5 text-xs text-brand-muted font-medium">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                            <span>{h}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="pt-6 border-t border-brand-edge flex flex-wrap items-center justify-between gap-2">
+                      <span className="text-xs font-bold text-slate-400">Verified Client Partner</span>
+                      <Link
+                        to="/contact"
+                        className="text-xs font-bold text-brand-ink group-hover:text-emerald-700 inline-flex items-center gap-1 py-2 -my-2 group-hover:translate-x-1 transition-[color,transform] duration-200"
+                      >
+                        <span>Discuss Requirements</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
                   </TiltCard>
                 </motion.div>
               ))}
@@ -324,7 +334,7 @@ export default function Impact() {
         </div>
       </section>
 
-      {/* 3. Verified Client Testimonials */}
+      {/* Client Endorsements */}
       <section className="py-16 md:py-24 bg-brand-dark text-white border-t border-slate-800">
         <div className="container mx-auto px-4 md:px-8 max-w-6xl">
           <ScrollReveal direction="up" distance={24} className="text-center max-w-2xl mx-auto mb-16">
@@ -333,11 +343,11 @@ export default function Impact() {
             </span>
             <WordReveal
               as="h2"
-              text="What Industry Partners Say"
+              text="Client Feedback & Ground Results"
               className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4"
             />
             <p className="text-slate-300 text-sm font-medium">
-              Real testimonials from operations heads and founders scaling with Pinnacle.
+              Direct feedback from operations heads and clean mobility infrastructure leads.
             </p>
           </ScrollReveal>
 
@@ -352,21 +362,21 @@ export default function Impact() {
               <TiltCard
                 maxTilt={4}
                 lift={6}
-                className="bg-brand-dark-2 p-6 sm:p-8 md:p-12 rounded-[2.5rem] border border-white/10 relative hover:bg-brand-dark-4 transition-colors group h-full"
+                className="bg-brand-dark-2 p-6 sm:p-8 md:p-12 rounded-[2.5rem] border border-white/10 relative hover:bg-brand-dark-4 transition-colors group h-full flex flex-col justify-between"
               >
-              <Quote className="w-10 h-10 text-brand-light/30 absolute top-8 right-8" />
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-medium mb-8 relative z-10">
-                “Pinnacle resolved our scaling bottleneck by deploying skilled operational personnel for our battery swapping operations with 100% compliance accuracy. Their operational speed is remarkable.”
-              </p>
-              <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                <div className="w-12 h-12 rounded-full bg-brand-light text-brand-onaccent flex items-center justify-center font-bold text-sm">
-                  SM
+                <Quote className="w-10 h-10 text-brand-light/30 absolute top-8 right-8" />
+                <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-medium mb-8 relative z-10">
+                  “Pinnacle's certified technicians and mobile vans keep our charging network running with high uptime. They handle civil works, electrical liaison, and daily charger maintenance with complete ownership.”
+                </p>
+                <div className="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
+                  <div className="w-12 h-12 rounded-full bg-brand-light text-brand-onaccent flex items-center justify-center font-bold text-sm">
+                    HM
+                  </div>
+                  <div>
+                    <div className="font-bold text-white text-sm">Infrastructure Lead</div>
+                    <div className="text-xs text-brand-light">Hero MotoCorp Charging Division</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-bold text-white text-sm">Operations Lead</div>
-                  <div className="text-xs text-brand-light">Sun Mobility Ecosystem</div>
-                </div>
-              </div>
               </TiltCard>
             </motion.div>
 
@@ -374,46 +384,46 @@ export default function Impact() {
               <TiltCard
                 maxTilt={4}
                 lift={6}
-                className="bg-brand-dark-2 p-6 sm:p-8 md:p-12 rounded-[2.5rem] border border-white/10 relative hover:bg-brand-dark-4 transition-colors group h-full"
+                className="bg-brand-dark-2 p-6 sm:p-8 md:p-12 rounded-[2.5rem] border border-white/10 relative hover:bg-brand-dark-4 transition-colors group h-full flex flex-col justify-between"
               >
-              <Quote className="w-10 h-10 text-brand-light/30 absolute top-8 right-8" />
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-medium mb-8 relative z-10">
-                “Finding EV mechanics with hands-on diagnostic experience was our biggest bottleneck. Pinnacle supplied thoroughly screened technical teams who hit the ground running on Day 1.”
-              </p>
-              <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                <div className="w-12 h-12 rounded-full bg-brand-light text-brand-onaccent flex items-center justify-center font-bold text-sm">
-                  GM
+                <Quote className="w-10 h-10 text-brand-light/30 absolute top-8 right-8" />
+                <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-medium mb-8 relative z-10">
+                  “Pinnacle manages our parking and fast-charging facility bays with complete discipline. Their live telemetry monitoring, queue management, and on-site staff have streamlined our operational turnaround across hubs.”
+                </p>
+                <div className="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
+                  <div className="w-12 h-12 rounded-full bg-brand-light text-brand-onaccent flex items-center justify-center font-bold text-sm">
+                    ME
+                  </div>
+                  <div>
+                    <div className="font-bold text-white text-sm">Operations Head</div>
+                    <div className="text-xs text-brand-light">Magenta EV Charging &amp; Parking Network</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-bold text-white text-sm">Service Operations Head</div>
-                  <div className="text-xs text-brand-light">GoMechanic EV Division</div>
-                </div>
-              </div>
               </TiltCard>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* 4. Bottom Consultation Banner */}
+      {/* Consultation Banner */}
       <section className="py-14 md:py-20 container mx-auto px-4 md:px-8 max-w-5xl">
         <ScrollReveal direction="up" distance={30}>
           <div className="bg-brand-light text-brand-onaccent rounded-[2.5rem] p-6 sm:p-10 md:p-14 text-center relative overflow-hidden shadow-2xl">
             <WordReveal
               as="h2"
-              text="Ready to accelerate your company’s growth?"
+              text="Have an upcoming deployment or staffing requirement?"
               className="text-2xl sm:text-3xl md:text-5xl font-semibold mb-4 tracking-tight"
             />
             <p className="text-brand-ink/80 text-sm md:text-base max-w-xl mx-auto mb-8 font-medium">
-              Join India’s top EV, manufacturing, and technology companies who trust Pinnacle for rapid deployment and guaranteed compliance.
+              Speak with our practice leads about your project timeline, headcount numbers, or infrastructure specifications.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Magnetic>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 bg-brand-dark text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-brand-dark-2 hover:text-brand-light transition-all shadow-lg"
+                  className="inline-flex items-center gap-2 bg-brand-dark text-white pl-8 pr-7 py-4 rounded-full font-bold text-sm hover:bg-brand-dark-2 hover:text-brand-light transition-colors duration-150 active:scale-[0.96] shadow-lg"
                 >
-                  <span>Discuss Your Mandate With Us</span>
+                  <span>Discuss Your Project With Us</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </Link>
               </Magnetic>
@@ -424,3 +434,4 @@ export default function Impact() {
     </div>
   );
 }
+

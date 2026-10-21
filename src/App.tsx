@@ -13,14 +13,16 @@ import Impact from './pages/Impact';
 import About from './pages/About';
 import Faq from './pages/Faq';
 import Contact from './pages/Contact';
-
 import Industry40 from './pages/Industry40';
 import MarketResearch from './pages/MarketResearch';
+import Careers from './pages/Careers';
+import JobDetail from './pages/JobDetail';
+import Privacy from './pages/Privacy';
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <ThemeProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -30,11 +32,14 @@ export default function App() {
             <Route path="market-research" element={<MarketResearch />} />
             <Route path="impact" element={<Impact />} />
             <Route path="about" element={<About />} />
+            <Route path="careers" element={<Careers />} />
+            <Route path="careers/:slug" element={<JobDetail />} />
+            <Route path="privacy" element={<Privacy />} />
             <Route path="faq" element={<Faq />} />
             <Route path="contact" element={<Contact />} />
           </Route>
         </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }

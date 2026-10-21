@@ -2,6 +2,7 @@ import { useState, type ReactNode, type MouseEvent } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 
 interface TiltCardProps {
+  key?: any;
   children: ReactNode;
   className?: string;
   /** Max tilt in degrees. Keep small (3–8) for large panels. */
@@ -27,7 +28,6 @@ export default function TiltCard({
   scale = 1.01,
 }: TiltCardProps) {
   const [active, setActive] = useState(false);
-  const [pos, setPos] = useState({ x: 50, y: 50 });
 
   const px = useMotionValue(0.5);
   const py = useMotionValue(0.5);
@@ -36,6 +36,11 @@ export default function TiltCard({
   const rotateX = useSpring(useTransform(py, [0, 1], [maxTilt, -maxTilt]), springConfig);
   const rotateY = useSpring(useTransform(px, [0, 1], [-maxTilt, maxTilt]), springConfig);
 
+  const handleEnter = () => {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    setActive(true);
+  };
+
   const handleMove = (e: MouseEvent<HTMLDivElement>) => {
     if (window.matchMedia('(pointer: coarse)').matches) return;
     const r = e.currentTarget.getBoundingClientRect();
@@ -43,8 +48,10 @@ export default function TiltCard({
     const ny = (e.clientY - r.top) / r.height;
     px.set(nx);
     py.set(ny);
-    setPos({ x: nx * 100, y: ny * 100 });
-    setActive(true);
+    if (sheen) {
+      e.currentTarget.style.setProperty('--sheen-x', `${(nx * 100).toFixed(1)}%`);
+      e.currentTarget.style.setProperty('--sheen-y', `${(ny * 100).toFixed(1)}%`);
+    }
   };
 
   const handleLeave = () => {
@@ -56,6 +63,7 @@ export default function TiltCard({
   return (
     <div style={{ perspective: 1200 }} className="h-full">
       <motion.div
+        onMouseEnter={handleEnter}
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
         animate={{
@@ -65,7 +73,10 @@ export default function TiltCard({
           scale: active ? scale : 1,
         }}
         transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-        style={{ transformStyle: 'preserve-3d' }}
+        style={{
+          transformStyle: 'preserve-3d',
+          willChange: active ? 'transform' : 'auto',
+        }}
         className={`relative h-full ${className}`}
       >
         {sheen && (
@@ -73,7 +84,7 @@ export default function TiltCard({
             aria-hidden
             className="pointer-events-none absolute inset-0 z-10 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             style={{
-              background: `radial-gradient(420px circle at ${pos.x}% ${pos.y}%, rgba(255,255,255,0.20), transparent 65%)`,
+              background: 'radial-gradient(420px circle at var(--sheen-x, 50%) var(--sheen-y, 50%), rgba(255,255,255,0.20), transparent 65%)',
             }}
           />
         )}

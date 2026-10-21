@@ -15,58 +15,49 @@ export interface Company {
 
 export const VERIFIED_COMPANIES: Company[] = [
   {
+    id: 'ather',
+    name: 'Ather Energy',
+    domain: 'atherenergy.com',
+    tag: 'Fast-Charging Pioneer',
+    industry: 'EV Manufacturing & Network',
+    scope: 'Charger Maintenance & Grid Operations',
+    badge: 'Charger Maintenance',
+  },
+  {
     id: 'hero',
     name: 'Hero MotoCorp',
     domain: 'heromotocorp.com',
     tag: 'Fortune-500 Automotive',
-    industry: 'Automotive & EV',
-    scope: 'EV Infra Deployment & Station Attendants',
-    badge: 'Turnkey Rollout',
+    industry: 'Automotive & Clean Mobility',
+    scope: 'Turnkey EPC Rollouts & Charger Maintenance',
+    badge: 'Turnkey EPC',
   },
   {
-    id: 'exponent',
-    name: 'Exponent Energy',
-    domain: 'exponent.energy',
-    tag: '15-Min Fast Charging',
-    industry: 'Clean Mobility',
-    scope: 'Technical On-Ground Staffing',
-    badge: 'Rapid Deployment',
+    id: 'magenta',
+    name: 'Magenta EV',
+    domain: 'magentamobility.com',
+    tag: 'Clean Fleet & Charging',
+    industry: 'Charging & Parking Network',
+    scope: 'Pan-India Charging & Parking Network Services',
+    badge: 'Parking & Charging',
   },
   {
-    id: 'sunmobility',
-    name: 'Sun Mobility',
-    domain: 'sunmobility.com',
-    tag: 'Swapping Pioneer',
-    industry: 'Battery Swapping Ecosystem',
-    scope: 'Swapping Hub Shift Personnel & Ops',
-    badge: 'Depot Operations',
+    id: 'fepl',
+    name: 'FEPL',
+    domain: 'fepl.co',
+    tag: 'EV Infrastructure',
+    industry: 'Clean Power & Mobility',
+    scope: 'Charging Parking Station Network Services',
+    badge: 'Parking & Charging',
   },
   {
-    id: 'gentari',
-    name: 'Gentari (Petronas)',
-    domain: 'gentari.com',
-    tag: 'Global Clean Energy',
-    industry: 'Renewable Power',
-    scope: 'Highway EV Corridor Backbone & AMC',
-    badge: 'High Uptime SLA',
-  },
-  {
-    id: 'gomechanic',
-    name: 'GoMechanic',
-    domain: 'gomechanic.in',
-    tag: 'Auto Service Network',
-    industry: 'Automobile Servicing',
-    scope: 'EV Diagnostic Mechanics & Garage Triage',
-    badge: 'Garage Triage',
-  },
-  {
-    id: 'revfin',
-    name: 'Revfin Services',
-    domain: 'revfin.in',
-    tag: 'EV Lending & Fleet Tech',
-    industry: 'Mobility Fintech',
-    scope: 'Telematics & Operations Field Force',
-    badge: 'FTE Placement',
+    id: 'vertiv',
+    name: 'Vertiv EV',
+    domain: 'vertiv.com',
+    tag: 'Critical Digital Infra',
+    industry: 'Power & Charging Infrastructure',
+    scope: 'Charging Parking Power Solutions & Maintenance',
+    badge: 'Power & Infra',
   },
 ];
 
@@ -155,7 +146,7 @@ export default function CompanyLogos({
             <div
               key={`${company.id}-${idx}`}
               aria-hidden={idx >= VERIFIED_COMPANIES.length || undefined}
-              className="inline-flex items-center gap-3 bg-brand-card border border-brand-edge hover:border-brand-dark/40 px-4 py-2.5 rounded-2xl shadow-xs transition-all shrink-0 group hover:shadow-md"
+              className="inline-flex items-center gap-3 bg-brand-card border border-brand-edge hover:border-brand-dark/40 px-4 py-2.5 rounded-2xl shadow-xs transition-[border-color,box-shadow] duration-200 shrink-0 group hover:shadow-md"
             >
               <CompanyLogo domain={company.domain} name={company.name} size={36} />
               <div className="text-left">
@@ -184,7 +175,7 @@ export default function CompanyLogos({
             <div
               key={`${company.id}-${idx}`}
               aria-hidden={idx >= VERIFIED_COMPANIES.length || undefined}
-              className="w-[300px] sm:w-[360px] lg:w-[400px] shrink-0 bg-brand-bg border border-brand-edge hover:border-brand-dark p-5 rounded-2xl transition-all hover:shadow-md flex flex-col justify-between group"
+              className="w-[300px] sm:w-[360px] lg:w-[400px] shrink-0 bg-brand-bg border border-brand-edge hover:border-brand-dark p-5 rounded-2xl transition-[border-color,box-shadow] duration-200 hover:shadow-md flex flex-col justify-between group"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -223,11 +214,11 @@ export default function CompanyLogos({
 
   // Default: 'strip'
   return (
-    <div className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 w-full ${className}`}>
+    <div className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 w-full ${className}`}>
       {VERIFIED_COMPANIES.map((company) => (
         <div
           key={company.id}
-          className="bg-brand-card border border-brand-edge rounded-2xl p-3 flex items-center gap-3 hover:border-brand-dark/40 hover:shadow-md transition-all group"
+          className="bg-brand-card border border-brand-edge rounded-2xl p-3 flex items-center gap-3 hover:border-brand-dark/40 hover:shadow-md transition-[border-color,box-shadow] duration-200 group"
         >
           <CompanyLogo
             domain={company.domain}

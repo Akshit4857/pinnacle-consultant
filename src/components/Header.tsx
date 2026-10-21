@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Mail, Phone, ChevronDown, Linkedin, Instagram, Facebook, Youtube, Users, Zap, Cpu, BarChart3, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Mail, Phone, ChevronDown, Linkedin, Users, Zap, Cpu, BarChart3, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
-import ThemeSwitcher from './ThemeSwitcher';
 import VerticalSwitcher from './VerticalSwitcher';
 
 function WhatsAppIcon({ className }: { className?: string }) {
@@ -25,33 +24,18 @@ function XTwitterIcon({ className }: { className?: string }) {
 const SOCIAL_LINKS = [
   {
     name: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/pinnacleconsultant-india/',
+    href: 'https://www.linkedin.com/company/pinnacleconsultant-india/posts/',
     icon: Linkedin,
   },
   {
     name: 'WhatsApp',
-    href: 'https://wa.me/917879716775',
+    href: 'https://wa.me/917000081129',
     icon: WhatsAppIcon,
   },
   {
     name: 'X (Twitter)',
     href: 'https://twitter.com',
     icon: XTwitterIcon,
-  },
-  {
-    name: 'Instagram',
-    href: 'https://instagram.com',
-    icon: Instagram,
-  },
-  {
-    name: 'Facebook',
-    href: 'https://facebook.com',
-    icon: Facebook,
-  },
-  {
-    name: 'YouTube',
-    href: 'https://youtube.com',
-    icon: Youtube,
   },
 ];
 
@@ -66,10 +50,18 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
   const location = useLocation();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const next = window.scrollY > 40;
+          setIsScrolled((prev) => (prev !== next ? next : prev));
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -81,17 +73,17 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
   const serviceItems = [
     { name: 'Manpower Staffing', path: '/staffing', desc: 'Corporate & Contractual talent', icon: Users },
     { name: 'EV Solutions', path: '/tech-ev', desc: 'Charging infra & maintenance AMC', icon: Zap },
-    { name: 'Industry 4.0', path: '/industry-4-0', desc: 'IoT, smart factory & robotics', icon: Cpu },
+    { name: 'Industrial Automation Solutions', path: '/industry-4-0', desc: 'IoT, smart factory & robotics', icon: Cpu },
     { name: 'Market Research', path: '/market-research', desc: 'Sectoral intelligence & reports', icon: BarChart3 },
   ];
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+      <div className="fixed top-0 left-0 right-0 z-50">
         {/* Top Bar - Email, Mobile & Social Logos */}
         <div
           className={cn(
-            'bg-brand-light text-brand-onaccent text-xs font-semibold border-b border-brand-line transition-all duration-300 shadow-xs',
+            'bg-brand-light text-brand-onaccent text-xs font-semibold border-b border-brand-line transition-[padding] duration-300 shadow-xs',
             isScrolled ? 'py-1 sm:py-1.5' : 'py-1.5 sm:py-2'
           )}
         >
@@ -109,12 +101,12 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
               </a>
 
               <a
-                href="tel:+917879716775"
+                href="tel:+917000081129"
                 className="flex items-center gap-1.5 hover:opacity-75 transition-opacity"
-                title="Call: +91-7879716775"
+                title="Call: +91-7000081129"
               >
                 <Phone className="w-3.5 h-3.5 shrink-0" />
-                <span>+91-7879716775</span>
+                <span>+91-7000081129</span>
               </a>
             </div>
 
@@ -133,14 +125,12 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
                     rel="noreferrer"
                     aria-label={item.name}
                     title={item.name}
-                    className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-black/10 transition-all text-brand-onaccent hover:scale-110 active:scale-95 cursor-pointer"
+                    className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-black/10 transition-[transform,background-color] duration-150 text-brand-onaccent hover:scale-110 active:scale-95 cursor-pointer"
                   >
                     <Icon className="w-3.5 h-3.5" />
                   </a>
                 );
               })}
-              <div className="h-3.5 w-px bg-brand-onaccent/20 mx-1 hidden sm:block" />
-              <ThemeSwitcher inline />
             </div>
           </div>
         </div>
@@ -148,7 +138,7 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
         {/* Main Nav */}
         <header
           className={cn(
-            'transition-all duration-300 ease-in-out',
+            'transition-[padding,background-color,border-color] duration-300 ease-in-out',
             isScrolled
               ? 'bg-brand-dark/95 backdrop-blur-md py-3.5 shadow-xl border-b border-white/10'
               : 'bg-brand-dark py-5'
@@ -229,7 +219,7 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
                               to={s.path}
                               className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/10 transition-colors group"
                             >
-                              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-light group-hover:bg-brand-light text-brand-onaccent transition-all shrink-0 mt-0.5">
+                              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-light group-hover:bg-brand-light group-hover:text-brand-onaccent transition-colors duration-150 shrink-0 mt-0.5">
                                 <Icon className="w-4 h-4" />
                               </div>
                               <div>
@@ -273,6 +263,18 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
                 </Link>
 
                 <Link
+                  to="/careers"
+                  className={cn(
+                    'text-sm font-semibold transition-colors',
+                    location.pathname.startsWith('/careers')
+                      ? 'text-brand-light'
+                      : 'text-white hover:text-brand-light'
+                  )}
+                >
+                  Careers
+                </Link>
+
+                <Link
                   to="/faq"
                   className={cn(
                     'text-sm font-semibold transition-colors',
@@ -290,7 +292,7 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
                 <VerticalSwitcher />
                 <Link
                   to="/contact"
-                  className="inline-flex min-h-11 items-center gap-2 bg-brand-light text-brand-onaccent px-5 py-2.5 rounded-full font-bold text-xs hover:bg-white transition-all shadow-md"
+                  className="inline-flex min-h-11 items-center gap-2 bg-brand-light text-brand-onaccent px-5 py-2.5 rounded-full font-bold text-xs hover:bg-white transition-colors duration-150 active:scale-95 shadow-md"
                 >
                   <span>Request Mandate</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
@@ -318,7 +320,7 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
                 className="xl:hidden bg-brand-dark border-t border-white/10 overflow-hidden absolute w-full shadow-2xl"
               >
                 <div className="px-5 py-6 flex flex-col gap-3">
-                  <VerticalSwitcher className="self-start mb-1" />
+                  <VerticalSwitcher idPrefix="mobile" className="self-start mb-1" />
                   <Link to="/" className="flex min-h-11 items-center text-sm font-semibold text-white py-1">
                     Home
                   </Link>
@@ -340,6 +342,9 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
                     </Link>
                     <Link to="/about" className="flex min-h-11 items-center text-sm font-semibold text-white py-1">
                       About Us (Vision & Values)
+                    </Link>
+                    <Link to="/careers" className="flex min-h-11 items-center text-sm font-semibold text-white py-1">
+                      Careers (We're Hiring)
                     </Link>
                     <Link to="/faq" className="flex min-h-11 items-center text-sm font-semibold text-white py-1">
                       FAQ
