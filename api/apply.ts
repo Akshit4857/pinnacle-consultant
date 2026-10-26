@@ -7,10 +7,18 @@ export const config = {
   },
 };
 
-export default async function handler(req: Request, res: Response) {
+export default async function handler(req: Request, res: Response): Promise<void> {
   applySecurityHeaders(req, res, () => {});
   req.url = '/apply';
-  return apiRouter(req, res, () => {
-    res.status(404).json({ error: 'Endpoint not found' });
+
+  return new Promise<void>((resolve) => {
+    res.on('finish', resolve);
+    res.on('close', resolve);
+    apiRouter(req, res, () => {
+      if (!res.headersSent) {
+        res.status(404).json({ error: 'Endpoint not found' });
+      }
+      resolve();
+    });
   });
 }
