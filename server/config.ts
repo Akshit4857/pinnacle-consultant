@@ -5,85 +5,67 @@ export const config = {
   env: process.env.NODE_ENV || 'development',
   isProduction: process.env.NODE_ENV === 'production',
 
-  // Google Sheets & Drive
+  // Google — Apps Script Web App URL and optional secret
+  // Deploy scripts/AppsScript.gs as a Web App and paste the URL here.
   google: {
-    serviceAccountEmail: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || '',
-    privateKey: (process.env.GOOGLE_PRIVATE_KEY || '').replace(/\\n/g, '\n'),
-    sheetId: process.env.GOOGLE_SHEET_ID || process.env.GOOGLE_SPREADSHEET_ID || '',
-    jobsTabName: process.env.GOOGLE_JOBS_TAB_NAME || 'Jobs',
-    applicationsTabName: process.env.GOOGLE_APPLICATIONS_TAB_NAME || 'Applications',
-    driveFolderId: process.env.GOOGLE_DRIVE_FOLDER_ID || '',
-    driveAuthType: (process.env.GOOGLE_DRIVE_AUTH_TYPE || 'oauth') as 'oauth' | 'service_account',
-    // OAuth credentials for personal Google Drive quota
-    clientId: process.env.GOOGLE_CLIENT_ID || '',
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-    refreshToken: process.env.GOOGLE_REFRESH_TOKEN || '',
+    appsScriptUrl: process.env.GOOGLE_APPS_SCRIPT_URL || '',
+    appsScriptSecret: process.env.GOOGLE_APPS_SCRIPT_SECRET || '',
   },
 
   // WhatsApp & Alert Notification
   whatsapp: {
-    provider: (process.env.WHATSAPP_PROVIDER || 'meta') as 'meta' | 'twilio' | 'callmebot' | 'ultramsg' | 'webhook',
+    provider: (process.env.WHATSAPP_PROVIDER || 'callmebot') as 'meta' | 'twilio' | 'callmebot' | 'ultramsg' | 'webhook',
+    ownerPhoneNumber: process.env.OWNER_WHATSAPP_NUMBER || '',
+    // CallMeBot (free, zero template approval, 30-second setup)
+    callmebotApiKey: process.env.CALLMEBOT_API_KEY || '',
+    // Meta WhatsApp Cloud API
     accessToken: process.env.WHATSAPP_ACCESS_TOKEN || '',
     phoneNumberId: process.env.WHATSAPP_PHONE_NUMBER_ID || '',
     templateName: process.env.WHATSAPP_TEMPLATE_NAME || 'new_job_application',
-    ownerPhoneNumber: process.env.OWNER_WHATSAPP_NUMBER || '',
-    // CallMeBot (Free, zero template approval, 30s setup)
-    callmebotApiKey: process.env.CALLMEBOT_API_KEY || '',
-    // UltraMsg (QR scan WhatsApp Gateway)
+    // UltraMsg
     ultramsgInstanceId: process.env.ULTRAMSG_INSTANCE_ID || '',
     ultramsgToken: process.env.ULTRAMSG_TOKEN || '',
-    // Generic Webhook (Telegram, Slack, Discord, Zapier, Make)
+    // Generic Webhook (Telegram, Slack, Discord, Zapier)
     webhookUrl: process.env.NOTIFICATION_WEBHOOK_URL || '',
-    // Twilio fallback credentials
+    // Twilio
     twilioAccountSid: process.env.TWILIO_ACCOUNT_SID || '',
     twilioAuthToken: process.env.TWILIO_AUTH_TOKEN || '',
     twilioFromNumber: process.env.TWILIO_WHATSAPP_NUMBER || '',
   },
 
-  // Anti-Spam / Turnstile
+  // Anti-Spam / Cloudflare Turnstile
   turnstile: {
     secretKey: process.env.TURNSTILE_SECRET_KEY || '',
   },
 
-  // Upstash Redis (Serverless rate limiting & retry queue)
+  // Upstash Redis (optional — falls back to in-memory if not set)
   upstash: {
     url: process.env.UPSTASH_REDIS_REST_URL || '',
     token: process.env.UPSTASH_REDIS_REST_TOKEN || '',
   },
 
-  // Application Rules & Limits
+  // Application rules & limits
   limits: {
     maxResumeSizeBytes: 5 * 1024 * 1024, // 5 MB
     rateLimitPerHour: Number(process.env.RATE_LIMIT_PER_HOUR || 5),
-    minSubmitTimeSeconds: 2.5, // form submit faster than 2.5s is treated as bot
+    minSubmitTimeSeconds: 2.5,
     jobsCacheTtlSeconds: 5 * 60, // 5 minutes
   },
 
-  // Application Sheet Link for WhatsApp message reference
+  // Link included in WhatsApp notification messages
   applicationsSheetUrl: process.env.APPLICATIONS_SHEET_URL || '',
 };
 
-/**
- * Validate required environment variables.
- * In production, missing core credentials throws a clean error without exposing secrets.
- */
 export function validateEnvironment(): { valid: boolean; missing: string[] } {
   const missing: string[] = [];
 
-  if (!config.google.sheetId) {
-    missing.push('GOOGLE_SHEET_ID');
-  }
-
-  if (!config.google.serviceAccountEmail && !config.google.refreshToken) {
-    missing.push('GOOGLE_SERVICE_ACCOUNT_EMAIL or GOOGLE_REFRESH_TOKEN');
+  if (!config.google.appsScriptUrl) {
+    missing.push('GOOGLE_APPS_SCRIPT_URL');
   }
 
   if (config.isProduction && missing.length > 0) {
     console.warn(`[Config] Production warning: missing credentials [${missing.join(', ')}]`);
   }
 
-  return {
-    valid: missing.length === 0,
-    missing,
-  };
+  return { valid: missing.length === 0, missing };
 }
