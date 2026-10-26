@@ -356,6 +356,8 @@ export default function About() {
                     <img
                       src="/images/shikha_gupta.jpg"
                       alt="Shikha Gupta - Founder &amp; Workforce Strategist"
+                      width={96}
+                      height={96}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover object-top outline outline-1 -outline-offset-1 outline-black/10"
@@ -423,6 +425,8 @@ export default function About() {
                     <img
                       src="/images/ashu_gupta.jpg"
                       alt="Ashu Gupta - Co-Founder &amp; EV Infrastructure Leader"
+                      width={96}
+                      height={96}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover object-top outline outline-1 -outline-offset-1 outline-black/10"

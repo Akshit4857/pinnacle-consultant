@@ -114,6 +114,8 @@ export default function Home() {
             src="/images/hero_consulting_meeting.jpg"
             alt="Pinnacle Strategic Consulting Executive Boardroom"
             className="w-full h-full object-cover object-[center_35%]"
+            fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 hero-overlay" />
         </div>

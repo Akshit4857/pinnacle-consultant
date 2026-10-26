@@ -155,6 +155,9 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
                   <img
                     src="/images/pinnacle-icon-transparent.png"
                     alt="Pinnacle Consultant"
+                    width={32}
+                    height={32}
+                    decoding="async"
                     className="relative w-8 h-8 object-contain rounded-lg drop-shadow-[0_0_4px_var(--color-brand-light)] group-hover:scale-105 transition-transform"
                   />
                 </span>

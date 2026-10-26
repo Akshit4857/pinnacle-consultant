@@ -113,6 +113,8 @@ export function CompanyLogo({
         <img
           src={sources[imgSrcIndex]}
           alt={`${name} Official Logo`}
+          width={size}
+          height={size}
           onError={handleImgError}
           className="w-full h-full max-w-full object-contain filter group-hover:scale-105 transition-transform"
           loading="lazy"

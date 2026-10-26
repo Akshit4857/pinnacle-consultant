@@ -126,6 +126,10 @@ export default function Footer() {
                 <img
                   src="/images/pinnacle-icon-transparent.png"
                   alt="Pinnacle Consultant"
+                  width={36}
+                  height={36}
+                  loading="lazy"
+                  decoding="async"
                   className="relative w-9 h-9 object-contain rounded-lg drop-shadow-[0_0_4px_var(--color-brand-light)] group-hover:scale-105 transition-transform"
                 />
               </span>
