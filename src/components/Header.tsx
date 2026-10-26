@@ -97,7 +97,6 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
               >
                 <Mail className="w-3.5 h-3.5 shrink-0" />
                 <span className="hidden sm:inline">info@pinnacleconsultant.co.in</span>
-                <span className="sm:hidden text-[11px]">info@pinnacleconsultant.co.in</span>
               </a>
 
               <a
@@ -317,7 +316,7 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
-                className="xl:hidden bg-brand-dark border-t border-white/10 overflow-hidden absolute w-full shadow-2xl"
+                className="xl:hidden bg-brand-dark border-t border-white/10 max-h-[calc(100dvh-80px)] overflow-y-auto absolute w-full shadow-2xl"
               >
                 <div className="px-5 py-6 flex flex-col gap-3">
                   <VerticalSwitcher idPrefix="mobile" className="self-start mb-1" />
