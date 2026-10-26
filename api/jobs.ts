@@ -1,8 +1,23 @@
-import { makeRateLimiter, clientIpOf } from './_lib';
-
 export const config = { api: { responseContentType: 'application/json' } };
 
-const allowRequest = makeRateLimiter(60); // 60 req/hour/IP
+// Inline per-IP rate limiter (per instance) — avoids a shared _lib import that
+// crashes Vercel's function bundler.
+const RATE_WINDOW_MS = 60 * 60 * 1000;
+const rateBuckets = new Map<string, { count: number; start: number }>();
+function allowRequest(key: string): boolean {
+  const now = Date.now();
+  const b = rateBuckets.get(key);
+  if (!b || now - b.start > RATE_WINDOW_MS) {
+    rateBuckets.set(key, { count: 1, start: now });
+    return true;
+  }
+  if (b.count >= 60) return false;
+  b.count += 1;
+  return true;
+}
+function clientIpOf(req: any): string {
+  return (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.ip || req.socket?.remoteAddress || '127.0.0.1';
+}
 
 // Lightweight inline tag-stripper — avoids the heavy sanitize-html dependency in
 // this serverless bundle (the ../server import chain crashes Vercel's function tracer).
