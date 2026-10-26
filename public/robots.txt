@@ -1,0 +1,9 @@
+# robots.txt for Pinnacle Consultant
+# https://www.pinnacleconsultant.co.in
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.pinnacleconsultant.co.in/sitemap.xml
+Host: https://www.pinnacleconsultant.co.in
