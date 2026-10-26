@@ -7,6 +7,7 @@ import { ScrollReveal, staggerContainer, staggerChild } from '../components/Scro
 import Magnetic from '../components/motion/Magnetic';
 import WordReveal from '../components/motion/WordReveal';
 import FloatingOrb from '../components/motion/FloatingOrb';
+import SEO from '../components/SEO';
 
 export default function Faq() {
   const [activeCategory, setActiveCategory] = useState<'general' | 'staffing' | 'ev' | 'compliance'>('general');
@@ -109,8 +110,36 @@ export default function Faq() {
   const currentFaqs = faqs[activeCategory];
   const activeCatData = categories.find(c => c.id === activeCategory);
 
+  // Compile all 16 FAQs into schema.org/FAQPage JSON-LD
+  const allFaqsList = [
+    ...faqs.general,
+    ...faqs.staffing,
+    ...faqs.ev,
+    ...faqs.compliance,
+  ];
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: allFaqsList.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  };
+
   return (
     <div className="w-full bg-brand-bg min-h-svh">
+      <SEO
+        title="Frequently Asked Questions (FAQ) | Pinnacle Consultant"
+        description="Clear answers on our 5-15 day staffing turnaround, 100% PF/ESIC statutory labor compliance, turnkey EV charging station rollouts, and 24/7 AMC SLAs."
+        keywords="Pinnacle Consultant FAQ, staffing turnaround time, EV charging installation timeline, contract labor compliance FAQ, EV AMC SLA"
+        canonicalPath="/faq"
+        schema={faqSchema}
+      />
       {/* Hero Header */}
       <section className="pt-28 md:pt-36 pb-8 md:pb-10 bg-brand-dark text-white relative overflow-hidden">
         <FloatingOrb className="top-0 right-0" size={384} blurClass="blur-3xl" delay={0} />

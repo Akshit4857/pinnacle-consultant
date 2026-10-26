@@ -29,6 +29,7 @@ import {
   Layers,
   Clock,
 } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Home() {
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -99,6 +100,12 @@ export default function Home() {
 
   return (
     <div className="w-full">
+      <SEO
+        title="Pinnacle Consultant | Industrial Staffing & Clean Mobility Solutions"
+        description="Pinnacle Consultant is an industrial & clean mobility consulting firm specializing in Manpower Staffing, EV Infrastructure & AMC, Industry 4.0 Automation, and Market Research."
+        keywords="manpower staffing India, contract staffing EV sector, EV charging infrastructure consultants, Industry 4.0 consulting India, smart factory IoT, market research reports, Pinnacle Consultant Gurugram"
+        canonicalPath="/"
+      />
       {/* Hero Section */}
       <section className="bg-brand-dark text-white overflow-hidden pt-32 pb-16 md:pt-44 md:pb-28 relative">
         {/* Background photo & overlay */}

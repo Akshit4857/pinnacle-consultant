@@ -34,6 +34,7 @@ import {
   Activity,
   ArrowRight,
 } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Industry40() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
@@ -262,8 +263,32 @@ export default function Industry40() {
     }
   };
 
+  const industrySchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Industry 4.0 & Smart Automation Solutions',
+    provider: {
+      '@type': 'ConsultingService',
+      name: 'Pinnacle Consultant',
+      url: 'https://www.pinnacleconsultant.co.in/',
+      logo: 'https://www.pinnacleconsultant.co.in/logo.png',
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'India',
+    },
+    description: 'Smart factory automation, PLC/SCADA programming, IoT predictive maintenance sensors, edge computing gateways, and centralized production dashboards.',
+  };
+
   return (
     <div className="w-full">
+      <SEO
+        title="Industry 4.0 Automation & Smart Factory Integration | Pinnacle Consultant"
+        description="Upgrade manufacturing operations with PLC/SCADA programming, IoT predictive maintenance sensors, edge gateways, and real-time yield monitoring across India."
+        keywords="Industry 4.0 consulting India, smart factory IoT, PLC SCADA automation, predictive maintenance manufacturing, factory automation Gurugram"
+        canonicalPath="/industry-4-0"
+        schema={industrySchema}
+      />
       {/* Hero Section */}
       <section className="pt-36 pb-20 md:pt-42 md:pb-24 bg-brand-dark bg-grid-dark text-white relative overflow-hidden">
         {/* Background photo & overlay */}

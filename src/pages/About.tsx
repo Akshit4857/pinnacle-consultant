@@ -21,6 +21,7 @@ import Magnetic from '../components/motion/Magnetic';
 import WordReveal from '../components/motion/WordReveal';
 import FloatingOrb from '../components/motion/FloatingOrb';
 import { CountUp } from '@/components/ui/count-up';
+import SEO from '../components/SEO';
 
 export default function About() {
   const [activeVisionTab, setActiveVisionTab] = useState<'ev' | 'manufacturing' | 'it'>('ev');
@@ -81,8 +82,42 @@ export default function About() {
     },
   };
 
+  const aboutSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'Pinnacle Consultant',
+      url: 'https://www.pinnacleconsultant.co.in/',
+      logo: 'https://www.pinnacleconsultant.co.in/logo.png',
+      founder: [
+        {
+          '@type': 'Person',
+          name: 'Shikha Gupta',
+          jobTitle: 'Founder & Workforce Strategist',
+          description: 'Workforce strategist with 10+ years in enterprise placement, SAP HCM, and high-volume recruitment.',
+          image: 'https://www.pinnacleconsultant.co.in/images/shikha_gupta.jpg',
+        },
+        {
+          '@type': 'Person',
+          name: 'Ashu Gupta',
+          jobTitle: 'Co-Founder & EV Infrastructure Leader',
+          description: 'Automotive and clean mobility leader with 14+ years across 200+ EV charging deployments.',
+          image: 'https://www.pinnacleconsultant.co.in/images/ashu_gupta.jpg',
+        },
+      ],
+    },
+  };
+
   return (
     <div className="w-full">
+      <SEO
+        title="About Us & Leadership Team | Pinnacle Consultant"
+        description="Meet Pinnacle Consultant founders Shikha Gupta (MBA HR, 10+ yrs) and Ashu Gupta (14+ yrs auto & clean mobility). Delivering industrial staffing & EV infrastructure across India."
+        keywords="Pinnacle Consultant founders, Shikha Gupta workforce strategist, Ashu Gupta EV infrastructure, Pinnacle leadership team Gurugram"
+        canonicalPath="/about"
+        schema={aboutSchema}
+      />
       {/* Hero Section */}
       <section className="bg-brand-dark text-white overflow-hidden min-h-svh lg:h-[100dvh] flex flex-col justify-center pt-28 pb-10 md:pt-36 md:pb-12 lg:pt-32 lg:pb-10 relative">
         {/* Advisory photo backdrop */}

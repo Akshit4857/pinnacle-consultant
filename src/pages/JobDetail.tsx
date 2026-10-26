@@ -24,6 +24,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import FloatingOrb from '../components/motion/FloatingOrb';
 import { JobItem } from './Careers';
+import SEO from '../components/SEO';
 
 export default function JobDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -285,6 +286,11 @@ export default function JobDetail() {
 
   return (
     <div className="w-full bg-brand-bg min-h-screen">
+      <SEO
+        title={`${job.title} | Careers at Pinnacle Consultant`}
+        description={`Apply for ${job.title} (${job.location}) at Pinnacle Consultant. ${job.description.slice(0, 130)}...`}
+        canonicalPath={`/careers/${job.slug}`}
+      />
       {/* Inject Structured Data */}
       {singleJobSchema && (
         <script

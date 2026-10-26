@@ -29,11 +29,36 @@ import {
   SlidersHorizontal,
 } from 'lucide-react';
 
+import SEO from '../components/SEO';
+
 export default function Staffing() {
   const [hiresCount, setHiresCount] = useState(50);
   const [staffingModel, setStaffingModel] = useState<'contractual' | 'lateral'>('contractual');
   const [activeVertical, setActiveVertical] = useState<string | null>(null);
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
+
+  const staffingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Specialized Technical & Contract Staffing',
+    provider: {
+      '@type': 'ConsultingService',
+      name: 'Pinnacle Consultant',
+      url: 'https://www.pinnacleconsultant.co.in/',
+      logo: 'https://www.pinnacleconsultant.co.in/logo.png',
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'India',
+    },
+    description: 'High-volume technical recruitment and contract staffing across EV, Clean Mobility, IT, and Industry 4.0 with 100% statutory labor compliance (PF, ESIC).',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'INR',
+      description: 'Scoped proposal with guaranteed 5 to 15 day fulfillment and 48-hour backfill SLA.',
+    },
+  };
 
   const verticals = [
     {
@@ -166,6 +191,13 @@ export default function Staffing() {
 
   return (
     <div className="w-full">
+      <SEO
+        title="Specialized Technical Staffing & Workforce Solutions | Pinnacle Consultant"
+        description="Pan-India technical recruitment and contract staffing across EV, Clean Mobility, IT, and Industry 4.0 with 100% statutory labor compliance (PF, ESIC)."
+        keywords="contract staffing India, EV technician hiring, IT staffing Gurugram, technical workforce solutions, labor compliance outsourcing, high-volume recruitment"
+        canonicalPath="/staffing"
+        schema={staffingSchema}
+      />
       {/* Hero Section */}
       <section className="bg-brand-dark text-white overflow-hidden pt-28 pb-16 md:pt-44 md:pb-28 relative">
         {/* Background Editorial Photo */}

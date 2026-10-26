@@ -19,6 +19,7 @@ import {
   X,
   Download,
 } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function MarketResearch() {
   const [activeResearch, setActiveResearch] = useState<string | null>(null);
@@ -93,10 +94,34 @@ export default function MarketResearch() {
     },
   ];
 
+  const researchSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Industrial Market Research & EV Feasibility Studies',
+    provider: {
+      '@type': 'ConsultingService',
+      name: 'Pinnacle Consultant',
+      url: 'https://www.pinnacleconsultant.co.in/',
+      logo: 'https://www.pinnacleconsultant.co.in/logo.png',
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'India',
+    },
+    description: 'Primary market intelligence, EV charging site feasibility audits, DISCOM grid capacity analysis, and CAPEX/OPEX financial modeling.',
+  };
+
   const selectedData = pillars.find((p) => p.id === activeResearch);
 
   return (
     <div className="w-full">
+      <SEO
+        title="Industrial Market Research & EV Feasibility Studies | Pinnacle Consultant"
+        description="Primary market intelligence, EV charging site feasibility audits, DISCOM grid capacity analysis, and CAPEX/OPEX financial modeling across India."
+        keywords="EV feasibility study India, industrial market research, charging station traffic audit, clean mobility market intelligence, B2B fleet electrification analysis"
+        canonicalPath="/market-research"
+        schema={researchSchema}
+      />
       {/* Hero Header */}
       <section className="pt-36 pb-16 md:pt-40 md:pb-20 bg-brand-dark bg-grid-dark text-white overflow-hidden relative">
         <FloatingOrb className="-top-[275px] right-[-275px]" size={550} delay={0} />

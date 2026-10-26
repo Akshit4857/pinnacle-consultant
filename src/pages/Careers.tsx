@@ -12,6 +12,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import FloatingOrb from '../components/motion/FloatingOrb';
 import { cn } from '../lib/utils';
+import SEO from '../components/SEO';
 
 export interface JobItem {
   slug: string;
@@ -78,7 +79,7 @@ export default function Careers() {
 
   // Compute unique filter options from actual jobs
   const departments = useMemo(() => {
-    const defaultDepts = ['All', 'Manpower Staffing', 'EV Solutions', 'Intelligent Automation Solutions', 'Market Research'];
+    const defaultDepts = ['All', 'Manpower Staffing', 'EV Solutions', 'Industrial Automation Solutions', 'Market Research'];
     if (!jobs || jobs.length === 0) return defaultDepts;
     const set = new Set<string>();
     jobs.forEach((j) => set.add(j.department));
@@ -155,6 +156,12 @@ export default function Careers() {
 
   return (
     <div className="w-full bg-brand-bg min-h-svh">
+      <SEO
+        title="Careers & Current Openings | Pinnacle Consultant"
+        description="Explore open career opportunities across technical staffing, EV infrastructure engineering, plant automation, and business operations at Pinnacle Consultant."
+        keywords="careers Pinnacle Consultant, EV engineering jobs, technical staffing jobs Gurugram, high-voltage technician jobs"
+        canonicalPath="/careers"
+      />
       {/* Inject Structured Data */}
       {structuredData && (
         <script

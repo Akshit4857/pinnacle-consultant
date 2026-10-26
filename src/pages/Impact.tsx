@@ -9,6 +9,7 @@ import TiltCard from '../components/motion/TiltCard';
 import Magnetic from '../components/motion/Magnetic';
 import WordReveal from '../components/motion/WordReveal';
 import FloatingOrb from '../components/motion/FloatingOrb';
+import SEO from '../components/SEO';
 
 export default function Impact() {
   const [filter, setFilter] = useState<'all' | 'maintenance' | 'parking' | 'epc'>('all');
@@ -96,6 +97,12 @@ export default function Impact() {
 
   return (
     <div className="w-full">
+      <SEO
+        title="Client Impact & Case Studies | Pinnacle Consultant"
+        description="Proven enterprise track record across 200+ EV charging locations and high-volume technical staffing deployments with Hero MotoCorp, Ather Energy, and Magenta EV."
+        keywords="Pinnacle Consultant case studies, EV rollout success stories, enterprise staffing case study, charger maintenance track record"
+        canonicalPath="/impact"
+      />
       {/* Hero Header */}
       <section className="pt-36 pb-16 md:pt-44 md:pb-28 bg-brand-dark bg-grid-dark text-white relative overflow-hidden">
         <FloatingOrb className="-top-[275px] right-[-275px]" size={550} delay={0} />

@@ -26,11 +26,35 @@ import {
   Award,
   Cpu,
 } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function TechEv() {
   const [activeTech, setActiveTech] = useState<string | null>(null);
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  const techEvSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Electric Vehicle Infrastructure EPC & AMC',
+    provider: {
+      '@type': 'ConsultingService',
+      name: 'Pinnacle Consultant',
+      url: 'https://www.pinnacleconsultant.co.in/',
+      logo: 'https://www.pinnacleconsultant.co.in/logo.png',
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'India',
+    },
+    description: 'Turnkey EV charging station rollouts, DISCOM power sanctions, HT transformer installations, and 24/7 AMC with a committed 99.4% charger uptime SLA.',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'INR',
+      description: 'Turnkey EPC and AMC service packages with 18-35 day deployment SLA.',
+    },
+  };
 
   const evFaqs = [
     {
@@ -288,6 +312,13 @@ export default function TechEv() {
 
   return (
     <div className="w-full">
+      <SEO
+        title="EV Charging Infrastructure EPC & AMC Services | Pinnacle Consultant"
+        description="Turnkey EV charging station rollouts, DISCOM power sanctions, transformer approvals, and 24/7 AMC with 99.4% charger uptime SLA across India."
+        keywords="EV charging EPC India, charger maintenance AMC, DISCOM load sanction EV, EV charging station installation, CPO network operations, EV charging hub Gurugram"
+        canonicalPath="/tech-ev"
+        schema={techEvSchema}
+      />
       {/* 1. Hero Section (Editorial Clean Mobility Hub - 100% Viewport Height) */}
       <section className="bg-brand-dark text-white overflow-hidden min-h-svh lg:h-[100dvh] flex flex-col justify-center pt-28 pb-10 md:pt-36 md:pb-12 lg:pt-32 lg:pb-10 relative">
         {/* Background Editorial Photo with Multi-Stop Gradient Feathering */}

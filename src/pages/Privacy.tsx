@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Lock, Eye, FileText, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import FloatingOrb from '../components/motion/FloatingOrb';
+import SEO from '../components/SEO';
 
 export default function Privacy() {
   return (
     <div className="w-full bg-brand-bg min-h-screen">
+      <SEO
+        title="Privacy Policy & Applicant Data Protection | Pinnacle Consultant"
+        description="Pinnacle Consultant privacy policy detailing candidate and client data protection, security protocols, and compliance standards."
+        canonicalPath="/privacy"
+      />
       {/* Hero Header */}
       <section className="pt-28 pb-16 md:pt-36 md:pb-20 bg-brand-dark bg-grid-dark text-white relative overflow-hidden">
         <FloatingOrb className="-top-40 -left-40" size={500} delay={0} />

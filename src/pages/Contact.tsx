@@ -29,6 +29,7 @@ import TiltCard from '../components/motion/TiltCard';
 import Magnetic from '../components/motion/Magnetic';
 import WordReveal from '../components/motion/WordReveal';
 import FloatingOrb from '../components/motion/FloatingOrb';
+import SEO from '../components/SEO';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -67,6 +68,12 @@ export default function Contact() {
 
   return (
     <div className="w-full">
+      <SEO
+        title="Contact Us | Pinnacle Consultant Gurugram"
+        description="Connect with our practice leads in Gurugram, Haryana. Phone: +91-7000081129. Email: info@pinnacleconsultant.co.in. Fast discovery and scoped proposals within 48 hours."
+        keywords="contact Pinnacle Consultant, Gurugram consulting office, EV charging consultants contact, technical staffing inquiry, Pinnacle phone number"
+        canonicalPath="/contact"
+      />
       {/* Hero & Contact Section */}
       <section className="pt-28 pb-16 md:pt-36 md:pb-20 bg-brand-dark bg-grid-dark text-white relative overflow-hidden">
         <FloatingOrb className="-top-[275px] right-[-275px]" size={550} delay={0} />
