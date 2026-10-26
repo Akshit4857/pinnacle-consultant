@@ -83,6 +83,31 @@ function sniffFileType(buf: Buffer): 'pdf' | 'doc' | 'docx' | 'unknown' {
   return 'unknown';
 }
 
+async function verifyTurnstileToken(token: string | undefined, remoteIp: string): Promise<{ success: boolean; error?: string }> {
+  const secretKey = process.env.TURNSTILE_SECRET_KEY || '';
+  // If secret is not set (e.g. local dev), pass gracefully.
+  if (!secretKey) return { success: true };
+  if (!token) return { success: false, error: 'Spam verification token is missing' };
+
+  try {
+    const formData = new URLSearchParams();
+    formData.append('secret', secretKey);
+    formData.append('response', token);
+    formData.append('remoteip', remoteIp);
+
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: formData,
+    });
+    const data = (await res.json()) as { success: boolean };
+    if (data.success) return { success: true };
+    return { success: false, error: 'Anti-bot verification failed. Please try again.' };
+  } catch (err) {
+    console.error('[Turnstile] Verification error:', err);
+    return { success: false, error: 'Verification service temporarily unavailable' };
+  }
+}
+
 function sanitizeParam(str: string, maxLen = 100): string {
   if (!str) return 'N/A';
   const clean = str.replace(/[\r\n\t]+/g, ' ').trim();
@@ -190,6 +215,20 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({
         success: false,
         error: 'Form was submitted unusually fast. Please review your details and submit again.',
+      });
+    }
+
+    // 2b. Cloudflare Turnstile verification.
+    const clientIp =
+      (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() ||
+      req.ip ||
+      req.socket?.remoteAddress ||
+      '127.0.0.1';
+    const turnstileRes = await verifyTurnstileToken(fields.turnstileToken, clientIp);
+    if (!turnstileRes.success) {
+      return res.status(400).json({
+        success: false,
+        error: turnstileRes.error || 'Anti-bot verification failed. Please try again.',
       });
     }
 

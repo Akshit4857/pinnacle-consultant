@@ -1,4 +1,8 @@
+import { makeRateLimiter, clientIpOf } from '../_lib';
+
 export const config = { api: { responseContentType: 'application/json' } };
+
+const allowRequest = makeRateLimiter(60); // 60 req/hour/IP
 
 function stripTags(value: string): string {
   return value.replace(/<[^>]*>/g, '').trim();
@@ -31,6 +35,10 @@ export default async function handler(req: any, res: any) {
 
   if (req.method === 'OPTIONS') {
     return res.status(204).end();
+  }
+
+  if (!allowRequest(clientIpOf(req))) {
+    return res.status(429).json({ success: false, error: 'Too many requests. Please slow down.' });
   }
 
   const targetSlug = String(req.query.slug || '').trim().toLowerCase();

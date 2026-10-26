@@ -1,4 +1,8 @@
+import { makeRateLimiter, clientIpOf } from './_lib';
+
 export const config = { api: { responseContentType: 'application/json' } };
+
+const allowRequest = makeRateLimiter(60); // 60 req/hour/IP
 
 // Lightweight inline tag-stripper — avoids the heavy sanitize-html dependency in
 // this serverless bundle (the ../server import chain crashes Vercel's function tracer).
@@ -38,6 +42,10 @@ export default async function handler(req: any, res: any) {
 
   if (req.method !== 'GET') {
     return res.status(405).json({ success: false, error: 'Method not allowed. Use GET.' });
+  }
+
+  if (!allowRequest(clientIpOf(req))) {
+    return res.status(429).json({ success: false, error: 'Too many requests. Please slow down.' });
   }
 
   const appsScriptUrl = process.env.GOOGLE_APPS_SCRIPT_URL;

@@ -22,9 +22,11 @@ var SHEET_ID = 'YOUR_GOOGLE_SHEET_ID_HERE';
 var DRIVE_FOLDER_ID = 'YOUR_GOOGLE_DRIVE_FOLDER_ID_HERE';
 
 /**
- * OPTIONAL BUT RECOMMENDED SECURITY TOKEN
- * Set a random secret string here and match it in .env as GOOGLE_APPS_SCRIPT_SECRET="your_secret"
- * When set, nobody on the internet can read or delete applications even if they know the script URL!
+ * REQUIRED SECURITY TOKEN (fail-closed).
+ * Generate a random secret and set it HERE, and set the SAME value in Vercel as
+ * GOOGLE_APPS_SCRIPT_SECRET. Write/admin actions (appendApplication, appendInquiry,
+ * uploadResume, listApplications, deleteApplication) are REJECTED until this is set —
+ * only the public getJobs read works without it.
  */
 var API_SECRET = 'YOUR_OPTIONAL_SECRET_KEY';
 
@@ -108,12 +110,18 @@ function doPost(e) {
     // Public action: reading active job catalog (jobs are public on the website)
     if (action === 'getJobs') return respond(getJobs());
 
-    // ── SECURITY AUTHENTICATION ───────────────────────────────────────────────
-    // Protect sensitive operations (reading applicants, deleting, resetting)
-    if (API_SECRET && API_SECRET !== 'YOUR_OPTIONAL_SECRET_KEY') {
-      if (!body.secret || body.secret !== API_SECRET) {
-        return respond({ success: false, error: 'Unauthorized: Access denied. Invalid API secret.' });
-      }
+    // ── SECURITY AUTHENTICATION (fail-closed) ─────────────────────────────────
+    // All write/admin operations REQUIRE a configured secret. If API_SECRET is
+    // still the placeholder or empty, requests are rejected — never left open.
+    var secretConfigured = API_SECRET && API_SECRET !== 'YOUR_OPTIONAL_SECRET_KEY';
+    if (!secretConfigured) {
+      return respond({
+        success: false,
+        error: 'Server misconfigured: set API_SECRET in Apps Script and GOOGLE_APPS_SCRIPT_SECRET in Vercel.',
+      });
+    }
+    if (!body.secret || body.secret !== API_SECRET) {
+      return respond({ success: false, error: 'Unauthorized: Access denied. Invalid API secret.' });
     }
 
     if (action === 'appendApplication')  return respond(appendApplication(body.data));
