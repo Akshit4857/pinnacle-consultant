@@ -19,7 +19,6 @@ import {
   ShieldCheck,
   Building2,
   Users,
-  Award,
   ChevronRight,
   Download,
   Check,
@@ -629,8 +628,17 @@ export default function Home() {
                 return (
                   <div
                     key={s.step}
+                    role="button"
+                    tabIndex={0}
+                    aria-pressed={activeStep === idx}
                     onMouseEnter={() => setActiveStep(idx)}
                     onClick={() => setActiveStep(idx)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setActiveStep(idx);
+                      }
+                    }}
                     className={`rounded-[2.25rem] transition-[flex,height,background-color,border-color,box-shadow] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer overflow-hidden relative group ${isExpanded
                         ? 'h-[540px] sm:h-[420px] lg:h-[350px] lg:flex-[2.6] bg-brand-card border border-brand-edge shadow-xl'
                         : 'h-[220px] lg:h-[350px] lg:flex-1 bg-gradient-to-b from-brand-tint-1 via-brand-tint-2 to-brand-tint-3 border border-brand-tint-4 hover:border-brand-tint-5'

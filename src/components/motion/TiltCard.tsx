@@ -1,8 +1,9 @@
 import { useState, type ReactNode, type MouseEvent } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'motion/react';
+
+const coarsePointer = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
 
 interface TiltCardProps {
-  key?: any;
   children: ReactNode;
   className?: string;
   /** Max tilt in degrees. Keep small (3–8) for large panels. */
@@ -12,6 +13,8 @@ interface TiltCardProps {
   /** Cursor-following radial sheen. */
   sheen?: boolean;
   scale?: number;
+  /** Removes the element from the a11y tree and hit-testing when true. */
+  inert?: boolean;
 }
 
 /**
@@ -26,8 +29,10 @@ export default function TiltCard({
   lift = 6,
   sheen = true,
   scale = 1.01,
+  inert = false,
 }: TiltCardProps) {
   const [active, setActive] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   const px = useMotionValue(0.5);
   const py = useMotionValue(0.5);
@@ -37,12 +42,12 @@ export default function TiltCard({
   const rotateY = useSpring(useTransform(px, [0, 1], [-maxTilt, maxTilt]), springConfig);
 
   const handleEnter = () => {
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+    if (reduceMotion || coarsePointer) return;
     setActive(true);
   };
 
   const handleMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+    if (reduceMotion || coarsePointer) return;
     const r = e.currentTarget.getBoundingClientRect();
     const nx = (e.clientX - r.left) / r.width;
     const ny = (e.clientY - r.top) / r.height;
@@ -61,7 +66,7 @@ export default function TiltCard({
   };
 
   return (
-    <div style={{ perspective: 1200 }} className="h-full">
+    <div style={{ perspective: 1200 }} className="h-full" inert={inert}>
       <motion.div
         onMouseEnter={handleEnter}
         onMouseMove={handleMove}

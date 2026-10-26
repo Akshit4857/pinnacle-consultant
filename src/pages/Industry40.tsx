@@ -24,7 +24,6 @@ import {
   User,
   Building,
   Check,
-  X,
   TrendingUp,
   Cpu,
   Zap,
@@ -33,15 +32,36 @@ import {
   FileCheck2,
   Activity,
   ArrowRight,
+  Loader2,
 } from 'lucide-react';
 import SEO from '../components/SEO';
 
+const industrySchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Industry 4.0 & Smart Automation Solutions',
+  provider: {
+    '@type': 'ConsultingService',
+    name: 'Pinnacle Consultant',
+    url: 'https://www.pinnacleconsultant.co.in/',
+    logo: 'https://www.pinnacleconsultant.co.in/logo.png',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'India',
+  },
+  description:
+    'Smart factory automation, PLC/SCADA programming, IoT predictive maintenance sensors, edge computing gateways, and centralized production dashboards.',
+};
+
 export default function Industry40() {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [selectedService, setSelectedService] = useState('Industrial Automation');
   const [selectedBudget, setSelectedBudget] = useState('₹5–20 lakh');
   const [activeStageFilter, setActiveStageFilter] = useState<string | null>(null);
+  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', details: '' });
 
   const stages = [
     {
@@ -249,35 +269,47 @@ export default function Industry40() {
     },
   ];
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    setSubmitError(null);
+    setIsSubmitting(true);
+    try {
+      const res = await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'industry-4-0',
+          name: form.name,
+          company: form.company,
+          email: form.email,
+          phone: form.phone,
+          serviceInterest: selectedService,
+          budgetRange: selectedBudget,
+          message: form.details,
+        }),
+      });
+      const data = await res.json().catch(() => null);
+      if (res.ok && data?.success) {
+        setFormSubmitted(true);
+      } else {
+        setSubmitError(data?.error || 'Unable to send your inquiry right now. Please email shikha@pinnacleconsultant.co.in.');
+      }
+    } catch {
+      setSubmitError('Network error — your inquiry was not sent. Please email shikha@pinnacleconsultant.co.in directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const selectedData = capabilities.find((c) => c.id === activeCategory);
+  const updateField = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm((prev) => ({ ...prev, [key]: e.target.value }));
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' });
     }
-  };
-
-  const industrySchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    serviceType: 'Industry 4.0 & Smart Automation Solutions',
-    provider: {
-      '@type': 'ConsultingService',
-      name: 'Pinnacle Consultant',
-      url: 'https://www.pinnacleconsultant.co.in/',
-      logo: 'https://www.pinnacleconsultant.co.in/logo.png',
-    },
-    areaServed: {
-      '@type': 'Country',
-      name: 'India',
-    },
-    description: 'Smart factory automation, PLC/SCADA programming, IoT predictive maintenance sensors, edge computing gateways, and centralized production dashboards.',
   };
 
   return (
@@ -287,6 +319,7 @@ export default function Industry40() {
         description="Upgrade manufacturing operations with PLC/SCADA programming, IoT predictive maintenance sensors, edge gateways, and real-time yield monitoring across India."
         keywords="Industry 4.0 consulting India, smart factory IoT, PLC SCADA automation, predictive maintenance manufacturing, factory automation Gurugram"
         canonicalPath="/industry-4-0"
+        ogImage="https://www.pinnacleconsultant.co.in/images/industry_robotics_hero.jpg"
         schema={industrySchema}
       />
       {/* Hero Section */}
@@ -295,7 +328,12 @@ export default function Industry40() {
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img
             src="/images/industry_robotics_hero.jpg"
-            alt="Pinnacle Intelligent Robotics & Industrial Automation"
+            alt=""
+            aria-hidden="true"
+            width={1920}
+            height={1080}
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover object-right lg:object-[82%_center] opacity-90"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/95 via-45% to-brand-dark/25 lg:to-transparent" />
@@ -495,6 +533,7 @@ export default function Industry40() {
                     key={stg.id}
                     type="button"
                     onClick={() => setActiveStageFilter(isSelected ? null : stg.id)}
+                    aria-pressed={isSelected}
                     className={`flex items-center gap-3.5 p-3 rounded-xl transition-[background-color,border-color,color,box-shadow,transform] duration-150 active:scale-[0.98] text-left cursor-pointer group ${isSelected
                         ? 'bg-brand-light/15 border border-brand-light shadow-md shadow-brand-light/10 ring-1 ring-brand-light/40'
                         : 'bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-white/15'
@@ -559,6 +598,7 @@ export default function Industry40() {
                   }`}
                 >
                   <TiltCard
+                    inert={!isMatch}
                     maxTilt={3}
                     lift={6}
                     className={`h-full rounded-[2rem] p-6 sm:p-7 bg-white/[0.04] hover:bg-white/[0.07] border transition-[background-color,border-color,box-shadow] duration-200 ease-out flex flex-col justify-between relative shadow-xl backdrop-blur-sm overflow-hidden ${isFiltered && isMatch
@@ -800,14 +840,19 @@ export default function Industry40() {
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                    <label htmlFor="i40-name" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                       Full Name *
                     </label>
                     <div className="relative">
                       <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                       <input
+                        id="i40-name"
+                        name="name"
                         type="text"
                         required
+                        autoComplete="name"
+                        value={form.name}
+                        onChange={updateField('name')}
                         placeholder="e.g. Rahul Sharma"
                         className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-4 py-3.5 text-sm font-medium text-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-light"
                       />
@@ -815,13 +860,18 @@ export default function Industry40() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                    <label htmlFor="i40-company" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                       Company / Organisation
                     </label>
                     <div className="relative">
                       <Building className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                       <input
+                        id="i40-company"
+                        name="company"
                         type="text"
+                        autoComplete="organization"
+                        value={form.company}
+                        onChange={updateField('company')}
                         placeholder="e.g. Manufacturing or Facility Co."
                         className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-4 py-3.5 text-sm font-medium text-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-light"
                       />
@@ -831,14 +881,19 @@ export default function Industry40() {
 
                 <div className="grid md:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                    <label htmlFor="i40-email" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                       Business Email *
                     </label>
                     <div className="relative">
                       <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                       <input
+                        id="i40-email"
+                        name="email"
                         type="email"
                         required
+                        autoComplete="email"
+                        value={form.email}
+                        onChange={updateField('email')}
                         placeholder="rahul@company.com"
                         className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-4 py-3.5 text-sm font-medium text-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-light"
                       />
@@ -846,14 +901,19 @@ export default function Industry40() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                    <label htmlFor="i40-phone" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                       Contact Number *
                     </label>
                     <div className="relative">
                       <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                       <input
+                        id="i40-phone"
+                        name="phone"
                         type="tel"
                         required
+                        autoComplete="tel"
+                        value={form.phone}
+                        onChange={updateField('phone')}
                         placeholder="+91 XXXXX XXXXX"
                         className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-4 py-3.5 text-sm font-medium text-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-light"
                       />
@@ -861,10 +921,10 @@ export default function Industry40() {
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                <div className="space-y-2" role="group" aria-labelledby="i40-service-label">
+                  <span id="i40-service-label" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                     What would you like to automate? *
-                  </label>
+                  </span>
                   <div className="grid sm:grid-cols-2 gap-2.5">
                     {[
                       'Home Automation',
@@ -878,6 +938,7 @@ export default function Industry40() {
                         type="button"
                         key={opt}
                         onClick={() => setSelectedService(opt)}
+                        aria-pressed={selectedService === opt}
                         className={`text-left p-3 rounded-xl border text-xs font-semibold transition-colors flex items-center justify-between cursor-pointer ${selectedService === opt
                             ? 'bg-brand-dark text-white border-brand-dark'
                             : 'bg-brand-bg text-brand-ink border-brand-edge hover:border-brand-dark/40'
@@ -891,21 +952,25 @@ export default function Industry40() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  <label htmlFor="i40-details" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                     Briefly describe your requirement *
                   </label>
                   <textarea
+                    id="i40-details"
+                    name="message"
                     rows={4}
                     required
+                    value={form.details}
+                    onChange={updateField('details')}
                     placeholder="Describe your current setup, target equipment/space, key challenges, or launch timeframe..."
                     className="w-full bg-brand-bg border border-brand-edge rounded-xl p-4 text-sm font-medium text-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-light resize-none"
                   ></textarea>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                <div className="space-y-2" role="group" aria-labelledby="i40-budget-label">
+                  <span id="i40-budget-label" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                     Estimated Project Budget
-                  </label>
+                  </span>
                   <div className="flex flex-wrap gap-2">
                     {['Below ₹1 lakh', '₹1–5 lakh', '₹5–20 lakh', 'Above ₹20 lakh', 'To be discussed'].map(
                       (b) => (
@@ -913,6 +978,7 @@ export default function Industry40() {
                           type="button"
                           key={b}
                           onClick={() => setSelectedBudget(b)}
+                          aria-pressed={selectedBudget === b}
                           className={`px-4 py-2 rounded-lg border text-xs font-semibold transition-colors cursor-pointer ${selectedBudget === b
                               ? 'bg-brand-dark text-brand-light border-brand-dark'
                               : 'bg-brand-bg text-brand-ink border-brand-edge hover:border-brand-dark/40'
@@ -925,12 +991,28 @@ export default function Industry40() {
                   </div>
                 </div>
 
+                {submitError && (
+                  <div role="alert" className="text-xs p-3.5 rounded-xl border border-red-200 bg-red-50 text-red-700 font-medium">
+                    {submitError}
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent active:scale-[0.98] py-4 rounded-xl font-bold text-sm transition-colors flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  disabled={isSubmitting}
+                  className="w-full bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent active:scale-[0.98] py-4 rounded-xl font-bold text-sm transition-colors flex items-center justify-center gap-2 shadow-lg cursor-pointer disabled:opacity-60 disabled:cursor-wait"
                 >
-                  <span>Submit Project Inquiry</span>
-                  <Send className="w-4 h-4" />
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Sending…</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Submit Project Inquiry</span>
+                      <Send className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
 
                 <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 pt-2 gap-2">
@@ -947,7 +1029,7 @@ export default function Industry40() {
                 </div>
               </form>
             ) : (
-              <div className="text-center py-12">
+              <div role="status" className="text-center py-12">
                 <div className="w-16 h-16 rounded-full bg-brand-light/30 text-emerald-800 flex items-center justify-center mx-auto mb-4">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
@@ -956,7 +1038,10 @@ export default function Industry40() {
                   Thank you for sharing your automation requirements. Our team will review the parameters and connect with you directly.
                 </p>
                 <button
-                  onClick={() => setFormSubmitted(false)}
+                  onClick={() => {
+                    setFormSubmitted(false);
+                    setForm({ name: '', company: '', email: '', phone: '', details: '' });
+                  }}
                   className="inline-flex items-center gap-2 bg-brand-dark text-white px-6 py-2.5 rounded-xl font-bold text-xs hover:bg-brand-light hover:text-brand-onaccent active:scale-[0.98] transition-colors"
                 >
                   Submit Another Inquiry
@@ -999,6 +1084,21 @@ export default function Industry40() {
                   <span>Email Our Team</span>
                 </a>
               </Magnetic>
+            </div>
+            <div className="mt-10 pt-6 border-t border-white/10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs font-semibold text-slate-400">
+              <span className="text-slate-500">Related services:</span>
+              <Link to="/tech-ev" className="hover:text-brand-light transition-colors">
+                EV Charging Infrastructure
+              </Link>
+              <Link to="/staffing" className="hover:text-brand-light transition-colors">
+                Technical Manpower Staffing
+              </Link>
+              <Link to="/market-research" className="hover:text-brand-light transition-colors">
+                Market Research Reports
+              </Link>
+              <Link to="/contact" className="hover:text-brand-light transition-colors">
+                Contact Practice Leads
+              </Link>
             </div>
           </div>
         </ScrollReveal>

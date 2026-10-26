@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ShieldCheck, Lock, Eye, FileText, ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { ShieldCheck, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import FloatingOrb from '../components/motion/FloatingOrb';
 import SEO from '../components/SEO';
 

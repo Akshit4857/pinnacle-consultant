@@ -4,20 +4,16 @@ import {
   ArrowLeft,
   MapPin,
   Briefcase,
-  Clock,
-  Building,
   Calendar,
   Sparkles,
   UploadCloud,
   FileCheck,
-  CheckCircle2,
   AlertCircle,
   ShieldCheck,
   Send,
   Loader2,
   Check,
   X,
-  FileText,
   DollarSign,
   Users,
 } from 'lucide-react';
@@ -264,6 +260,42 @@ export default function JobDetail() {
           <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
             Loading position details...
           </span>
+        </div>
+      </div>
+    );
+  }
+
+  // Load failure (network / server error) — distinct from a genuinely closed position
+  if (errorMsg && !job) {
+    return (
+      <div className="w-full min-h-screen bg-brand-bg pt-32 pb-20">
+        <div className="container mx-auto px-4 md:px-8 max-w-2xl text-center">
+          <div role="alert" className="bg-brand-card rounded-3xl border border-brand-edge p-8 sm:p-12 shadow-sm">
+            <div className="w-16 h-16 rounded-full bg-amber-50 text-amber-700 flex items-center justify-center mx-auto mb-5 border border-amber-200">
+              <AlertCircle className="w-8 h-8" />
+            </div>
+            <h1 className="text-2xl font-bold text-brand-ink mb-2">
+              Couldn&apos;t Load This Position
+            </h1>
+            <p className="text-sm text-slate-500 leading-relaxed max-w-md mx-auto mb-8">
+              {errorMsg} You can also email your resume to{' '}
+              <a href="mailto:info@pinnacleconsultant.co.in" className="font-semibold text-brand-dark underline">
+                info@pinnacleconsultant.co.in
+              </a>
+              .
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <button
+                onClick={() => window.location.reload()}
+                className="btn btn-primary text-xs py-3 px-6"
+              >
+                Retry
+              </button>
+              <Link to="/careers" className="btn text-xs py-3 px-6 bg-brand-bg border border-brand-edge text-brand-ink hover:bg-white">
+                <ArrowLeft className="w-4 h-4" /> View All Open Positions
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -697,6 +729,7 @@ export default function JobDetail() {
                           <Link
                             to="/privacy"
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="text-brand-dark font-bold underline hover:text-brand-dark-2"
                           >
                             Privacy Policy

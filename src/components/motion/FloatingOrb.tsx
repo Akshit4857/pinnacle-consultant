@@ -1,3 +1,5 @@
+import { useReducedMotion } from 'motion/react';
+
 interface FloatingOrbProps {
   /** Tailwind position classes, e.g. "top-0 right-0" or "-top-40 -left-32". */
   className?: string;
@@ -14,6 +16,7 @@ interface FloatingOrbProps {
 /**
  * Ambient blurred orb that slowly floats — adds life to dark sections/heroes.
  * Decorative only (pointer-events-none, aria-hidden).
+ * Renders as a static orb when the user prefers reduced motion.
  */
 export default function FloatingOrb({
   className = '',
@@ -22,6 +25,8 @@ export default function FloatingOrb({
   blurClass = 'blur-[120px]',
   delay = 0,
 }: FloatingOrbProps) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <div
       aria-hidden
@@ -29,9 +34,9 @@ export default function FloatingOrb({
       style={{
         width: size,
         height: size,
-        animation: `float-orb ${9 + (delay % 4)}s ease-in-out ${delay}s infinite`,
-        willChange: 'transform',
-        transform: 'translateZ(0)',
+        animation: reduceMotion
+          ? undefined
+          : `float-orb ${9 + (delay % 4)}s ease-in-out ${delay}s infinite`,
       }}
     />
   );

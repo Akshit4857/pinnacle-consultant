@@ -196,6 +196,56 @@ export async function appendApplicationRow(
 }
 
 /**
+ * Append a contact/brochure/service inquiry row to the Inquiries sheet.
+ */
+export async function appendInquiryRow(
+  inquiry: {
+    timestamp: string;
+    source: string;
+    name: string;
+    company: string;
+    email: string;
+    phone: string;
+    serviceInterest: string;
+    budgetRange: string;
+    message: string;
+  }
+): Promise<{ success: boolean; error?: string }> {
+  if (!config.google.appsScriptUrl) {
+    console.info(
+      `[Inquiry:${inquiry.source}] ${inquiry.name} <${inquiry.email}> — GOOGLE_APPS_SCRIPT_URL not set; logged only.`
+    );
+    return { success: true };
+  }
+
+  try {
+    const result = await callAppsScript({
+      action: 'appendInquiry',
+      data: {
+        Timestamp: inquiry.timestamp,
+        Source: inquiry.source,
+        Name: inquiry.name,
+        Company: inquiry.company,
+        Email: inquiry.email,
+        Phone: inquiry.phone,
+        'Service Interest': inquiry.serviceInterest,
+        'Budget Range': inquiry.budgetRange,
+        Message: inquiry.message,
+        Status: 'New',
+      },
+    });
+
+    if (!result.success) {
+      return { success: false, error: result.error || 'Apps Script append failed' };
+    }
+    return { success: true };
+  } catch (err: any) {
+    console.error('[AppsScript] appendInquiry error:', err?.message || err);
+    return { success: false, error: err?.message || 'Apps Script network error' };
+  }
+}
+
+/**
  * Upload candidate resume (base64) via Apps Script to the private Drive folder.
  */
 export async function uploadResumeToDrive(

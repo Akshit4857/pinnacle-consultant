@@ -30,6 +30,7 @@ var API_SECRET = 'YOUR_OPTIONAL_SECRET_KEY';
 
 var JOBS_TAB = 'Jobs';
 var APPLICATIONS_TAB = 'Applications';
+var INQUIRIES_TAB = 'Inquiries';
 
 /** Helper to get Spreadsheet instance */
 function getSpreadsheet() {
@@ -78,7 +79,22 @@ function setupSheet() {
     appSheet.setFrozenRows(1);
   }
 
-  return { success: true, message: 'Setup completed successfully! Jobs and Applications tabs are ready.' };
+  // 3. Create Inquiries Tab (contact / brochure / service requests)
+  var inqSheet = ss.getSheetByName(INQUIRIES_TAB) || ss.insertSheet(INQUIRIES_TAB);
+  if (inqSheet.getLastRow() === 0) {
+    var inqHeaders = [
+      'Timestamp', 'Source', 'Name', 'Company', 'Email', 'Phone',
+      'Service Interest', 'Budget Range', 'Message', 'Status'
+    ];
+    inqSheet.appendRow(inqHeaders);
+    inqSheet.getRange(1, 1, 1, inqHeaders.length)
+      .setFontWeight('bold')
+      .setBackground('#0f766e')
+      .setFontColor('#ffffff');
+    inqSheet.setFrozenRows(1);
+  }
+
+  return { success: true, message: 'Setup completed successfully! Jobs, Applications, and Inquiries tabs are ready.' };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -101,6 +117,7 @@ function doPost(e) {
     }
 
     if (action === 'appendApplication')  return respond(appendApplication(body.data));
+    if (action === 'appendInquiry')      return respond(appendInquiry(body.data));
     if (action === 'uploadResume')       return respond(uploadResume(body));
     if (action === 'listApplications')   return respond(listApplications());
     if (action === 'deleteApplication')  return respond(deleteApplication(body.email));
@@ -165,6 +182,28 @@ function appendApplication(data) {
   if (sheet.getLastRow() === 0) {
     sheet.appendRow(HEADERS);
     sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold').setBackground('#047857').setFontColor('#ffffff');
+    sheet.setFrozenRows(1);
+  }
+
+  var row = HEADERS.map(function(h) { return data[h] || ''; });
+  sheet.appendRow(row);
+  return { success: true };
+}
+
+/** Append a contact/brochure/service inquiry row to the Inquiries tab */
+function appendInquiry(data) {
+  var ss = getSpreadsheet();
+  var sheet = ss.getSheetByName(INQUIRIES_TAB);
+  if (!sheet) { sheet = ss.insertSheet(INQUIRIES_TAB); }
+
+  var HEADERS = [
+    'Timestamp', 'Source', 'Name', 'Company', 'Email', 'Phone',
+    'Service Interest', 'Budget Range', 'Message', 'Status'
+  ];
+
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(HEADERS);
+    sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold').setBackground('#0f766e').setFontColor('#ffffff');
     sheet.setFrozenRows(1);
   }
 

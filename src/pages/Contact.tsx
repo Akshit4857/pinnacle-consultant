@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Mail,
   Phone,
@@ -14,13 +14,12 @@ import {
   Clock,
   Users,
   ShieldCheck,
-  Zap,
-  ArrowUpRight,
   ChevronDown,
   Sparkles,
   FileCheck2,
   CheckCircle2,
   Lock,
+  Loader2,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
@@ -31,40 +30,119 @@ import WordReveal from '../components/motion/WordReveal';
 import FloatingOrb from '../components/motion/FloatingOrb';
 import SEO from '../components/SEO';
 
+const PRACTICE_AREAS = [
+  'Manpower Staffing (Corporate & Contractual)',
+  'EV Infrastructure Setup & Maintenance (AMC)',
+  'Intelligent Automation Solutions',
+  'Market Research & Sectoral Intelligence Reports',
+  'Executive Search / Direct Founder Advisory',
+];
+
+const CONTACT_FAQS = [
+  {
+    q: 'How fast can Pinnacle deploy manpower for our operations?',
+    a: 'For contractual and field operations (EV technicians, retail staff, warehouse workers, and assembly operators), deployments begin within 7 to 14 days of agreement sign-off. For lateral and leadership executive roles, candidate profiles are delivered within 48 to 72 hours.',
+  },
+  {
+    q: 'Do you manage statutory compliance and payroll?',
+    a: 'Yes. For contractual staffing, Pinnacle acts as the employer of record, handling PF, ESIC, Professional Tax, monthly payroll, and state labor registrations directly.',
+  },
+  {
+    q: 'What is your operational footprint for EV infrastructure AMC?',
+    a: 'We support EV infrastructure across industrial belts, transit corridors, and fleet depots in North, West, and South India, backed by on-call field technicians.',
+  },
+  {
+    q: 'Can we sign an NDA prior to discussing technical requirements?',
+    a: 'Yes. We routinely execute mutual NDAs before reviewing proprietary charging blueprints, plant layouts, or confidential hiring searches.',
+  },
+];
+
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Pinnacle Consultant',
+  url: 'https://www.pinnacleconsultant.co.in/contact',
+  about: {
+    '@type': 'Organization',
+    name: 'Pinnacle Consultant',
+    telephone: '+91-7000081129',
+    email: 'info@pinnacleconsultant.co.in',
+  },
+};
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [form, setForm] = useState({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    practice: PRACTICE_AREAS[0],
+    scope: '',
+  });
+  const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const successRef = useRef<HTMLDivElement | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    return () => {
+      if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (submitted) successRef.current?.focus();
+  }, [submitted]);
+
+  const updateField = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    setForm((prev) => ({ ...prev, [key]: e.target.value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitError(null);
+    setIsSubmitting(true);
+    try {
+      const res = await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'contact',
+          name: form.name,
+          company: form.company,
+          email: form.email,
+          phone: form.phone,
+          serviceInterest: form.practice,
+          message: form.scope,
+        }),
+      });
+      const data = await res.json().catch(() => null);
+      if (res.ok && data?.success) {
+        setSubmitted(true);
+      } else {
+        setSubmitError(data?.error || 'Unable to send your message right now. Please try again or email info@pinnacleconsultant.co.in.');
+      }
+    } catch {
+      setSubmitError('Network error — your message was not sent. Please email info@pinnacleconsultant.co.in directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const copyToClipboard = (text: string, fieldId: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedField(fieldId);
-    setTimeout(() => setCopiedField(null), 2000);
+    navigator.clipboard
+      ?.writeText(text)
+      .then(() => {
+        setCopiedField(fieldId);
+        if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+        copyTimerRef.current = setTimeout(() => setCopiedField(null), 2000);
+      })
+      .catch(() => {
+        setCopiedField(null);
+      });
   };
-
-  const faqs = [
-    {
-      q: 'How fast can Pinnacle deploy manpower for our operations?',
-      a: 'For contractual and field operations (EV technicians, retail staff, warehouse workers, and assembly operators), deployments begin within 7 to 14 days of agreement sign-off. For lateral and leadership executive roles, candidate profiles are delivered within 48 to 72 hours.',
-    },
-    {
-      q: 'Do you manage statutory compliance and payroll?',
-      a: 'Yes. For contractual staffing, Pinnacle acts as the employer of record, handling PF, ESIC, Professional Tax, monthly payroll, and state labor registrations directly.',
-    },
-    {
-      q: 'What is your operational footprint for EV infrastructure AMC?',
-      a: 'We support EV infrastructure across industrial belts, transit corridors, and fleet depots in North, West, and South India, backed by on-call field technicians.',
-    },
-    {
-      q: 'Can we sign an NDA prior to discussing technical requirements?',
-      a: 'Yes. We routinely execute mutual NDAs before reviewing proprietary charging blueprints, plant layouts, or confidential hiring searches.',
-    },
-  ];
 
   return (
     <div className="w-full">
@@ -73,6 +151,8 @@ export default function Contact() {
         description="Connect with our practice leads in Gurugram, Haryana. Phone: +91-7000081129. Email: info@pinnacleconsultant.co.in. Fast discovery and scoped proposals within 48 hours."
         keywords="contact Pinnacle Consultant, Gurugram consulting office, EV charging consultants contact, technical staffing inquiry, Pinnacle phone number"
         canonicalPath="/contact"
+        ogImage="https://www.pinnacleconsultant.co.in/images/about_hero_meeting.jpg"
+        schema={contactSchema}
       />
       {/* Hero & Contact Section */}
       <section className="pt-28 pb-16 md:pt-36 md:pb-20 bg-brand-dark bg-grid-dark text-white relative overflow-hidden">
@@ -162,7 +242,12 @@ export default function Contact() {
                   lift={5}
                   className="bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-5 cursor-pointer group transition-colors"
                 >
-                  <div onClick={() => copyToClipboard('info@pinnacleconsultant.co.in', 'email')} className="h-full">
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard('info@pinnacleconsultant.co.in', 'email')}
+                    aria-label="Copy email address info@pinnacleconsultant.co.in"
+                    className="h-full w-full text-left"
+                  >
                     <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3.5">
                       <div className="w-10 h-10 rounded-xl bg-brand-light/15 text-brand-light flex items-center justify-center shrink-0">
@@ -183,7 +268,7 @@ export default function Contact() {
                       <Copy className="w-4 h-4 text-slate-400 opacity-60 group-hover:opacity-100 transition-opacity" />
                     )}
                     </div>
-                  </div>
+                  </button>
                 </TiltCard>
 
                 {/* Phone & WhatsApp Card */}
@@ -193,9 +278,11 @@ export default function Contact() {
                   className="bg-white/5 border border-white/10 rounded-2xl p-5 transition-colors"
                 >
                   <div className="flex items-center justify-between">
-                    <div
+                    <button
+                      type="button"
                       onClick={() => copyToClipboard('+91-7000081129', 'phone')}
-                      className="flex items-center gap-3.5 cursor-pointer group"
+                      aria-label="Copy phone number +91-7000081129"
+                      className="flex items-center gap-3.5 cursor-pointer group text-left"
                     >
                       <div className="w-10 h-10 rounded-xl bg-brand-light/15 text-brand-light flex items-center justify-center shrink-0">
                         <Phone className="w-5 h-5" />
@@ -206,7 +293,7 @@ export default function Contact() {
                           +91-7000081129
                         </div>
                       </div>
-                    </div>
+                    </button>
                     <div className="flex items-center gap-2">
                       <a
                         href="https://wa.me/917000081129"
@@ -278,14 +365,19 @@ export default function Contact() {
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid md:grid-cols-2 gap-4 sm:gap-5">
                       <div className="space-y-1.5">
-                        <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                        <label htmlFor="contact-name" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                           Full Name *
                         </label>
                         <div className="relative">
                           <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                           <input
+                            id="contact-name"
+                            name="name"
                             type="text"
                             required
+                            autoComplete="name"
+                            value={form.name}
+                            onChange={updateField('name')}
                             className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 font-medium text-brand-ink"
                             placeholder="e.g. Rahul Sharma"
                           />
@@ -293,14 +385,19 @@ export default function Contact() {
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                        <label htmlFor="contact-company" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                           Company / Organization *
                         </label>
                         <div className="relative">
                           <Building className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                           <input
+                            id="contact-company"
+                            name="company"
                             type="text"
                             required
+                            autoComplete="organization"
+                            value={form.company}
+                            onChange={updateField('company')}
                             className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 font-medium text-brand-ink"
                             placeholder="e.g. Hero MotoCorp / Ather Energy"
                           />
@@ -310,14 +407,19 @@ export default function Contact() {
 
                     <div className="grid md:grid-cols-2 gap-4 sm:gap-5">
                       <div className="space-y-1.5">
-                        <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                        <label htmlFor="contact-email" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                           Work Email *
                         </label>
                         <div className="relative">
                           <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                           <input
+                            id="contact-email"
+                            name="email"
                             type="email"
                             required
+                            autoComplete="email"
+                            value={form.email}
+                            onChange={updateField('email')}
                             className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 font-medium text-brand-ink"
                             placeholder="rahul@company.com"
                           />
@@ -325,14 +427,19 @@ export default function Contact() {
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                        <label htmlFor="contact-phone" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                           Phone / WhatsApp *
                         </label>
                         <div className="relative">
                           <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                           <input
+                            id="contact-phone"
+                            name="phone"
                             type="tel"
                             required
+                            autoComplete="tel"
+                            value={form.phone}
+                            onChange={updateField('phone')}
                             className="w-full bg-brand-bg border border-brand-edge rounded-xl pl-10 pr-3.5 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 font-medium text-brand-ink"
                             placeholder="+91 XXXXX XXXXX"
                           />
@@ -341,36 +448,61 @@ export default function Contact() {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                      <label htmlFor="contact-practice" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                         Practice Area / Solution Required *
                       </label>
-                      <select className="w-full bg-brand-bg border border-brand-edge rounded-xl px-4 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 font-semibold text-brand-ink">
-                        <option>Manpower Staffing (Corporate &amp; Contractual)</option>
-                        <option>EV Infrastructure Setup &amp; Maintenance (AMC)</option>
-                        <option>Intelligent Automation Solutions</option>
-                        <option>Market Research &amp; Sectoral Intelligence Reports</option>
-                        <option>Executive Search / Direct Founder Advisory</option>
+                      <select
+                        id="contact-practice"
+                        name="serviceInterest"
+                        required
+                        value={form.practice}
+                        onChange={updateField('practice')}
+                        className="w-full bg-brand-bg border border-brand-edge rounded-xl px-4 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 font-semibold text-brand-ink"
+                      >
+                        {PRACTICE_AREAS.map((area) => (
+                          <option key={area}>{area}</option>
+                        ))}
                       </select>
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                      <label htmlFor="contact-scope" className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                         Describe Requirements &amp; Scope *
                       </label>
                       <textarea
+                        id="contact-scope"
+                        name="message"
                         rows={4}
                         required
+                        value={form.scope}
+                        onChange={updateField('scope')}
                         className="w-full bg-brand-bg border border-brand-edge rounded-xl px-4 py-3 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 resize-none font-medium text-brand-ink"
                         placeholder="Detail your estimated staffing count, target locations, EV charger specifications, or project launch timeline..."
                       ></textarea>
                     </div>
 
+                    {submitError && (
+                      <div role="alert" className="text-xs p-3.5 rounded-xl border border-red-200 bg-red-50 text-red-700 font-medium">
+                        {submitError}
+                      </div>
+                    )}
+
                     <button
                       type="submit"
-                      className="w-full bg-brand-dark text-white py-4 pl-6 pr-5 rounded-xl font-bold text-sm sm:text-base hover:bg-brand-light hover:text-brand-onaccent transition-[color,background-color,transform] duration-200 active:scale-[0.96] flex items-center justify-center gap-2 group shadow-lg cursor-pointer"
+                      disabled={isSubmitting}
+                      className="w-full bg-brand-dark text-white py-4 pl-6 pr-5 rounded-xl font-bold text-sm sm:text-base hover:bg-brand-light hover:text-brand-onaccent transition-[color,background-color,transform] duration-200 active:scale-[0.96] flex items-center justify-center gap-2 group shadow-lg cursor-pointer disabled:opacity-60 disabled:cursor-wait"
                     >
-                      <span>Send Project Details</span>
-                      <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Sending…</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Send Project Details</span>
+                          <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </>
+                      )}
                     </button>
 
                     <div className="flex items-center justify-center gap-2 text-center text-xs text-slate-500 pt-2 font-medium">
@@ -380,9 +512,12 @@ export default function Contact() {
                   </form>
                 ) : (
                   <motion.div
+                    ref={successRef}
+                    tabIndex={-1}
+                    role="status"
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="flex flex-col items-center justify-center text-center py-12"
+                    className="flex flex-col items-center justify-center text-center py-12 outline-none"
                   >
                     <div className="w-16 h-16 bg-brand-light/25 text-brand-ink rounded-full flex items-center justify-center mb-5">
                       <CheckCircle className="w-9 h-9 text-emerald-700" />
@@ -417,9 +552,11 @@ export default function Contact() {
               lift={4}
               className="bg-brand-bg rounded-xl border border-brand-edge"
             >
-              <div
+              <button
+                type="button"
                 onClick={() => copyToClipboard('info@pinnacleconsultant.co.in', 'email-mob')}
-                className="p-4 flex items-center justify-between h-full cursor-pointer"
+                aria-label="Copy email address info@pinnacleconsultant.co.in"
+                className="p-4 flex items-center justify-between h-full w-full cursor-pointer text-left"
               >
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-brand-dark text-brand-light flex items-center justify-center">
@@ -435,7 +572,7 @@ export default function Contact() {
               {copiedField === 'email-mob' && (
                 <span className="text-[10px] text-emerald-700 font-bold">Copied!</span>
               )}
-              </div>
+              </button>
             </TiltCard>
 
             <TiltCard
@@ -443,9 +580,11 @@ export default function Contact() {
               lift={4}
               className="bg-brand-bg rounded-xl border border-brand-edge"
             >
-              <div
+              <button
+                type="button"
                 onClick={() => copyToClipboard('+91-7000081129', 'phone-mob')}
-                className="p-4 flex items-center justify-between h-full cursor-pointer"
+                aria-label="Copy phone number +91-7000081129"
+                className="p-4 flex items-center justify-between h-full w-full cursor-pointer text-left"
               >
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-brand-dark text-brand-light flex items-center justify-center">
@@ -459,7 +598,7 @@ export default function Contact() {
               {copiedField === 'phone-mob' && (
                 <span className="text-[10px] text-emerald-700 font-bold">Copied!</span>
               )}
-              </div>
+              </button>
             </TiltCard>
           </div>
         </div>
@@ -576,14 +715,18 @@ export default function Contact() {
             viewport={{ once: true, margin: '-50px' }}
             className="space-y-3.5"
           >
-            {faqs.map((faq, index) => (
+            {CONTACT_FAQS.map((faq, index) => (
               <motion.div
                 key={index}
                 variants={staggerChild}
                 className="bg-brand-card rounded-2xl border border-brand-edge overflow-hidden shadow-sm transition-colors"
               >
                 <button
+                  type="button"
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  aria-expanded={openFaq === index}
+                  aria-controls={`contact-faq-panel-${index}`}
+                  id={`contact-faq-button-${index}`}
                   className="w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 font-bold text-base text-brand-ink hover:text-emerald-800 transition-colors cursor-pointer"
                 >
                   <span>{faq.q}</span>
@@ -597,6 +740,9 @@ export default function Contact() {
                 <AnimatePresence>
                   {openFaq === index && (
                     <motion.div
+                      id={`contact-faq-panel-${index}`}
+                      role="region"
+                      aria-labelledby={`contact-faq-button-${index}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -617,7 +763,7 @@ export default function Contact() {
           <ScrollReveal direction="up" distance={25}>
             <div className="mt-12 bg-brand-dark text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
               <div>
-                <h4 className="text-lg font-bold text-white mb-1">Prefer to speak with someone right now?</h4>
+                <h3 className="text-lg font-bold text-white mb-1">Prefer to speak with someone right now?</h3>
                 <p className="text-xs sm:text-sm text-slate-300 font-medium text-pretty">
                   Our practice coordinators are available directly by phone or WhatsApp during business hours.
                 </p>

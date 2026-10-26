@@ -513,6 +513,18 @@ export default function About() {
               role="tablist"
               aria-label="Strategic vision scenarios"
               className="inline-flex flex-wrap gap-1.5 p-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md mb-8 relative select-none"
+              onKeyDown={(e) => {
+                const tabs = ['ev', 'manufacturing', 'it'] as const;
+                const current = tabs.indexOf(activeVisionTab);
+                let next = -1;
+                if (e.key === 'ArrowRight') next = (current + 1) % tabs.length;
+                if (e.key === 'ArrowLeft') next = (current - 1 + tabs.length) % tabs.length;
+                if (next >= 0) {
+                  e.preventDefault();
+                  setActiveVisionTab(tabs[next]);
+                  document.getElementById(`vision-tab-${tabs[next]}`)?.focus();
+                }
+              }}
             >
               {(['ev', 'manufacturing', 'it'] as const).map((tab) => (
                 <button
@@ -522,6 +534,7 @@ export default function About() {
                   id={`vision-tab-${tab}`}
                   aria-selected={activeVisionTab === tab}
                   aria-controls="vision-panel"
+                  tabIndex={activeVisionTab === tab ? 0 : -1}
                   onClick={() => setActiveVisionTab(tab)}
                   className={`relative px-4 sm:px-5 py-2.5 min-h-11 sm:min-h-auto rounded-full text-xs transition-colors duration-150 active:scale-[0.97] flex items-center gap-2 cursor-pointer ${
                     activeVisionTab === tab

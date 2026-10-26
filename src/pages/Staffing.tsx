@@ -14,17 +14,14 @@ import {
   Code2,
   Zap,
   MapPin,
-  Briefcase,
   ChevronRight,
   X,
   ArrowUpRight,
-  UserCheck,
   CheckCircle2,
   Download,
   Users,
   Check,
   Cpu,
-  FileText,
   BadgeCheck,
   SlidersHorizontal,
 } from 'lucide-react';
@@ -593,6 +590,9 @@ export default function Staffing() {
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                role="dialog"
+                aria-modal="true"
+                aria-label={`${selectedVerticalData.title} scope breakdown`}
                 className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-brand-card z-50 shadow-2xl border-l border-brand-edge flex flex-col"
               >
                 <div className="p-6 md:p-8 border-b border-brand-edge flex items-center justify-between bg-brand-dark text-white">
@@ -604,6 +604,7 @@ export default function Staffing() {
                   </div>
                   <button
                     onClick={() => setActiveVertical(null)}
+                    aria-label="Close scope breakdown"
                     className="p-3 bg-white/10 rounded-full text-white hover:bg-brand-light hover:text-brand-onaccent transition-colors"
                   >
                     <X className="w-5 h-5" />

@@ -620,6 +620,7 @@ export default function TechEv() {
                   step="2"
                   value={chargerBays}
                   onChange={(e) => setChargerBays(Number(e.target.value))}
+                  aria-label="Number of planned charging bays"
                   className="w-full h-2.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-brand-light"
                 />
                 <div className="flex flex-wrap justify-between gap-x-4 gap-y-1 text-[11px] text-slate-400 mt-2">
@@ -985,6 +986,9 @@ export default function TechEv() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              role="dialog"
+              aria-modal="true"
+              aria-label={`${activeTechData.title} operational scope`}
               className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-brand-card z-50 shadow-2xl border-l border-brand-edge flex flex-col"
             >
               <div className="p-6 md:p-8 border-b border-brand-edge flex items-center justify-between bg-brand-bg">
@@ -996,6 +1000,7 @@ export default function TechEv() {
                 </div>
                 <button
                   onClick={() => setActiveTech(null)}
+                  aria-label="Close operational scope"
                   className="p-3 bg-brand-card rounded-full text-brand-ink hover:bg-brand-light shadow-sm transition-colors border border-brand-edge"
                 >
                   <X className="w-5 h-5" />

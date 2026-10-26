@@ -240,7 +240,7 @@ export default function Faq() {
                     >
                       <button
                         onClick={() => setOpenIndex(isOpen ? null : index)}
-                        className="w-full px-6 md:px-8 py-6 flex items-start justify-between text-left focus:outline-none cursor-pointer"
+                        className="w-full px-6 md:px-8 py-6 flex items-start justify-between text-left focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-brand-light cursor-pointer"
                       >
                         <span className="font-medium text-brand-ink text-lg pr-4 sm:pr-8 leading-tight">{faq.q}</span>
                         <span className={cn(

@@ -1,4 +1,4 @@
-import { motion, type HTMLMotionProps } from 'motion/react';
+import { motion, useReducedMotion, type HTMLMotionProps } from 'motion/react';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -23,8 +23,17 @@ export default function WordReveal({
   as = 'h2',
   ...props
 }: WordRevealProps) {
-  const words = text.split(' ');
+  const reduceMotion = useReducedMotion();
+  const words = text.trim().split(/\s+/);
   const MotionTag = motion[as];
+
+  if (reduceMotion) {
+    return (
+      <MotionTag className={className} {...props}>
+        {text}
+      </MotionTag>
+    );
+  }
 
   return (
     <MotionTag
@@ -49,7 +58,7 @@ export default function WordReveal({
             }}
           >
             {word}
-            {i < words.length - 1 && ' '}
+            {i < words.length - 1 && ' '}
           </motion.span>
         </span>
       ))}

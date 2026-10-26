@@ -10,14 +10,10 @@ import {
   BarChart3,
   Search,
   Compass,
-  FileText,
-  TrendingUp,
-  Target,
   CheckCircle2,
   ArrowUpRight,
   ChevronRight,
   X,
-  Download,
 } from 'lucide-react';
 import SEO from '../components/SEO';
 
@@ -356,6 +352,9 @@ export default function MarketResearch() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              role="dialog"
+              aria-modal="true"
+              aria-label={`${selectedData.title} brief overview`}
               className="fixed top-0 right-0 bottom-0 w-full max-w-md bg-brand-card z-50 shadow-2xl border-l border-brand-edge flex flex-col"
             >
               <div className="p-6 md:p-8 border-b border-brand-edge flex items-center justify-between gap-4 bg-brand-bg">
@@ -367,6 +366,7 @@ export default function MarketResearch() {
                 </div>
                 <button
                   onClick={() => setActiveResearch(null)}
+                  aria-label="Close brief overview"
                   className="shrink-0 min-h-11 min-w-11 flex items-center justify-center p-2 bg-brand-card rounded-full text-brand-ink hover:bg-brand-light shadow-sm transition-colors border border-brand-edge"
                 >
                   <X className="w-5 h-5" />

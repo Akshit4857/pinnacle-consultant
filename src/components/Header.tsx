@@ -39,11 +39,7 @@ const SOCIAL_LINKS = [
   },
 ];
 
-interface HeaderProps {
-  onOpenBrochure?: () => void;
-}
-
-export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps) {
+export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdown, setServicesDropdown] = useState(false);
@@ -188,6 +184,16 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
                   className="relative"
                   onMouseEnter={() => setServicesDropdown(true)}
                   onMouseLeave={() => setServicesDropdown(false)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape' && servicesDropdown) {
+                      setServicesDropdown(false);
+                    }
+                  }}
+                  onBlur={(e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+                      setServicesDropdown(false);
+                    }
+                  }}
                 >
                   <button
                     onClick={() => setServicesDropdown((o) => !o)}

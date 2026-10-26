@@ -1,8 +1,15 @@
 import express, { Request, Response, NextFunction } from 'express';
 import multer from 'multer';
-import { getActiveJobs, getActiveJobBySlug, appendApplicationRow, uploadResumeToDrive } from './google';
+import {
+  getActiveJobs,
+  getActiveJobBySlug,
+  appendApplicationRow,
+  appendInquiryRow,
+  uploadResumeToDrive,
+} from './google';
 import {
   applicationSchema,
+  inquirySchema,
   validateUploadedFile,
   scanFileForMalware,
   checkRateLimit,
@@ -71,9 +78,9 @@ export function applySecurityHeaders(req: Request, res: Response, next: NextFunc
 router.get('/jobs', async (_req: Request, res: Response) => {
   try {
     const jobs = await getActiveJobs();
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
+    // Public, non-personalized catalog — safe for shared caches.
+    // getActiveJobs() already caches Apps Script responses for 5 minutes.
+    res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=240');
     res.json({
       success: true,
       data: jobs,
@@ -108,9 +115,7 @@ router.get('/jobs/:slug', async (req: Request, res: Response) => {
       return;
     }
 
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
+    res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=240');
     res.json({
       success: true,
       data: job,
@@ -120,6 +125,83 @@ router.get('/jobs/:slug', async (req: Request, res: Response) => {
     res.status(500).json({
       success: false,
       error: 'Unable to retrieve job details at this time',
+    });
+  }
+});
+
+/**
+ * POST /api/inquiry
+ * Contact form, brochure requests, and general service leads.
+ * Writes to the Google Sheet "Inquiries" tab via Apps Script.
+ */
+router.post('/inquiry', async (req: Request, res: Response): Promise<void> => {
+  const clientIp =
+    (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() ||
+    req.socket.remoteAddress ||
+    '127.0.0.1';
+
+  try {
+    const honeypot = req.body.honeypot || req.body.website_url_hp;
+    if (honeypot && String(honeypot).trim().length > 0) {
+      res.json({ success: true, message: 'Thank you! We will be in touch shortly.' });
+      return;
+    }
+
+    const rateCheck = await checkRateLimit(clientIp, 'inquiry');
+    if (!rateCheck.allowed) {
+      res.status(429).json({
+        success: false,
+        error: 'Too many messages from your network. Please try again in an hour.',
+      });
+      return;
+    }
+
+    const parseResult = inquirySchema.safeParse({
+      source: req.body.source || 'contact',
+      name: req.body.name,
+      company: req.body.company || '',
+      email: req.body.email,
+      phone: req.body.phone || '',
+      serviceInterest: req.body.serviceInterest || '',
+      budgetRange: req.body.budgetRange || '',
+      message: req.body.message || '',
+      honeypot,
+    });
+
+    if (!parseResult.success) {
+      const firstError = parseResult.error.issues[0]?.message || 'Invalid input data';
+      res.status(400).json({ success: false, error: firstError });
+      return;
+    }
+
+    const data = parseResult.data;
+    const result = await appendInquiryRow({
+      timestamp: new Date().toISOString().replace('T', ' ').slice(0, 19),
+      source: data.source,
+      name: data.name,
+      company: data.company,
+      email: data.email,
+      phone: data.phone,
+      serviceInterest: data.serviceInterest,
+      budgetRange: data.budgetRange,
+      message: data.message,
+    });
+
+    if (!result.success) {
+      res.status(502).json({
+        success: false,
+        error: 'Unable to record your message right now. Please email info@pinnacleconsultant.co.in directly.',
+      });
+      return;
+    }
+
+    console.info(`[Inquiry] Accepted ${data.source} inquiry from ${maskEmail(data.email)}`);
+    res.json({ success: true, message: 'Thank you! We will be in touch shortly.' });
+  } catch (err: any) {
+    console.error('[Inquiry] Unhandled error:', err?.message || err);
+    res.status(500).json({
+      success: false,
+      error: 'An unexpected error occurred. Please try again or email info@pinnacleconsultant.co.in.',
     });
   }
 });

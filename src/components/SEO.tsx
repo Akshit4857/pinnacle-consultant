@@ -20,6 +20,7 @@ export default function SEO({
 }: SEOProps) {
   const location = useLocation();
   const fullCanonical = `https://www.pinnacleconsultant.co.in${canonicalPath || location.pathname}`;
+  const schemaJson = schema ? JSON.stringify(schema) : null;
 
   useEffect(() => {
     // 1. Title
@@ -41,6 +42,9 @@ export default function SEO({
     setMeta('name', 'description', description);
     if (keywords) {
       setMeta('name', 'keywords', keywords);
+    } else {
+      // Drop stale keywords from a previously visited page
+      document.querySelector('meta[name="keywords"]')?.remove();
     }
 
     // 3. Canonical URL
@@ -65,11 +69,11 @@ export default function SEO({
 
     // 6. Dynamic JSON-LD Route Schema Injection
     let scriptEl: HTMLScriptElement | null = null;
-    if (schema) {
+    if (schemaJson) {
       scriptEl = document.createElement('script');
       scriptEl.type = 'application/ld+json';
       scriptEl.setAttribute('data-dynamic-seo', 'true');
-      scriptEl.text = JSON.stringify(schema);
+      scriptEl.text = schemaJson;
       document.head.appendChild(scriptEl);
     }
 
@@ -79,7 +83,7 @@ export default function SEO({
         scriptEl.parentNode.removeChild(scriptEl);
       }
     };
-  }, [title, description, keywords, fullCanonical, ogImage, schema]);
+  }, [title, description, keywords, fullCanonical, ogImage, schemaJson]);
 
   return null;
 }

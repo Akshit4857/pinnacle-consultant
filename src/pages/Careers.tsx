@@ -37,6 +37,8 @@ export interface JobItem {
 export default function Careers() {
   const [jobs, setJobs] = useState<JobItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
 
   // Filters state
   const [searchQuery, setSearchQuery] = useState('');
@@ -50,6 +52,7 @@ export default function Careers() {
     async function loadJobs() {
       try {
         setLoading(true);
+        setLoadError(false);
         const res = await fetch('/api/jobs', { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
@@ -60,10 +63,12 @@ export default function Careers() {
         }
         if (isMounted) {
           setJobs([]);
+          setLoadError(true);
         }
       } catch (_err) {
         if (isMounted) {
           setJobs([]);
+          setLoadError(true);
         }
       } finally {
         if (isMounted) {
@@ -75,28 +80,27 @@ export default function Careers() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [reloadKey]);
 
   // Compute unique filter options from actual jobs
   const departments = useMemo(() => {
     const defaultDepts = ['All', 'Manpower Staffing', 'EV Solutions', 'Industrial Automation Solutions', 'Market Research'];
     if (!jobs || jobs.length === 0) return defaultDepts;
-    const set = new Set<string>();
+    const set = new Set<string>(defaultDepts);
     jobs.forEach((j) => set.add(j.department));
-    defaultDepts.forEach((d) => set.add(d));
     return Array.from(set);
   }, [jobs]);
 
   const jobTypes = useMemo(() => {
-    const set = new Set<string>();
+    const set = new Set<string>(['All', 'Full-time', 'Part-time', 'Internship', 'Contract']);
     jobs.forEach((j) => set.add(j.jobType));
-    return ['All', 'Full-time', 'Part-time', 'Internship', 'Contract', ...Array.from(set)];
+    return Array.from(set);
   }, [jobs]);
 
   const workModes = useMemo(() => {
-    const set = new Set<string>();
+    const set = new Set<string>(['All', 'On-site', 'Remote', 'Hybrid']);
     jobs.forEach((j) => set.add(j.workMode));
-    return ['All', 'On-site', 'Remote', 'Hybrid', ...Array.from(set)];
+    return Array.from(set);
   }, [jobs]);
 
   // Filtered jobs
@@ -325,8 +329,35 @@ export default function Careers() {
             </div>
           )}
 
+          {/* Load Failure State with Retry */}
+          {!loading && loadError && (
+            <div role="alert" className="py-12 px-6 sm:py-16 sm:px-10 text-center max-w-lg mx-auto bg-brand-card rounded-3xl border border-brand-edge shadow-xs my-6">
+              <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mx-auto mb-4 border border-amber-200 shadow-xs">
+                <BriefcaseBusiness className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-brand-ink mb-2">
+                Couldn&apos;t load openings
+              </h3>
+              <p className="text-sm text-slate-500 leading-relaxed max-w-sm mx-auto">
+                The jobs service didn&apos;t respond. Please retry, or email your profile to{' '}
+                <a href="mailto:info@pinnacleconsultant.co.in" className="font-semibold text-brand-dark underline">
+                  info@pinnacleconsultant.co.in
+                </a>
+                .
+              </p>
+              <div className="mt-5">
+                <button
+                  onClick={() => setReloadKey((k) => k + 1)}
+                  className="text-xs font-semibold text-brand-dark bg-brand-bg border border-brand-edge rounded-full px-5 py-2.5 hover:bg-white transition-colors cursor-pointer"
+                >
+                  Retry
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Clean Empty State (When no jobs active or sheet is empty) */}
-          {!loading && filteredJobs.length === 0 && (
+          {!loading && !loadError && filteredJobs.length === 0 && (
             <div className="py-12 px-6 sm:py-16 sm:px-10 text-center max-w-lg mx-auto bg-brand-card rounded-3xl border border-brand-edge shadow-xs my-6">
               <div className="w-14 h-14 rounded-2xl bg-brand-bg text-brand-dark flex items-center justify-center mx-auto mb-4 border border-brand-edge shadow-xs">
                 <BriefcaseBusiness className="w-6 h-6 text-brand-dark" />

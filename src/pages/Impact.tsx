@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, ArrowUpRight, Zap, Users, Quote, Wrench, Layers } from 'lucide-react';
+import { CheckCircle2, ArrowUpRight, Quote } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { CompanyLogo } from '../components/CompanyLogos';
 import { ScrollReveal, staggerContainer, staggerChild } from '../components/ScrollReveal';

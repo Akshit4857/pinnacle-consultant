@@ -1,5 +1,7 @@
 import { useRef, type ReactNode } from 'react';
-import { motion, useMotionValue, useSpring } from 'motion/react';
+import { motion, useMotionValue, useSpring, useReducedMotion } from 'motion/react';
+
+const coarsePointer = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
 
 interface MagneticProps {
   children: ReactNode;
@@ -13,10 +15,11 @@ interface MagneticProps {
 /**
  * Magnetic hover — the wrapper eases toward the cursor.
  * Wrap buttons / small CTAs only (not full-width elements).
- * Ignored on touch devices.
+ * Ignored on touch devices and when the user prefers reduced motion.
  */
 export default function Magnetic({ children, className = '', strength = 0.12, hoverScale = 1.02 }: MagneticProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 280, damping: 22, mass: 0.4 });
@@ -27,10 +30,10 @@ export default function Magnetic({ children, className = '', strength = 0.12, ho
       ref={ref}
       className={`inline-block relative z-0 hover:z-10 ${className}`}
       style={{ x: springX, y: springY }}
-      whileHover={{ scale: hoverScale }}
+      whileHover={reduceMotion ? undefined : { scale: hoverScale }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       onMouseMove={(e) => {
-        if (window.matchMedia('(pointer: coarse)').matches) return;
+        if (reduceMotion || coarsePointer) return;
         const r = ref.current?.getBoundingClientRect();
         if (!r) return;
         const rawX = (e.clientX - (r.left + r.width / 2)) * strength;

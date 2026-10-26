@@ -89,6 +89,39 @@ export const applicationSchema = z.object({
 });
 
 /**
+ * Zod Schema for general inquiries (contact form, brochure requests, service leads)
+ */
+export const inquirySchema = z.object({
+  source: z
+    .string()
+    .trim()
+    .max(40)
+    .regex(/^[a-z0-9-]*$/, 'Invalid source identifier')
+    .default('contact'),
+  name: z
+    .string()
+    .trim()
+    .min(2, 'Full name must be at least 2 characters')
+    .max(100, 'Full name cannot exceed 100 characters'),
+  company: z.string().trim().max(120).default(''),
+  email: z
+    .string()
+    .trim()
+    .toLowerCase()
+    .email('Invalid email address')
+    .max(120),
+  phone: z.string().trim().max(20).default(''),
+  serviceInterest: z.string().trim().max(120).default(''),
+  budgetRange: z.string().trim().max(60).default(''),
+  message: z
+    .string()
+    .trim()
+    .max(2000, 'Message cannot exceed 2000 characters')
+    .default(''),
+  honeypot: z.string().optional(),
+});
+
+/**
  * Validate file upload:
  * 1. Extension check (.pdf, .doc, .docx)
  * 2. MIME type check
@@ -243,16 +276,19 @@ export function maskPhone(phone: string): string {
 }
 
 /**
- * Rate limit verification (IP based)
+ * Rate limit verification (IP based).
+ * `namespace` keeps separate buckets (e.g. 'ratelimit' for jobs applications,
+ * 'inquiry' for contact leads) so one form's budget does not starve the other.
  */
 export async function checkRateLimit(
-  clientIp: string
+  clientIp: string,
+  namespace = 'ratelimit'
 ): Promise<{ allowed: boolean; remaining: number }> {
   const limit = config.limits.rateLimitPerHour;
   const windowSec = 3600; // 1 hour
 
   if (redisClient) {
-    const key = `ratelimit:${clientIp}`;
+    const key = `${namespace}:${clientIp}`;
     try {
       const current = await redisClient.incr(key);
       if (current === 1) {
@@ -269,10 +305,11 @@ export async function checkRateLimit(
 
   // In-memory fallback
   const now = Date.now();
-  const entry = inMemoryRateLimits.get(clientIp);
+  const memKey = `${namespace}:${clientIp}`;
+  const entry = inMemoryRateLimits.get(memKey);
 
   if (!entry || now > entry.resetAt) {
-    inMemoryRateLimits.set(clientIp, { count: 1, resetAt: now + windowSec * 1000 });
+    inMemoryRateLimits.set(memKey, { count: 1, resetAt: now + windowSec * 1000 });
     return { allowed: true, remaining: limit - 1 };
   }
 

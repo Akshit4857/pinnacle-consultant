@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme static {
@@ -65,16 +64,6 @@ h1, h2, h3, h4 {
 
 p, li, figcaption {
   text-wrap: pretty;
-}
-
-.img-crisp {
-  outline: 1px solid oklch(0 0 0 / 0.1);
-  outline-offset: -1px;
-}
-
-[data-mode="dark"] .img-crisp {
-  outline: 1px solid oklch(1 0 0 / 0.1);
-  outline-offset: -1px;
 }
 
 /* ==============================
@@ -196,125 +185,6 @@ p, li, figcaption {
   --color-brand-onaccent: #100D1E;
 }
 
-/* ==============================
-   VERTICAL PALETTES — DARK
-   ============================== */
-
-[data-theme="ev"][data-mode="dark"] {
-  --color-brand-dark: #041216;
-  --color-brand-dark-2: #0A2A31;
-  --color-brand-dark-3: #020A0D;
-  --color-brand-dark-4: #0F3A44;
-  --color-brand-light: #4EE1A6;
-  --color-brand-light-2: #2CA374;
-  --color-brand-light-3: #1F8F68;
-  --color-brand-light-4: #40D69B;
-  --color-brand-bg: #0B1D21;
-  --color-brand-tint-1: #0E2C26;
-  --color-brand-tint-2: #12382F;
-  --color-brand-tint-3: #17453A;
-  --color-brand-tint-4: #1F5647;
-  --color-brand-tint-5: #276855;
-  --color-brand-line: #2CA374;
-  --color-brand-card: #0F262B;
-  --color-brand-ink: #E6F5EF;
-  --color-brand-muted: #93B5AB;
-  --color-brand-edge: rgba(255, 255, 255, 0.08);
-  --color-brand-onaccent: #02272E;
-}
-
-[data-theme="talent"][data-mode="dark"] {
-  --color-brand-dark: #060B1A;
-  --color-brand-dark-2: #141F42;
-  --color-brand-dark-3: #030612;
-  --color-brand-dark-4: #1E2F63;
-  --color-brand-light: #5B9DF9;
-  --color-brand-light-2: #2175D9;
-  --color-brand-light-3: #14478F;
-  --color-brand-light-4: #3B82E8;
-  --color-brand-bg: #0B1226;
-  --color-brand-tint-1: #121F42;
-  --color-brand-tint-2: #17284F;
-  --color-brand-tint-3: #1E335F;
-  --color-brand-tint-4: #274070;
-  --color-brand-tint-5: #304D82;
-  --color-brand-line: #2175D9;
-  --color-brand-card: #101A36;
-  --color-brand-ink: #E8EDFA;
-  --color-brand-muted: #93A3C7;
-  --color-brand-edge: rgba(255, 255, 255, 0.08);
-  --color-brand-onaccent: #0A1230;
-}
-
-[data-theme="industry"][data-mode="dark"] {
-  --color-brand-dark: #0E0703;
-  --color-brand-dark-2: #2A150A;
-  --color-brand-dark-3: #080402;
-  --color-brand-dark-4: #3D1F0E;
-  --color-brand-light: #FF9A3D;
-  --color-brand-light-2: #E06A10;
-  --color-brand-light-3: #B4520C;
-  --color-brand-light-4: #F07E22;
-  --color-brand-bg: #170D06;
-  --color-brand-tint-1: #2A180C;
-  --color-brand-tint-2: #35200F;
-  --color-brand-tint-3: #412812;
-  --color-brand-tint-4: #503318;
-  --color-brand-tint-5: #5F3E1D;
-  --color-brand-line: #E06A10;
-  --color-brand-card: #22140B;
-  --color-brand-ink: #FBEEE3;
-  --color-brand-muted: #C4A18B;
-  --color-brand-edge: rgba(255, 255, 255, 0.08);
-  --color-brand-onaccent: #1C0B05;
-}
-
-[data-theme="intel"][data-mode="dark"] {
-  --color-brand-dark: #0A0718;
-  --color-brand-dark-2: #1F1745;
-  --color-brand-dark-3: #06040F;
-  --color-brand-dark-4: #2C2160;
-  --color-brand-light: #A78BFA;
-  --color-brand-light-2: #6938EF;
-  --color-brand-light-3: #4A25C0;
-  --color-brand-light-4: #8B5CF6;
-  --color-brand-bg: #120E28;
-  --color-brand-tint-1: #1D1640;
-  --color-brand-tint-2: #241C4D;
-  --color-brand-tint-3: #2D245C;
-  --color-brand-tint-4: #382D6E;
-  --color-brand-tint-5: #443880;
-  --color-brand-line: #6938EF;
-  --color-brand-card: #1A1438;
-  --color-brand-ink: #EDE9FB;
-  --color-brand-muted: #A99ED0;
-  --color-brand-edge: rgba(255, 255, 255, 0.08);
-  --color-brand-onaccent: #150E33;
-}
-
-[data-theme="prime"][data-mode="dark"] {
-  --color-brand-dark: #0A0812;
-  --color-brand-dark-2: #1F1B30;
-  --color-brand-dark-3: #060509;
-  --color-brand-dark-4: #2C2644;
-  --color-brand-light: #F0D18B;
-  --color-brand-light-2: #C9A44C;
-  --color-brand-light-3: #A1813A;
-  --color-brand-light-4: #DDB863;
-  --color-brand-bg: #12101C;
-  --color-brand-tint-1: #221E30;
-  --color-brand-tint-2: #2A253A;
-  --color-brand-tint-3: #342E47;
-  --color-brand-tint-4: #403856;
-  --color-brand-tint-5: #4C4266;
-  --color-brand-line: #C9A44C;
-  --color-brand-card: #1A1728;
-  --color-brand-ink: #F5F1E6;
-  --color-brand-muted: #B3A98D;
-  --color-brand-edge: rgba(255, 255, 255, 0.08);
-  --color-brand-onaccent: #100D1E;
-}
-
 body {
   font-family: var(--font-sans);
   overflow-x: clip;
@@ -371,11 +241,6 @@ html {
   background-size: 32px 32px;
 }
 
-.bg-dots-dark {
-  background-image: radial-gradient(color-mix(in srgb, var(--color-brand-light) 15%, transparent) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
 .bg-dots-light {
   background-image: radial-gradient(color-mix(in srgb, var(--color-brand-dark) 8%, transparent) 1px, transparent 1px);
   background-size: 20px 20px;
@@ -403,15 +268,6 @@ html {
     color-mix(in srgb, var(--color-brand-dark-3) 30%, transparent) 90%,
     color-mix(in srgb, var(--color-brand-dark-3) 15%, transparent) 100%
   );
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-}
-
-.animate-float-slow {
-  animation: float 6s ease-in-out infinite;
 }
 
 @keyframes float-orb {
@@ -484,15 +340,6 @@ html {
     background: #fff;
   }
 
-  .btn-secondary {
-    background: var(--color-brand-dark);
-    color: #fff;
-  }
-  .btn-secondary:hover {
-    background: var(--color-brand-dark-2);
-    color: var(--color-brand-light);
-  }
-
   .btn-ghost {
     background: rgba(255, 255, 255, 0.16);
     color: #fff;
@@ -502,23 +349,5 @@ html {
   .btn-ghost:hover {
     background: rgba(255, 255, 255, 0.28);
     border-color: #fff;
-  }
-
-  .btn-outline {
-    background: var(--color-brand-bg);
-    color: var(--color-brand-ink);
-    border: 1px solid var(--color-brand-edge);
-  }
-  .btn-outline:hover {
-    border-color: var(--color-brand-dark);
-  }
-
-  .btn-sm {
-    padding: 0.625rem 1.1rem;
-    font-size: 0.75rem;
-  }
-
-  .btn-icon {
-    padding: 0.625rem;
   }
 }
