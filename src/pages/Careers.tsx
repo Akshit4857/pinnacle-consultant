@@ -78,7 +78,7 @@ export default function Careers() {
 
   // Compute unique filter options from actual jobs
   const departments = useMemo(() => {
-    const defaultDepts = ['All', 'Manpower Staffing', 'EV Solutions', 'Industrial Automation Solutions', 'Market Research'];
+    const defaultDepts = ['All', 'Manpower Staffing', 'EV Solutions', 'Intelligent Automation Solutions', 'Market Research'];
     if (!jobs || jobs.length === 0) return defaultDepts;
     const set = new Set<string>();
     jobs.forEach((j) => set.add(j.department));
@@ -186,7 +186,7 @@ export default function Careers() {
             ))}
           </h1>
           <p className="text-sm sm:text-base text-slate-300 mx-auto leading-relaxed font-medium mb-6 max-w-xl">
-            Explore active mandates across Manpower Staffing, EV Infrastructure, Industrial Automation Solutions, and Market Intelligence.
+            Explore active mandates across Manpower Staffing, EV Infrastructure, Intelligent Automation Solutions, and Market Intelligence.
           </p>
 
           {/* Integrated Category Filter Pills directly in the Hero */}

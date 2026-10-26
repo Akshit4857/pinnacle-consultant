@@ -73,7 +73,7 @@ export default function Header({ onOpenBrochure: _onOpenBrochure }: HeaderProps)
   const serviceItems = [
     { name: 'Manpower Staffing', path: '/staffing', desc: 'Corporate & Contractual talent', icon: Users },
     { name: 'EV Solutions', path: '/tech-ev', desc: 'Charging infra & maintenance AMC', icon: Zap },
-    { name: 'Industrial Automation Solutions', path: '/industry-4-0', desc: 'IoT, smart factory & robotics', icon: Cpu },
+    { name: 'Intelligent Automation Solutions', path: '/industry-4-0', desc: 'Enterprise, workplace, home & industrial IoT', icon: Cpu },
     { name: 'Market Research', path: '/market-research', desc: 'Sectoral intelligence & reports', icon: BarChart3 },
   ];
 

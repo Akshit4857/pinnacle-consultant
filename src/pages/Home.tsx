@@ -27,6 +27,7 @@ import {
   BadgeCheck,
   Wrench,
   Layers,
+  Clock,
 } from 'lucide-react';
 
 export default function Home() {
@@ -143,7 +144,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-slate-100 text-lg sm:text-xl font-medium leading-relaxed mb-8 max-w-2xl drop-shadow-sm text-pretty"
             >
-              Founded by operators with 14+ years across automotive, clean mobility, and HR consulting. We deliver nationwide EV charging and parking networks, specialized technical staffing, intelligent industrial automation, and primary market research across India.
+              Founded by operators with 14+ years across automotive, clean mobility, and HR consulting. We deliver nationwide EV charging and parking networks, specialized technical staffing, intelligent automation solutions, and primary market research across India.
             </motion.p>
 
             <motion.div
@@ -223,7 +224,7 @@ export default function Home() {
               </span>
               <span className="bg-black/35 backdrop-blur-md border border-white/15 px-4 py-2 rounded-full text-xs font-semibold text-slate-200 inline-flex items-center gap-1.5">
                 <Cpu className="w-3.5 h-3.5 text-brand-light" />
-                <span>Industrial Automation Solutions</span>
+                <span>Intelligent Automation Solutions</span>
               </span>
             </div>
           </div>
@@ -438,7 +439,7 @@ export default function Home() {
               </TiltCard>
             </ScrollReveal>
 
-            {/* Card 3: Industrial Automation Solutions */}
+            {/* Card 3: Intelligent Automation Solutions */}
             <ScrollReveal direction="up" delay={0.15} className="flex flex-col">
               <TiltCard
                 maxTilt={4}
@@ -455,55 +456,54 @@ export default function Home() {
                         <span className="text-xs font-bold text-emerald-800 uppercase tracking-widest block">
                           Practice 03
                         </span>
-                        <h3 className="text-2xl font-bold text-brand-ink">Industrial Automation Solutions</h3>
+                        <h3 className="text-2xl font-bold text-brand-ink">Intelligent Automation Solutions</h3>
                       </div>
                     </div>
                     <span className="bg-emerald-50 text-emerald-800 border border-emerald-200/60 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                      Zero Downtime
+                      SMARTER OPERATIONS. BETTER OUTCOMES.
                     </span>
                   </div>
 
-                  <p className="text-brand-muted font-medium text-[15px] leading-relaxed mb-6 text-pretty">
-                    Transforming manufacturing floors into agile, connected operations using non-invasive IoT sensors, SCADA dashboards, and predictive maintenance ML.
-                  </p>
-
-                  {/* Industrial photo thumbnail */}
-                  <div className="relative rounded-2xl overflow-hidden mb-6 h-44 group-hover:scale-[1.02] transition-transform duration-500">
-                    <img
-                      src="/images/smart_factory_iot.jpg"
-                      alt="Smart Factory Automation"
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover outline outline-1 -outline-offset-1 outline-black/10"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-4">
-                      <div className="text-white text-xs font-bold flex items-center justify-between w-full">
-                        <span>Live OEE Monitoring</span>
-                        <span className="text-brand-light">Acoustic / Vibration ML</span>
-                      </div>
-                    </div>
+                  <div className="text-xs font-bold text-brand-ink uppercase tracking-wider mb-3">
+                    Automation for enterprises, workplaces, homes and industrial environments
                   </div>
 
-                  <div className="space-y-2 text-xs font-medium text-brand-muted mb-6">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>Real-time OEE, energy &amp; line bottleneck telemetry</span>
+                  <p className="text-brand-muted font-medium text-[15px] leading-relaxed mb-6 text-pretty">
+                    We design and enable intelligent automation solutions that simplify processes, connect systems, reduce manual effort and improve operational efficiency — from smart homes and corporate offices to enterprise workflows and industrial environments.
+                  </p>
+
+                  {/* Multi-Domain Coverage Breakdown */}
+                  <div className="grid grid-cols-2 gap-2.5 mb-6 text-xs font-semibold text-brand-muted">
+                    <div className="p-2.5 rounded-xl bg-brand-bg border border-brand-edge flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
+                      <span className="text-brand-ink text-[11px] font-bold">Smart Homes &amp; Living</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>Predictive vibration &amp; anomaly triggers</span>
+                    <div className="p-2.5 rounded-xl bg-brand-bg border border-brand-edge flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
+                      <span className="text-brand-ink text-[11px] font-bold">Offices &amp; Facilities</span>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-brand-bg border border-brand-edge flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
+                      <span className="text-brand-ink text-[11px] font-bold">Industrial Plant IoT</span>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-brand-bg border border-brand-edge flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
+                      <span className="text-brand-ink text-[11px] font-bold">Enterprise Workflows</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-brand-edge flex flex-wrap items-center justify-between gap-3 mt-auto">
-                  <span className="text-xs text-brand-muted">Brownfield &amp; Greenfield Retrofit</span>
+                <div className="pt-6 border-t border-brand-edge flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-auto">
+                  <div className="flex items-center gap-2 text-xs text-brand-muted">
+                    <Clock className="w-4 h-4 text-emerald-700 shrink-0" />
+                    <span>Solution deployment: <strong className="font-bold text-brand-ink">Based on scope</strong></span>
+                  </div>
                   <Link
                     to="/industry-4-0"
-                    className="inline-flex items-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent pl-6 pr-5 py-3 min-h-11 rounded-full font-bold text-xs transition-colors duration-150 active:scale-[0.96] shadow-sm"
+                    className="inline-flex items-center justify-center gap-2 bg-brand-dark text-white hover:bg-brand-light hover:text-brand-onaccent pl-6 pr-5 py-3 min-h-11 rounded-full font-bold text-xs transition-colors duration-150 active:scale-[0.96] shadow-sm"
                   >
                     <span>Explore Automation Solutions</span>
-                    <ArrowUpRight className="w-4 h-4" />
+                    <ChevronRight className="w-4 h-4" />
                   </Link>
                 </div>
               </TiltCard>

@@ -5,7 +5,7 @@ import ScrollReveal from './ScrollReveal';
 const practices = [
   { to: '/staffing', label: 'Manpower Staffing', sub: 'Corporate & Contractual' },
   { to: '/tech-ev', label: 'EV Infrastructure', sub: 'Charging, AMC & Maintenance' },
-  { to: '/industry-4-0', label: 'Industrial Automation Solutions', sub: 'IoT & Smart Factory' },
+  { to: '/industry-4-0', label: 'Intelligent Automation Solutions', sub: 'Enterprises, Homes & Industrial' },
   { to: '/market-research', label: 'Market Research', sub: 'Strategic Intelligence' },
 ];
 

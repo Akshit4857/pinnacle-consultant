@@ -340,7 +340,7 @@ export default function Contact() {
                       <select className="w-full bg-brand-bg border border-brand-edge rounded-xl px-4 py-3.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand-light transition-colors duration-150 font-semibold text-brand-ink">
                         <option>Manpower Staffing (Corporate &amp; Contractual)</option>
                         <option>EV Infrastructure Setup &amp; Maintenance (AMC)</option>
-                        <option>Industrial Automation Solutions</option>
+                        <option>Intelligent Automation Solutions</option>
                         <option>Market Research &amp; Sectoral Intelligence Reports</option>
                         <option>Executive Search / Direct Founder Advisory</option>
                       </select>
