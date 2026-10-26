@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/api/jobs/:slug",
+      "destination": "/api/job-detail?slug=:slug"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/$1"
     },
