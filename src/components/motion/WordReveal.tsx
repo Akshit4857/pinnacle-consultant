@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { motion, useReducedMotion, type HTMLMotionProps } from 'motion/react';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -45,22 +46,24 @@ export default function WordReveal({
       {...props}
     >
       {words.map((word, i) => (
-        <span key={`${word}-${i}`} className="inline-block overflow-hidden align-bottom pb-[0.08em] -mb-[0.08em]">
-          <motion.span
-            className="inline-block will-change-transform"
-            variants={{
-              hidden: { y: '110%', opacity: 0 },
-              visible: {
-                y: '0%',
-                opacity: 1,
-                transition: { duration: 0.7, ease: EASE },
-              },
-            }}
-          >
-            {word}
-            {i < words.length - 1 && ' '}
-          </motion.span>
-        </span>
+        <Fragment key={`${word}-${i}`}>
+          <span className="inline-block overflow-hidden align-bottom pb-[0.08em] -mb-[0.08em]">
+            <motion.span
+              className="inline-block will-change-transform"
+              variants={{
+                hidden: { y: '110%', opacity: 0 },
+                visible: {
+                  y: '0%',
+                  opacity: 1,
+                  transition: { duration: 0.7, ease: EASE },
+                },
+              }}
+            >
+              {word}
+            </motion.span>
+          </span>
+          {i < words.length - 1 && ' '}
+        </Fragment>
       ))}
     </MotionTag>
   );
