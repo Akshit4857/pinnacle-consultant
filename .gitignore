@@ -9,3 +9,5 @@ coverage/
 .originkit/
 .taste-skill/
 .failed-applications-queue.json
+.agents/
+skills-lock.json
