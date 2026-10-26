@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, ArrowUp, Phone } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
+import { getLenis } from '../lib/lenis';
 
 const practices = [
   { to: '/staffing', label: 'Manpower Staffing', sub: 'Corporate & Contractual' },
@@ -19,7 +20,9 @@ const company = [
 ];
 
 function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const lenis = getLenis();
+  if (lenis) lenis.scrollTo(0, { duration: 1.2 });
+  else window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 export default function Footer() {
