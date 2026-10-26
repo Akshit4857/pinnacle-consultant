@@ -48,7 +48,6 @@ export default async function handler(req: any, res: any) {
 
     const todayStr = new Date().toISOString().split('T')[0];
     const jobs: any[] = [];
-    const existingSlugs = new Set<string>();
 
     const normalizeDate = (val: string) => {
       if (!val) return undefined;
@@ -80,18 +79,8 @@ export default async function handler(req: any, res: any) {
       }
       if (!slug) continue;
 
-      // Deduplicate slugs so multiple jobs with same title get unique URLs & React keys
-      let uniqueSlug = slug;
-      let counter = 2;
-      while (existingSlugs.has(uniqueSlug)) {
-        uniqueSlug = `${slug}-${counter}`;
-        counter++;
-      }
-      existingSlugs.add(uniqueSlug);
-
       const statusRaw = getVal('Status') ? getVal('Status').toLowerCase() : 'active';
-      const lastDateRaw = getVal('LastDateToApply', 'Deadline', 'Last Date');
-      const lastDate = normalizeDate(lastDateRaw);
+      const lastDate = normalizeDate(getVal('LastDateToApply', 'Deadline', 'Last Date'));
 
       if (statusRaw !== 'active' && statusRaw !== 'open') continue;
       if (lastDate && lastDate < todayStr) continue;
@@ -110,7 +99,7 @@ export default async function handler(req: any, res: any) {
       const perksDisabled = ['no', 'false', 'off', '0', 'disable', 'disabled'].includes(showPerks);
 
       jobs.push({
-        slug: uniqueSlug,
+        slug,
         title,
         department: getVal('Department', 'Dept', 'Category') || 'General',
         location: getVal('Location', 'City', 'Place') || 'Gurugram, India',

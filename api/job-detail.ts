@@ -51,7 +51,6 @@ export default async function handler(req: any, res: any) {
     }
 
     const todayStr = new Date().toISOString().split('T')[0];
-    const existingSlugs = new Set<string>();
 
     const normalizeDate = (val: string) => {
       if (!val) return undefined;
@@ -82,19 +81,10 @@ export default async function handler(req: any, res: any) {
         slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       }
 
-      let uniqueSlug = slug;
-      let counter = 2;
-      while (existingSlugs.has(uniqueSlug)) {
-        uniqueSlug = `${slug}-${counter}`;
-        counter++;
-      }
-      existingSlugs.add(uniqueSlug);
-
-      if (uniqueSlug !== targetSlug && slug !== targetSlug) continue;
+      if (slug !== targetSlug) continue;
 
       const statusRaw = getVal('Status') ? getVal('Status').toLowerCase() : 'active';
-      const lastDateRaw = getVal('LastDateToApply', 'Deadline', 'Last Date');
-      const lastDate = normalizeDate(lastDateRaw);
+      const lastDate = normalizeDate(getVal('LastDateToApply', 'Deadline', 'Last Date'));
 
       if (statusRaw !== 'active' && statusRaw !== 'open') continue;
       if (lastDate && lastDate < todayStr) continue;
@@ -115,7 +105,7 @@ export default async function handler(req: any, res: any) {
       return res.status(200).json({
         success: true,
         data: {
-          slug: uniqueSlug,
+          slug,
           title,
           department: getVal('Department', 'Dept', 'Category') || 'General',
           location: getVal('Location', 'City', 'Place') || 'Gurugram, India',

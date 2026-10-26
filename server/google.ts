@@ -76,7 +76,6 @@ export async function getActiveJobs(): Promise<Job[]> {
 
     const todayStr = new Date().toISOString().split('T')[0];
     const jobs: Job[] = [];
-    const existingSlugs = new Set<string>();
 
     const normalizeDate = (val: string) => {
       if (!val) return undefined;
@@ -110,14 +109,6 @@ export async function getActiveJobs(): Promise<Job[]> {
       }
       if (!slug) continue;
 
-      let uniqueSlug = slug;
-      let counter = 2;
-      while (existingSlugs.has(uniqueSlug)) {
-        uniqueSlug = `${slug}-${counter}`;
-        counter++;
-      }
-      existingSlugs.add(uniqueSlug);
-
       const statusRaw = getVal('Status') ? getVal('Status').toLowerCase() : 'active';
       const lastDate = normalizeDate(getVal('LastDateToApply', 'Deadline', 'Last Date'));
 
@@ -125,7 +116,7 @@ export async function getActiveJobs(): Promise<Job[]> {
       if (lastDate && lastDate < todayStr) continue;
 
       jobs.push({
-        slug: uniqueSlug,
+        slug,
         title: sanitizeRichText(title),
         department: sanitizeRichText(getVal('Department', 'Dept', 'Category') || 'General'),
         location: sanitizeRichText(getVal('Location', 'City', 'Place') || 'Gurugram, India'),

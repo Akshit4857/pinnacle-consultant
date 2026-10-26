@@ -186,7 +186,16 @@ export default function JobDetail() {
         body: formData,
       });
 
-      const data = await res.json();
+      let data: any = {};
+      try {
+        data = await res.json();
+      } catch (_e) {
+        throw new Error(
+          res.ok
+            ? 'Application submitted, but received an unexpected server response.'
+            : `Unable to submit application (Server error ${res.status}). Please try again or email us directly at info@pinnacleconsultant.co.in`
+        );
+      }
 
       if (res.status === 409) {
         setIsDuplicate(true);
