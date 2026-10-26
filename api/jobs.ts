@@ -48,6 +48,14 @@ export default async function handler(req: any, res: any) {
 
     const todayStr = new Date().toISOString().split('T')[0];
     const jobs: any[] = [];
+    const existingSlugs = new Set<string>();
+
+    const normalizeDate = (val: string) => {
+      if (!val) return undefined;
+      const d = new Date(val);
+      if (isNaN(d.getTime())) return val;
+      return d.toISOString().split('T')[0];
+    };
 
     for (const row of payload.data) {
       const getVal = (...keys: string[]) => {
@@ -72,8 +80,18 @@ export default async function handler(req: any, res: any) {
       }
       if (!slug) continue;
 
+      // Deduplicate slugs so multiple jobs with same title get unique URLs & React keys
+      let uniqueSlug = slug;
+      let counter = 2;
+      while (existingSlugs.has(uniqueSlug)) {
+        uniqueSlug = `${slug}-${counter}`;
+        counter++;
+      }
+      existingSlugs.add(uniqueSlug);
+
       const statusRaw = getVal('Status') ? getVal('Status').toLowerCase() : 'active';
-      const lastDate = getVal('LastDateToApply', 'Deadline', 'Last Date');
+      const lastDateRaw = getVal('LastDateToApply', 'Deadline', 'Last Date');
+      const lastDate = normalizeDate(lastDateRaw);
 
       if (statusRaw !== 'active' && statusRaw !== 'open') continue;
       if (lastDate && lastDate < todayStr) continue;
@@ -92,7 +110,7 @@ export default async function handler(req: any, res: any) {
       const perksDisabled = ['no', 'false', 'off', '0', 'disable', 'disabled'].includes(showPerks);
 
       jobs.push({
-        slug,
+        slug: uniqueSlug,
         title,
         department: getVal('Department', 'Dept', 'Category') || 'General',
         location: getVal('Location', 'City', 'Place') || 'Gurugram, India',
@@ -106,7 +124,7 @@ export default async function handler(req: any, res: any) {
         requirements: parseList(getVal('Requirements', 'Eligibility')),
         skills: parseList(getVal('Skills', 'Key Skills')),
         benefits: perksDisabled ? [] : parseList(getVal('Benefits', 'Perks')),
-        postedDate: getVal('PostedDate', 'Date') || todayStr,
+        postedDate: normalizeDate(getVal('PostedDate', 'Date')) || todayStr,
         lastDateToApply: lastDate || undefined,
         status: 'Active',
       });

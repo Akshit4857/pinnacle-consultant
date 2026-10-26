@@ -76,6 +76,14 @@ export async function getActiveJobs(): Promise<Job[]> {
 
     const todayStr = new Date().toISOString().split('T')[0];
     const jobs: Job[] = [];
+    const existingSlugs = new Set<string>();
+
+    const normalizeDate = (val: string) => {
+      if (!val) return undefined;
+      const d = new Date(val);
+      if (isNaN(d.getTime())) return val;
+      return d.toISOString().split('T')[0];
+    };
 
     for (const row of result.data) {
       // Flexible field lookup (case-insensitive)
@@ -102,14 +110,22 @@ export async function getActiveJobs(): Promise<Job[]> {
       }
       if (!slug) continue;
 
+      let uniqueSlug = slug;
+      let counter = 2;
+      while (existingSlugs.has(uniqueSlug)) {
+        uniqueSlug = `${slug}-${counter}`;
+        counter++;
+      }
+      existingSlugs.add(uniqueSlug);
+
       const statusRaw = getVal('Status') ? getVal('Status').toLowerCase() : 'active';
-      const lastDate = getVal('LastDateToApply', 'Deadline', 'Last Date');
+      const lastDate = normalizeDate(getVal('LastDateToApply', 'Deadline', 'Last Date'));
 
       if (statusRaw !== 'active' && statusRaw !== 'open') continue;
       if (lastDate && lastDate < todayStr) continue;
 
       jobs.push({
-        slug,
+        slug: uniqueSlug,
         title: sanitizeRichText(title),
         department: sanitizeRichText(getVal('Department', 'Dept', 'Category') || 'General'),
         location: sanitizeRichText(getVal('Location', 'City', 'Place') || 'Gurugram, India'),
@@ -125,7 +141,7 @@ export async function getActiveJobs(): Promise<Job[]> {
         benefits: ['no', 'false', 'off', '0', 'disable', 'disabled'].includes(getVal('ShowBenefits', 'ShowPerks', 'PerksEnabled').toLowerCase())
           ? []
           : parseList(getVal('Benefits', 'Perks')),
-        postedDate: getVal('PostedDate', 'Date') || todayStr,
+        postedDate: normalizeDate(getVal('PostedDate', 'Date')) || todayStr,
         lastDateToApply: lastDate || undefined,
         status: 'Active',
       });
